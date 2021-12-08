@@ -1,7 +1,7 @@
 #!/bin/sh
 flux bootstrap github \
-  --owner=unix0003 \
-  --repository=cluster \
+  --owner=no1here0003 \
+  --repository=home-cluster \
   --branch=main \
   --path=./apps/base \
   --personal 
