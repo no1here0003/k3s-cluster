@@ -1,0 +1,85 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'environment', defaultValue: 'default', description: 'Workspace/environment file to use for deployment')
+        string(name: 'version', defaultValue: '', description: 'Version variable to pass to Terraform')
+        booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
+    }
+    
+    environment {
+        TF_IN_AUTOMATION      = '1'
+    }
+
+    stages { 
+        stage('Install Metallb') {
+                steps {
+                    dir('SaC/software/terraform/metallb') {
+                        sh 'export KUBECONFIG=/var/jenkins_home/kube/config'
+                        sh 'terraform init -migrate-state'
+                        sh 'terraform workspace select metallb'
+                        sh 'terraform plan -input=false -out tfplan'
+                        sh 'terraform show -no-color tfplan > tfplan.txt'
+                        sh 'terraform apply "tfplan"'
+                    }
+                }
+        }
+        stage('Wait for system to calm down (10s)') {
+            steps {
+                sh 'sleep 10s'
+            }
+        }
+        stage('Install cert-manager') {
+               steps {
+                   dir('SaC/software/terraform/cert-manager') {
+                        sh 'export KUBECONFIG=/var/jenkins_home/kube/config'
+                        sh 'terraform init'
+                        sh 'terraform workspace select cert-manager'
+                        sh 'terraform plan -input=false -out tfplan'
+                        sh 'terraform show -no-color tfplan > tfplan.txt'
+                        sh 'terraform apply "tfplan"'
+                        sh '../../manifests/cert-manager/certmanager.yml'
+                   }
+                }   
+        }
+        stage('Wait for system to calm down (Cert-manager 10s)') {
+            steps {
+                sh 'sleep 10s'
+            }
+        }
+        stage('Install Ingress Nginx') {
+               steps {
+                   dir('SaC/software/terraform/ingress-nginx') {
+                        sh 'export KUBECONFIG=/var/jenkins_home/kube/config'
+                        sh 'terraform init'
+                        sh 'terraform workspace select ingress-nginx'
+                        sh 'terraform plan -input=false -out tfplan'
+                        sh 'terraform show -no-color tfplan > tfplan.txt'
+                        sh 'terraform apply "tfplan"'
+                   }
+                }   
+        }
+        stage('Wait for system to calm down (Ingress 10s)') {
+            steps {
+                sh 'sleep 10s'
+            }
+        }
+        stage('Install Longhorn') {
+            steps {
+                dir('SaC/software/terraform/longhorn') {
+                    sh 'terraform init'
+                    sh 'terraform workspace select longhorn'
+                    sh 'terraform plan -input=false -out tfplan'
+                    sh 'terraform show -no-color tfplan > tfplan.txt'
+                    sh 'terraform apply "tfplan"'
+                    sh '../../manifests/longhorn/ing.yml'
+                }
+            }
+        }
+        stage('Wait for system to calm down (Longhorn 10s)') {
+            steps {
+                sh 'sleep 10s'
+            }
+        }
+    }
+}

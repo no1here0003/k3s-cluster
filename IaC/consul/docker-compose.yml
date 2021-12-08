@@ -1,0 +1,49 @@
+# Add below to an existing docker-compose.yml
+#
+# See https://learn.hashicorp.com/tutorials/consul/docker-compose-datacenter for json locations
+#
+  consul-server1:
+    image: consul:1.10.3
+    container_name: consul-server1
+    restart: always
+    volumes:
+      - ./consul/config/server1.json:/consul/config/server1.json:ro
+      - ./consul/certs:/consul/config/certs
+      - ./consul/data1:/consul/data1
+    ports:
+      - '8500:8500'
+      - '8600:8600/tcp'
+      - '8600:8600/udp'
+    command: 'agent -bootstrap-expect=3'
+
+  consul-server2:
+    image: consul:1.10.3
+    container_name: consul-server2
+    restart: always
+    volumes:
+      - ./consul/config/server2.json:/consul/config/server2.json:ro
+      - ./consul/certs:/consul/config/certs
+      - ./consul/data1:/consul/data2
+    command: 'agent -bootstrap-expect=3'
+
+  consul-server3:
+    image: consul:1.10.3
+    container_name: consul-server3
+    restart: always
+    volumes:
+      - ./consul/config/server3.json:/consul/config/server3.json:ro
+      - ./consul/certs:/consul/config/certs
+      - ./consul/data2:/consul/data3
+    command: 'agent -bootstrap-expect=3'
+
+  consul-client:
+    image: consul:1.10.3
+    container_name: consul-client
+    restart: always
+    volumes:
+      - ./consul/config/client.json:/consul/config/client.json:ro
+      - ./consul/config:/consul/config
+      - ./consul/certs:/consul/config/certs
+      - ./consul/data3:/consul/data4
+    command: 'agent'
+

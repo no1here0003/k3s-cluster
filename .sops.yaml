@@ -1,0 +1,7 @@
+---
+creation_rules:
+
+  - path_regex: apps/.*\.ya?ml
+    encrypted_regex: "^(data|stringData)$"
+    age: >-
+      age1kmn982kderhq3468sre0cq9y93qmw4m4wk9eh5288a0reaa4xsrqpf0s9x

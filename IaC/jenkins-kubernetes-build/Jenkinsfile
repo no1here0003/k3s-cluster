@@ -1,0 +1,76 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'environment', defaultValue: 'default', description: 'Workspace/environment file to use for deployment')
+        string(name: 'version', defaultValue: '', description: 'Version variable to pass to Terraform')
+        booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
+    }
+    
+    environment {
+        TF_IN_AUTOMATION      = '1'
+    }
+
+    stages {
+        stage('Main Kubernetes Master') {
+            steps {
+                sh "IaC/shell/master.sh"
+            }
+        }
+        stage('Build other Nodes') {
+            parallel {
+                stage('Other Masters') {
+                    steps {
+                        sh "IaC/shell/other_masters1.sh"
+                    }
+                }
+                stage('Masters (2)') {
+                    steps {
+                        sh "IaC/shell/other_masters2.sh"
+                    }
+                }
+                stage('Masters (3)') {
+                    steps {
+                        sh "IaC/shell/other_masters3.sh"
+                    }
+                }
+                stage('Workers (1)') {
+                    steps {
+                        sh "IaC/shell/workers1.sh"
+                    }
+                }
+                stage('Workers (2)') {
+                    steps {
+                        sh "IaC/shell/workers2.sh"
+                    }
+                }
+                stage('Workers (3)') {
+                    steps {
+                        sh "IaC/shell/workers3.sh"
+                    }
+                }
+                stage('Workers (4)') {
+                    steps {
+                        sh "IaC/shell/workers4.sh"
+                    }
+                }
+                stage('Workers (5)') {
+                    steps {
+                        sh "IaC/shell/workers5.sh"
+                    }
+                }
+            }
+        }
+        stage('Copy Artifact') {
+            steps {
+                sh 'cp /var/jenkins_home/kube/config config.json'
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'config.json'
+        }
+    }
+}

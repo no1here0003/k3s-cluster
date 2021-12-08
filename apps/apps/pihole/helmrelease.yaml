@@ -1,0 +1,36 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: pihole
+  namespace: pihole
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: pihole
+      version: 2.5.3
+      sourceRef:
+        kind: HelmRepository
+        name: pihole
+        namespace: flux-system
+  values:
+    replicaCount: 1
+    serviceDns:
+      type: LoadBalancer
+    serviceDhcp:
+      type: LoadBalancer
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+      hosts:
+        - pihole.192.168.2.50.nip.io
+    persistentVolumeClaim:
+      enabled: true
+      accessModes: 
+        - ReadWriteOnce
+      size: "1G"
+    adminPassword: ${SECRET_PASSWORD}
+    DNS1: "1.1.1.1"
+    DNS2: "8.8.8.8"

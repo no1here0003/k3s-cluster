@@ -1,0 +1,25 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: longhorn
+  namespace: longhorn-system
+spec:
+  releaseName: longhorn
+  interval: 5m
+  chart:
+    spec:
+      chart: longhorn
+      version: 1.2.2
+      sourceRef:
+        kind: HelmRepository
+        name: longhorn-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      host: longhorn.192.168.2.50.nip.io
+      tls: true
+      tlsSecret: longhorn.local-tls

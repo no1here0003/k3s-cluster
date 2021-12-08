@@ -1,0 +1,88 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: sonarr
+  namespace: downloads
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: sonarr
+      version: 15.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: ghcr.io/k8s-at-home/sonarr
+      tag: v3.0.6.1342
+    env:
+      TZ: "America/New_York"
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Accept-Encoding "";
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/sonarr/nord.css"></head>';
+            sub_filter_once on;
+        hosts:
+          - host: "sonarr.${INTERNAL_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "sonarr.${INTERNAL_DOMAIN}"
+    podSecurityContext:
+      supplementalGroups:
+        - 100
+    persistence:
+      config:
+        enabled: true
+        existingClaim: sonarr-config
+      downloads:
+        enabled: true
+        existingClaim: sabnzbd-downloads
+      tv:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NAS1_ADDR}"
+            path: /volume1/Media/Sonarr
+        mountPath: /tv
+      anime:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NAS1_ADDR}"
+            path: /volume1/Media/Anime
+        mountPath: /anime
+      media2:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "{NAS2_ADDR}"
+            path: /volume1/Media2
+        mountPath: /Media2
+      tv_import:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NAS1_ADDR}"
+            path: /volume1/Media/TV\040Shows
+        mountPath: /import_tv
+    resources:
+      requests:
+        memory: 250Mi
+        cpu: 500m
+      limits:
+        memory: 1500Mi
