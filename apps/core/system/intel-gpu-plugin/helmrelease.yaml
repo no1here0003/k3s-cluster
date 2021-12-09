@@ -20,7 +20,7 @@ spec:
       interval: 5m
   values:
     image:
-      repository: ghcr.io/k8s-at-home/intel-gpu-plugin
+      repository: intel/intel-gpu-plugin
       tag: v0.22.0
       pullPolicy: IfNotPresent
     args:
