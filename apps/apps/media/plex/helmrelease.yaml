@@ -25,6 +25,7 @@ spec:
       supplementalGroups:
         - 44
         - 109
+      fsGroup: 0
     service:
       main:
         enabled: true
