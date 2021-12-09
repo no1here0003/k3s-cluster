@@ -72,7 +72,7 @@ spec:
           nfs:
             server: "${NAS2_ADDR}"
             path: /volume1/Media2
-        mountPath: /media
+        mountPath: /media2
         readOnly: true
       transcode:
         enabled: true
