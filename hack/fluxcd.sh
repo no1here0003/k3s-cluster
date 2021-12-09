@@ -2,6 +2,6 @@
 flux bootstrap github \
   --owner=no1here0003 \
   --repository=home-cluster \
-  --branch=main \
+  --branch=master \
   --path=./apps/base \
   --personal 
