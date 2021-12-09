@@ -30,8 +30,6 @@ spec:
         enabled: true
         type: LoadBalancer
         loadBalancerIP: ${PLEX_LB}
-        externalIPs:
-          - "${SVC_PLEX_ADDR}"
         externalTrafficPolicy: Local
         ports:
           http:
