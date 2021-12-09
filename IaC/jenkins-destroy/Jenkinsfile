@@ -27,10 +27,6 @@ pipeline {
                     sh "terraform plan -destroy -out vms2.tfplan"
                     sh 'terraform show -no-color vms2.tfplan >> tfplan.txt'
                     sh 'terraform show -no-color vms2.tfplan'
-                    sh 'terraform workspace select vms3'
-                    sh "terraform plan -destroy -out vms3.tfplan"
-                    sh 'terraform show -no-color vms3.tfplan >> tfplan.txt'
-                    sh 'terraform show -no-color vms3.tfplan'
                     sh 'terraform workspace select vms4'
                     sh "terraform plan -destroy -out vms4.tfplan"
                     sh 'terraform show -no-color vms4.tfplan >> tfplan.txt'
