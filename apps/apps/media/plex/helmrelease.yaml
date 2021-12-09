@@ -27,6 +27,7 @@ spec:
         - 109
     service:
       main:
+        enabled: true
         type: LoadBalancer
         loadBalancerIP: ${PLEX_LB}
         externalIPs:
