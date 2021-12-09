@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: sonarr
+  name: sabnzbd
   namespace: downloads
 spec:
   interval: 5m
@@ -37,9 +37,14 @@ spec:
       config:
         enabled: true
         existingClaim: sabnzbd-config
-      downloads:
+      downloads1:
         enabled: true
-        existingClaim: sabnzbd-downloads
+        existingClaim: sabnzbd-downloads-sonarr
+      mountPath: /download/radarr
+      downloads2:
+        enabled: true
+        existingClaim: sabnzbd-downloads-radarr
+      mountPath: /download/sonarr
       sonarr:
         enabled: true
         type: custom
