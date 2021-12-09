@@ -76,15 +76,6 @@ pipeline {
                     }
                 }
             }
-            stage('Destroy vms3') {
-                steps {
-                    dir('IaC/terraform') {
-                        sh 'terraform init'
-                        sh 'terraform workspace select vms3'
-                        sh "terraform destroy -auto-approve"
-                    }
-                }
-            }
             stage('Destroy vms4') {
                 steps {
                     dir('IaC/terraform') {
