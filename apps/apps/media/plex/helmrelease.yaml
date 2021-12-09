@@ -39,20 +39,19 @@ spec:
             protocol: TCP
     ingress:
       main:
-        enabled: false
+        enabled: true
         ingressClassName: "nginx"
         annotations:
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "true"
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
         hosts:
-          - host: "plex.${SECRET_DOMAIN}"
+          - host: "plex.${INTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "plex.${SECRET_DOMAIN}"
+              - "plex.${INTERNAL_DOMAIN}"
     persistence:
       config:
         enabled: true
