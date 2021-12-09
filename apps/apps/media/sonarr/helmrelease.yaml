@@ -17,8 +17,8 @@ spec:
       interval: 5m
   values:
     image:
-      repository: ghcr.io/k8s-at-home/sonarr
-      tag: v3.0.6.1342
+      repository: lscr.io/linuxserver/sonarr
+      tag: latest
     env:
       TZ: "America/New_York"
     ingress:
@@ -42,23 +42,15 @@ spec:
         existingClaim: sonarr-config
       downloads:
         enabled: true
-        existingClaim: sabnzbd-downloads-sonarr
-      tv:
+        existingClaim: sabnzbd-downloads
+      media:
         enabled: true
         type: custom
         volumeSpec:
           nfs:
             server: "${NAS1_ADDR}"
-            path: /volume1/Media/Sonarr
-        mountPath: /tv
-      anime:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${NAS1_ADDR}"
-            path: /volume1/Media/Anime
-        mountPath: /anime
+            path: /volume1/Media
+        mountPath: /media
       media2:
         enabled: true
         type: custom
@@ -66,15 +58,7 @@ spec:
           nfs:
             server: "{NAS2_ADDR}"
             path: /volume1/Media2
-        mountPath: /Media2
-      tv_import:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${NAS1_ADDR}"
-            path: /volume1/Media/TV\040Shows
-        mountPath: /import_tv
+        mountPath: /media2
     resources:
       requests:
         memory: 250Mi
