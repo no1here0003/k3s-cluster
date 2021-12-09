@@ -40,16 +40,35 @@ spec:
       download-radarr:
         enabled: true
         existingClaim: sabnzbd-downloads-sonarr
+      mountPath: /download/radarr
       download-sonarr:
         enabled: true
         existingClaim: sabnzbd-downloads-radarr
-      media:
+        mountPath: /download/sonarr
+      sonarr:
         enabled: true
         type: custom
         volumeSpec:
           nfs:
             server: "${NAS1_ADDR}"
-            path: /volume1/Media
+            path: /volume1/Media/Sonarr
+          mountPath: /Sonarr
+      radarr:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NAS1_ADDR}"
+            path: /volume1/Media/Radarr
+          mountPath: /Radarr
+      lidarr:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NAS1_ADDR}"
+            path: /volume1/Media/Music
+          mountPath: /Radarr
     resources:
       requests:
         memory: 250Mi
