@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
 - sonarr
 - plex
+- prowlarr
 - sabnzbd
