@@ -21,7 +21,7 @@ spec:
   values:
     image:
       repository: intel/intel-gpu-plugin
-      tag: latest
+      tag: 0.22.0
       pullPolicy: IfNotPresent
     args:
       - -shared-dev-num
