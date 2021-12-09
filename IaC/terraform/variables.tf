@@ -118,8 +118,8 @@ variable "num_instances" {
       workers = 7
     }
     vms6 = {
-      masters = 0
-      workers = 8
+      masters = 1
+      workers = 7
     }
   }
 }
@@ -134,21 +134,17 @@ variable "instance_start" {
       master = 2
       worker = 3
     }
-    vms3 = {
+    vms4 = {
       master = 3
       worker = 5
     }
-    vms4 = {
-      master = 4
-      worker = 7
-    }
     vms5 = {
-      master = 5
-      worker = 12
+      master = 4
+      worker = 10
     }
     vms6 = {
-      master = 6
-      worker = 19
+      master = 5
+      worker = 17
     }
   }
 }
