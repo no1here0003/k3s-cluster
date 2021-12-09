@@ -34,7 +34,7 @@ spec:
         externalTrafficPolicy: Local
         ports:
           http:
-            port: 32410
+            port: 443
             targetPort: 32400
             protocol: TCP
     ingress:
@@ -42,7 +42,6 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          external-dns/is-public: "true"
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
         hosts:
           - host: "plex.${INTERNAL_DOMAIN}"
