@@ -24,15 +24,15 @@ pipeline {
                 }
             }
         }
-        stage('Build vms3') {
+        stage('Build vms2') {
             steps {
                 dir('./IaC/terraform') {
                     sh "terraform init"
-                    sh "terraform workspace select vms3"
-                    sh "terraform plan -input=false -out vms3.tfplan"
-                    sh "terraform show -no-color vms3.tfplan > vms3.tfplan.txt"
-                    sh "terraform show -no-color vms3.tfplan"
-                    sh 'terraform apply -input=false vms3.tfplan'
+                    sh "terraform workspace select vms2"
+                    sh "terraform plan -input=false -out vms2.tfplan"
+                    sh "terraform show -no-color vms2.tfplan > vms2.tfplan.txt"
+                    sh "terraform show -no-color vms2.tfplan"
+                    sh 'terraform apply -input=false vms2.tfplan'
                 }
             }
         }
