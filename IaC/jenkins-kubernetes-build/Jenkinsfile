@@ -29,11 +29,6 @@ pipeline {
                         sh "IaC/shell/other_masters2.sh"
                     }
                 }
-                stage('Masters (3)') {
-                    steps {
-                        sh "IaC/shell/other_masters3.sh"
-                    }
-                }
                 stage('Workers (1)') {
                     steps {
                         sh "IaC/shell/workers1.sh"
