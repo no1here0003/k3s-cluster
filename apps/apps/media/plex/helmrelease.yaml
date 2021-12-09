@@ -34,12 +34,12 @@ spec:
         externalTrafficPolicy: Local
         ports:
           http:
-            port: 443
+            port: 32410
             targetPort: 32400
             protocol: TCP
     ingress:
       main:
-        enabled: true
+        enabled: false
         ingressClassName: "nginx"
         annotations:
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
