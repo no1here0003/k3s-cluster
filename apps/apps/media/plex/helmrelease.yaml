@@ -34,8 +34,8 @@ spec:
         externalTrafficPolicy: Local
         ports:
           http:
-            port: 443
-            targetPort: 32410
+            port: 32410
+            targetPort: 32400
             protocol: TCP
     ingress:
       main:
