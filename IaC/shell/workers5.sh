@@ -81,6 +81,13 @@ k3sup join \
   --server-user kube
 
 k3sup join \
+  --ip 192.168.2.137 \
+  --user kube \
+  --k3s-channel stable \
+  --server-ip 192.168.2.100 \
+  --server-user kube
+
+k3sup join \
   --ip 192.168.2.240 \
   --user intelgpu \
   --k3s-channel stable \
