@@ -2,11 +2,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sabnzbd-downloads-radarr
+  name: sabnzbd-downloads
   namespace: downloads
 spec:
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storage: 200G
+      storage: 500G
+  storageClassName: longhorn

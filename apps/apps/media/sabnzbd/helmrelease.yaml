@@ -19,6 +19,8 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    image:
+      repository: lscr.io/linuxserver/sabnzbd
     env:
       TZ: "America/New_York"
     ingress:
@@ -40,14 +42,10 @@ spec:
       config:
         enabled: true
         existingClaim: sabnzbd-config
-      download1:
+      downloads:
         enabled: true
-        existingClaim: sabnzbd-downloads-sonarr
-        mountPath: /download/radarr
-      download2:
-        enabled: true
-        existingClaim: sabnzbd-downloads-radarr
-        mountPath: /download/sonarr
+        existingClaim: sabnzbd-downloads
+        mountPath: /downloads
       media:
         enabled: true
         type: custom

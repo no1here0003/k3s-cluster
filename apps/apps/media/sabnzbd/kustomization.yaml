@@ -6,3 +6,4 @@ resources:
 - ./download-1-pvc.yaml
 - ./download-2-pvc.yaml
 - ./download-3-pvc.yaml
+- ./helmrelease.yaml
