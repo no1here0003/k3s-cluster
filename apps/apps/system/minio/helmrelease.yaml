@@ -61,7 +61,7 @@ spec:
         tls:
           - hosts:
               - "minio.${INTERNAL_DOMAIN}"
-              - "s3.${INTERAL_DOMAIN}"
+              - "s3.${INTERNAL_DOMAIN}"
     persistence:
       config:
         enabled: true
