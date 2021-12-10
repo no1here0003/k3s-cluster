@@ -11,3 +11,4 @@ resources:
   - k8s-dashboard.yaml
   - pihole.yaml
   - stakater-charts.yaml
+  - grafana-charts.yaml
