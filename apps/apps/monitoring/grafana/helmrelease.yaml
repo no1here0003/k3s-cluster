@@ -63,7 +63,6 @@ spec:
     datasources:
       datasources.yaml:
         apiVersion: 1
-        # list of datasources that should be deleted from the database
         deleteDatasources:
           - name: Loki
             orgId: 1
@@ -76,8 +75,9 @@ spec:
           - name: Loki
             type: loki
             access: proxy
-            url: http://loki:3100
+            url: http://loki:3100  
     dashboards:
+      default:
         # Ref: https://grafana.com/grafana/dashboards/11315
         unifi-client-insights:
           gnetId: 11315
