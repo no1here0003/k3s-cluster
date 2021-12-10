@@ -1,0 +1,42 @@
+## set up ssh user name and path to python3 ##
+[all:vars]
+ansible_user='kube'
+ansible_become=yes
+ansible_become_method=sudo
+ansible_python_interpreter='/usr/bin/env python3'
+ 
+##########################
+## server IPs. Easier than hostnames to nodes
+## aws-ls-www-1 may be mapped using /etc/hosts or ~/.ssh/config
+## you can use ip address here too
+###########################
+[servers]
+192.168.2.100
+192.168.2.101
+192.168.2.102
+192.168.2.110
+192.168.2.111
+192.168.2.112
+192.168.2.113
+192.168.2.114
+192.168.2.115
+192.168.2.120
+192.168.2.121
+192.168.2.122
+192.168.2.123
+192.168.2.124
+192.168.2.125
+192.168.2.126
+192.168.2.127
+192.168.2.130
+192.168.2.131
+192.168.2.132
+192.168.2.133
+192.168.2.134
+192.168.2.135
+192.168.2.136
+192.168.2.137
+192.168.2.150
+192.168.2.151
+192.168.2.152
+intelgpu1

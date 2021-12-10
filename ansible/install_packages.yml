@@ -1,0 +1,9 @@
+---
+- hosts: all
+  tasks:
+  - name: Package installation
+    dnf:
+      name:
+        - promtail
+        - nfs-common
+      state: latest
