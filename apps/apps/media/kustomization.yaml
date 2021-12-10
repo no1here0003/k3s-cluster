@@ -5,3 +5,5 @@ resources:
 - prowlarr
 - tautulli
 - plex
+- sabnzbd
+- sonarr
