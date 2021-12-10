@@ -98,10 +98,23 @@ spec:
           gnetId: 11312
           revision: 8
           datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/13665
-        speedtest:
-          gnetId: 13665
-          revision: 1
+        pihole-dashboard:
+          url: https://raw.githubusercontent.com/eko/pihole-exporter/master/grafana/dashboard.json
+          datasource: Prometheus
+        flux-cluster:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/v0.7.6/manifests/monitoring/grafana/dashboards/cluster.json
+          datasource: Prometheus
+        flux-control-plane:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/v0.7.6/manifests/monitoring/grafana/dashboards/control-plane.json
+          datasource: Prometheus
+        # internet-speed:
+        #   url: https://raw.githubusercontent.com/billimek/k8s-gitops/master/monitoring/grafana/dashboards/internet_speed.json
+        #   datasource: influxdb
+        # minio-overview:
+        #   url: https://raw.githubusercontent.com/billimek/k8s-gitops/master/monitoring/grafana/dashboards/minio_overview.json
+        #   datasource: influxdb
+        nginx-dashboard:
+          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
           datasource: Prometheus
     sidecar:
       dashboards:

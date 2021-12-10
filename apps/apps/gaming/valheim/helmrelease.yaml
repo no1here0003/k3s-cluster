@@ -1,0 +1,83 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: valheim
+  namespace: default
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: valheim
+      version: 4.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: ghcr.io/lloesche/valheim-server
+      tag: latest
+      pullPolicy: Always
+    env:
+      SERVER_NAME: ${VALHEIM_SERVER}
+      WORLD_NAME: ${VALHEIM_WORLD}
+      SERVER_PASS: ${VALHEIM_PASS}
+      SERVER_PUBLIC: true
+      SUPERVISOR_HTTP: true
+      STATUS_HTTP: true
+      TZ: America/New_York
+      # DNS_1: 8.8.8.8
+      # DNS_2: 8.8.4.4
+    envFrom:
+      - secretRef:
+          name: valheim-sops
+    persistence:
+      # Persist config
+      config:
+        enabled: true
+        mountPath: /config
+        storageClass: "longhorn"
+        size: 5Gi
+      # Persist World
+      data:
+        enabled: true
+        mountPath: /opt/valheim
+        storageClass: "longhorn"
+        size: 500Gi
+    service:
+      main:
+        type: LoadBalancer
+        externalTrafficPolicy: Cluster
+        loadBalancerIP: 192.168.2.97
+        annotations:
+          metallb.universe.tf/allow-shared-ip: valheim
+      supervisor:
+        enabled: true
+        type: LoadBalancer
+        loadBalancerIP: 192.168.2.98
+        ports:
+          supervisor:
+            enabled: true
+            port: 9001
+            protocol: TCP
+            targetPort: 9001
+        annotations:
+          metallb.universe.tf/allow-shared-ip: valheim
+      status:
+        enabled: true
+        ports:
+          status:
+            enabled: true
+            port: 80
+            protocol: TCP
+            targetPort: 80
+    resources:
+      requests:
+        memory: 4096Mi
+        cpu: 500m
+      limits:
+        memory: 16384Mi
+    podAnnotations:
+      longhorn.backup.io/backup-volumes: "enabled"
