@@ -6,3 +6,4 @@ resources:
 - net-pol
 - intel-gpu-plugin
 - system-upgrade
+- kured
