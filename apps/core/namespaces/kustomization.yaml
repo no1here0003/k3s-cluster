@@ -12,3 +12,4 @@ resources:
   - downloads.yaml
   - vpn-gateway.yaml
   - monitoring.yaml
+  - gaming.yaml
