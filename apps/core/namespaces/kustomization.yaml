@@ -5,7 +5,7 @@ resources:
   - metallb.yaml
   - k8s-dashboard.yaml
   - longhorn.yaml
-  - pihole.yaml
+  - networking.yaml
   - external-dns.yaml
   - ingress-nginx.yaml
   - media.yaml

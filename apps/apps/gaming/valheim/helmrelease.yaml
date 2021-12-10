@@ -33,14 +33,12 @@ spec:
       config:
         enabled: true
         mountPath: /config
-        storageClass: "longhorn"
-        size: 5Gi
+        existingClaim: valheim-config
       # Persist World
       data:
         enabled: true
         mountPath: /opt/valheim
-        storageClass: "longhorn"
-        size: 500Gi
+        existingClaim: valheim-data
     service:
       main:
         type: LoadBalancer
