@@ -23,7 +23,7 @@ spec:
       TZ: "America/New_York"
       ADVERTISE_IP: "http://${PLEX_LB}:32410/"
       ALLOWED_NETWORKS: "10.0.0.0/8,172.16.0.0/16,192.168.0.0/16"
-      HOSTNAME: "${PLEX_NAME}"
+      HOSTNAME: "plex-cluster"
       PLEX_CLAIM: "${PLEX_CLAIM}"
     podSecurityContext:
       supplementalGroups:
