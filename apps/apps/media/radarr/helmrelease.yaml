@@ -40,9 +40,6 @@ spec:
       config:
         enabled: true
         existingClaim: radarr-config
-      downloads:
-        enabled: true
-        existingClaim: sabnzbd-downloads
       media:
         enabled: true
         type: custom
@@ -51,14 +48,14 @@ spec:
             server: "${NAS1_ADDR}"
             path: /volume1/Media
         mountPath: /media
-      media2:
+      temp:
         enabled: true
         type: custom
         volumeSpec:
           nfs:
-            server: "${NAS2_ADDR}"
-            path: /volume1/Media2
-        mountPath: /media2
+            server: "${NAS1_ADDR}"
+            path: /volume1/temp
+        mountPath: /temp_dir
     resources:
       requests:
         memory: 250Mi
