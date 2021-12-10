@@ -64,6 +64,13 @@ spec:
             annotations:
               # TODO: Figure out how to use hostname in summary
               summary: "An arr app is experiencing locked database issues"
+    persistence:
+      enabled: false
+      accessModes:
+      - ReadWriteOnce
+      size: 100Gi
+      storageClassName: "longhorn"
+      annotations: {}
   # TODO: https://github.com/grafana/helm-charts/pull/700
   postRenderers:
     - kustomize:
@@ -89,10 +96,3 @@ spec:
               - op: add
                 path: /spec/rules/0/http/paths/0/pathType
                 value: Prefix
-    persistence:
-      enabled: false
-      accessModes:
-      - ReadWriteOnce
-      size: 100Gi
-      storageClassName: "longhorn"
-      annotations: {}
