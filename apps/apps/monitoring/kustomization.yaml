@@ -7,3 +7,5 @@ resources:
 - grafana
 - loki
 - promtail
+- cert-manager
+- flux-system
