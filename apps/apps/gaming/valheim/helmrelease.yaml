@@ -28,9 +28,6 @@ spec:
       SUPERVISOR_HTTP: true
       STATUS_HTTP: true
       TZ: America/New_York
-    envFrom:
-      - secretRef:
-          name: valheim-sops
     persistence:
       # Persist config
       config:
