@@ -17,8 +17,8 @@ spec:
       interval: 5m
   values:
     image:
-      repository: ghcr.io/k8s-at-home/plex
-      tag: v1.25.1.5286-34f965be8
+      repository: lscr.io/linuxserver/plex
+      tag: latest
     env:
       TZ: "America/New_York"
       ADVERTISE_IP: "http://${PLEX_LB}:32410/"
@@ -27,7 +27,6 @@ spec:
       supplementalGroups:
         - 44
         - 109
-      fsGroup: 0
     service:
       main:
         enabled: true
