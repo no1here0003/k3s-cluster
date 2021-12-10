@@ -12,3 +12,4 @@ resources:
   - pihole.yaml
   - stakater-charts.yaml
   - grafana-charts.yaml
+  - prometheus-community-charts.yaml

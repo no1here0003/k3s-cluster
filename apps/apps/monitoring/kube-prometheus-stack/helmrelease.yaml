@@ -1,0 +1,57 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://prometheus-community.github.io/helm-charts
+      chart: kube-prometheus-stack
+      version: 23.1.6
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    fullnameOverride: prometheus
+    alertmanager:
+      ingress:
+        enabled: true
+        pathType: Prefix
+        ingressClassName: "nginx"
+        hosts:
+          - "alert-manager.${INTERNAL_DOMAIN}"
+        tls:
+          - hosts:
+              - "alert-manager.${INTERNAL_DOMAIN}"
+      alertmanagerSpec:
+        storage:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: "longhorn"
+              resources:
+                requests:
+                  storage: 1Gi
+    prometheus:
+      ingress:
+        enabled: true
+        pathType: Prefix
+        ingressClassName: "nginx"
+        hosts:
+          - "prometheus.${INTERNAL_DOMAIN}"
+        tls:
+          - hosts:
+              - "prometheus.${INTERNAL_DOMAIN}"
+    # This will run elsewhere
+    grafana:
+      enabled: false
+      forceDeployDashboards: true
+      sidecar:
+        dashboards:
+          multicluster:
+            etcd:
+              enabled: true

@@ -6,3 +6,4 @@ resources:
 - system-upgrade
 - media
 - vpn-gateway
+- monitoring

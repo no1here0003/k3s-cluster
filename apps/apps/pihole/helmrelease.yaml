@@ -31,6 +31,7 @@ spec:
       accessModes: 
         - ReadWriteOnce
       size: "1G"
+      storageClassName: "longhorn"
     adminPassword: ${SECRET_PASSWORD}
     DNS1: "1.1.1.1"
     DNS2: "8.8.8.8"

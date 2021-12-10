@@ -11,3 +11,4 @@ resources:
   - media.yaml
   - downloads.yaml
   - vpn-gateway.yaml
+  - monitoring.yaml
