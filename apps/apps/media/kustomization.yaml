@@ -6,5 +6,5 @@ resources:
 - tautulli
 - plex
 - sabnzbd
-#- sonarr
+- sonarr
 - radarr
