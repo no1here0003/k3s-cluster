@@ -31,13 +31,13 @@ spec:
           external-dns/is-public: "true"
           cert-manager.io/cluster-issuer: letsencrypt-prod
         hosts:
-          - host: "overseerr.${SECRET_DOMAIN}"
+          - host: "request.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "overseerr.${SECRET_DOMAIN}"
+              - "request.${SECRET_DOMAIN}"
     persistence:
       config:
         enabled: true
