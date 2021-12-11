@@ -36,6 +36,7 @@ spec:
         tls:
           - hosts:
               - "sabnzbd.${INTERNAL_DOMAIN}"
+          - secretName: sabnzbd-tls
     podSecurityContext:
       supplementalGroups:
         - 100

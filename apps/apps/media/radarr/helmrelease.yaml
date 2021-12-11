@@ -33,6 +33,7 @@ spec:
         tls:
           - hosts:
               - "radarr.${INTERNAL_DOMAIN}"
+          - secretName: radarr-tls
     podSecurityContext:
       supplementalGroups:
         - 100

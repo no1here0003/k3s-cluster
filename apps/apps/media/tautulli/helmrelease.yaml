@@ -33,6 +33,7 @@ spec:
         tls:
           - hosts:
               - "tautulli.${INTERNAL_DOMAIN}"
+          - secretName: tautulli-tls
     persistence:
       config:
         enabled: true
