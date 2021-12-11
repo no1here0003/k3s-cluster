@@ -30,8 +30,8 @@ spec:
     persistence:
       downloads:
         enabled: true
-        existingClaim: radarr-config
-        mountPath: /radarr/config
+        existingClaim: sonarr-config
+        mountPath: /sonarr/config
     resources:
       requests:
         memory: 250Mi

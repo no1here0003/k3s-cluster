@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: temp
-  namespace: media
+  namespace: downloads
 spec:
   dependsOn:
   - name: longhorn
@@ -31,7 +31,7 @@ spec:
       downloads:
         enabled: true
         existingClaim: sabnzbd-config
-        mountPath: /sabnzbd/config
+        mountPath: /sabnzbd2/config
     resources:
       requests:
         memory: 250Mi
