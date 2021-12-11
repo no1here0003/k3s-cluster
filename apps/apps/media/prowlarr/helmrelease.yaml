@@ -33,6 +33,7 @@ spec:
         tls:
           - hosts:
               - "prowlarr.${INTERNAL_DOMAIN}"
+          - secretName: overseer-tls
     persistence:
       config:
         enabled: true
