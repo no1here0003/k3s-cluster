@@ -18,7 +18,6 @@ spec:
         name: jetstack-charts
         namespace: flux-system
   values:
-    installCRDs: true
     webhook:
       enabled: true
       securePort: 10666
