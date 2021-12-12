@@ -50,8 +50,8 @@ spec:
         volumeSpec:
           nfs:
             server: "${NAS1_ADDR}"
-            path: /volume1/temp
-        mountPath: /temp_dir
+            path: /volume1/Media
+        mountPath: /media
     resources:
       requests:
         memory: 250Mi
