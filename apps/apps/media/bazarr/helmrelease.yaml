@@ -1,0 +1,63 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: bazarr
+  namespace: downloads
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: bazarr
+      version: 10.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: lscr.io/linuxserver/bazarr
+      tag: latest
+    env:
+      TZ: "America/New_York"
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        hosts:
+          - host: "bazarr.${INTERNAL_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "bazarr.${INTERNAL_DOMAIN}"
+          - secretName: bazarr-tls
+    podSecurityContext:
+      supplementalGroups:
+        - 100
+    persistence:
+      config:
+        enabled: true
+        existingClaim: bazarr-config
+      media:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NAS1_ADDR}"
+            path: /volume1/Media
+        mountPath: /media
+      media2:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NAS2_ADDR}"
+            path: /volume1/Media2
+        mountPath: /media2
+    resources:
+      requests:
+        memory: 250Mi
+        cpu: 500m
