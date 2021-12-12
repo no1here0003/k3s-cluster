@@ -23,7 +23,7 @@ k3sup join \
   --server-user kube
 
 k3sup join \
-  --ip 192.168.2.240 \
+  --ip 192.168.2.241 \
   --user intelgpu \
   --k3s-channel latest \
   --server-ip 192.168.2.100 \
