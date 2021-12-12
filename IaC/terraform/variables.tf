@@ -80,15 +80,15 @@ variable "cores" {
     }
     vms4 = {
       masters = 4
-      workers = 4
+      workers = 8
     }
     vms5 = {
       masters = 6
-      workers = 6
+      workers = 12
     }
     vms6 = {
       masters = 6
-      workers = 6
+      workers = 12
     }
   } 
 }
@@ -111,15 +111,15 @@ variable "num_instances" {
     }
     vms4 = {
       masters = 1
-      workers = 5
+      workers = 2
     }
     vms5 = {
       masters = 1
-      workers = 7
+      workers = 3
     }
     vms6 = {
       masters = 1
-      workers = 7
+      workers = 3
     }
   }
 }
@@ -140,11 +140,11 @@ variable "instance_start" {
     }
     vms5 = {
       master = 4
-      worker = 10
+      worker = 7
     }
     vms6 = {
       master = 5
-      worker = 17
+      worker = 10
     }
   }
 }
@@ -166,15 +166,15 @@ variable "memory" {
     }
     vms4 = {
       masters = 8192
-      workers = 8192
+      workers = 16384
     }
     vms5 = {
       masters = 16384
-      workers = 16384
+      workers = 32768
     }
     vms6 = {
       masters = 16384
-      workers = 16384
+      workers = 32768
     }
   }
 }
