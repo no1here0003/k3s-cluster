@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
 - prowlarr
 - tautulli
-- plex
+#- plex
 #- sabnzbd
 #- sonarr
 #- radarr
