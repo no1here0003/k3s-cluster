@@ -7,8 +7,8 @@ k3sup install \
   --sudo \
   --tls-san=192.168.2.5 \
   --cluster \
-  --k3s-channel=stable \
-  --k3s-extra-args "--no-deploy=traefik --no-deploy=servicelb --flannel-backend=wireguard --node-ip=192.168.2.100" \
+  --k3s-channel=latest \
+  --k3s-extra-args "--no-deploy=traefik --no-deploy=servicelb --flannel-backend=wireguard --node-ip=192.168.2.100  --write-kubeconfig-mode 644" \
   --local-path /var/jenkins_home/kube/config \
   --context=k3s
 
