@@ -21,7 +21,7 @@ spec:
       tag: latest
     env:
       TZ: "America/New_York"
-      ADVERTISE_IP: "http://${PLEX_LB}:32410/"
+      ADVERTISE_IP: "http://${PLEX_LB}:32400/"
       ALLOWED_NETWORKS: "10.0.0.0/8,172.16.0.0/16,192.168.0.0/16"
       HOSTNAME: "plex-cluster"
     podSecurityContext:
