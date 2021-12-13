@@ -33,7 +33,7 @@ spec:
         enabled: true
         type: LoadBalancer
         externalIP: 
-        - ${PLEX_LB}
+        - "${PLEX_LB}"
         externalTrafficPolicy: Local
         ports:
           http:
