@@ -42,7 +42,7 @@ spec:
             protocol: TCP
     ingress:
       main:
-        enabled: false
+        enabled: true
         ingressClassName: "nginx"
         annotations:
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
@@ -84,7 +84,7 @@ spec:
       requests:
         gpu.intel.com/i915: 1
         cpu: 1000m
-        memory: 1000Mi
+        memory: 16G
       limits:
         gpu.intel.com/i915: 1
         memory: 32G

@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sabnzbd-config
+  name: sabnzbd-config-v2
   namespace: downloads
   labels:
     longhorn.io/backup-volume: "enabled"

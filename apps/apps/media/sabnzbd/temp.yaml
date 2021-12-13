@@ -31,6 +31,10 @@ spec:
       downloads:
         enabled: true
         existingClaim: sabnzbd-config
+        mountPath: /sabnzbd2/config-old
+      downloads2:
+        enabled: true
+        existingClaim: sabnzbd-config-v2
         mountPath: /sabnzbd2/config
     resources:
       requests:
