@@ -37,7 +37,7 @@ spec:
         externalTrafficPolicy: Local
         ports:
           http:
-            port: 32410
+            port: 32400
             targetPort: 32400
             protocol: TCP
     ingress:
@@ -46,14 +46,17 @@ spec:
         ingressClassName: "nginx"
         annotations:
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+          external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN}"
+          external-dns/is-public: "true"
+          cert-manager.io/cluster-issuer: letsencrypt-prod
         hosts:
-          - host: "plex.${INTERNAL_DOMAIN}"
+          - host: "plex.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "plex.${INTERNAL_DOMAIN}"
+              - "plex.${SECRET_DOMAIN}"
     persistence:
       config:
         enabled: true
