@@ -17,12 +17,12 @@ spec:
       interval: 5m
   values:
     image:
-      repository: lscr.io/linuxserver/plex
-      tag: latest
+      repository: ghcr.io/k8s-at-home/plex
+      tag: v1.25.2.5319-c43dc0277
     env:
       TZ: "America/New_York"
       ADVERTISE_IP: "http://${PLEX_LB}:32410/"
-      #ALLOWED_NETWORKS: "10.0.0.0/255.0.0.0,172.16.0.0/255.255.0.0,192.168.0.0/255.255.0.0"
+      ALLOWED_NETWORKS: "10.0.0.0/8,172.16.0.0/16,192.168.0.0/16"
       HOSTNAME: "plex-cluster"
     podSecurityContext:
       supplementalGroups:
@@ -32,8 +32,11 @@ spec:
       main:
         enabled: true
         type: LoadBalancer
-        loadBalancerIP: ${PLEX_LB}
+        externalIPs: 
+        - "${PLEX_LB}"
         externalTrafficPolicy: Local
+        annotations:
+          metallb.universe.tf/allow-shared-ip: plex
         ports:
           http:
             port: 32410
@@ -53,7 +56,7 @@ spec:
         tls:
           - hosts:
               - "plex.${INTERNAL_DOMAIN}"
-          - secretName: plex-tls
+          - secretName: plex-tls-internal
     persistence:
       config:
         enabled: true
