@@ -14,4 +14,4 @@ resources:
   - grafana-charts.yaml
   - prometheus-community-charts.yaml
   - weaveworks-kured.yaml
-  - nfs-subdir-external-provisioner.yaml
+  - nfs-subdir-external-provisioner-charts.yaml
