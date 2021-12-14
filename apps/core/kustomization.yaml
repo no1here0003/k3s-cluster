@@ -6,7 +6,7 @@ resources:
 - metallb
 - cert-manager
 - ingress-nginx
-- longhorn
+#- longhorn
 - external-dns
 - k8s-dashboard
 - system
