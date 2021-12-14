@@ -10,4 +10,4 @@ resources:
 - external-dns
 - k8s-dashboard
 - system
-- ceph-rook
+- rook-ceph
