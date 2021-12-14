@@ -13,4 +13,4 @@ resources:
   - vpn-gateway.yaml
   - monitoring.yaml
   - gaming.yaml
-  - rook-ceph
+  - rook-ceph.yaml
