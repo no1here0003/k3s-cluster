@@ -12,7 +12,7 @@ os_type           = "cloud-init"
   scsihw            = "virtio-scsi-pci"
   bootdisk          = "scsi0"
 disk {
-    size            = "250G"
+    size            = "400G"
     type            = "scsi"
     storage         = "local-lvm"
   }
