@@ -4,7 +4,7 @@ resources:
   - cert-manager.yaml
   - metallb.yaml
   - k8s-dashboard.yaml
-  #- longhorn.yaml
+  - longhorn.yaml
   - networking.yaml
   - external-dns.yaml
   - ingress-nginx.yaml
