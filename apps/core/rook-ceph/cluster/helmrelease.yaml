@@ -37,10 +37,68 @@ spec:
         urlPrefix: /
         ssl: false
       storage:
-        useAllNodes: true
-        useAllDevices: true
+        useAllNodes: false
+        useAllDevices: false
         config:
           osdsPerDevice: "1"
+        nodes:
+          - name: "kube-master1"
+            devices:
+              - name: "sda1"
+          - name: "kube-master2"
+            devices:
+              - name: "sda1"
+          - name: "kube-master3"
+            devices:
+              - name: "sda1"
+          - name: "kube-master4"
+            devices:
+              - name: "sda1"
+          - name: "kube-master5"
+            devices:
+              - name: "sda1"
+          - name: "kube-worker1"
+            devices:
+              - name: "sda1"
+          - name: "kube-worker2"
+            devices:
+              - name: "sda1"
+          - name: "kube-worker3"
+            devices:
+              - name: "sda1"
+          - name: "kube-worker4"
+            devices:
+              - name: "sda1"
+          - name: "kube-worker5"
+            devices:
+              - name: "sda1"
+          - name: "kube-worker6"
+            devices:
+              - name: "sda1"
+          - name: "kube-worker7"
+            devices:
+              - name: "sda1"
+          - name: "kube-worker8"
+            devices:
+              - name: "sda1"
+          - name: "kube-worker9"
+            devices:
+              - name: "sda1"
+          - name: "kube-worker10"
+            devices:
+              - name: "sda1"
+          - name: "kube-worker11"
+            devices:
+              - name: "sda1"
+          - name: "kube-worker12"
+            devices:
+              - name: "sda1"
+          - name: "kube-worker5"
+            devices:
+              - name: "sda1"
+          - name: "intelgpu1"
+            devices:
+              - name: "nvme0n1p3"
     cephBlockPools:
       - name: ceph-blockpool
         spec:
