@@ -22,7 +22,7 @@ disk {
 disk {
     type    = "virtio"
     storage = "local-lvm"
-    size    = "360G"
+    size    = "400G"
     format  = "raw"
     discard = "on"
 }
