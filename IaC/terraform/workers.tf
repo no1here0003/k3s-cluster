@@ -21,7 +21,7 @@ disk {
 }
 disk {
     type    = "virtio"
-    storage = "zfs500blue"
+    storage = "local-lvm"
     size    = "360G"
     format  = "raw"
     discard = "on"
