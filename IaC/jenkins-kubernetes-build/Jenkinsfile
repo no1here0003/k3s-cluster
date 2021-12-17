@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('Main Kubernetes Master') {
             steps {
-                sh "rm ~/.ssh/known_hosts"
+                sh "rm ~/.ssh/known_hosts || true" 
                 sh "IaC/shell/master.sh"
             }
         }
