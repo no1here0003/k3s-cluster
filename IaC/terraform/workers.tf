@@ -12,10 +12,20 @@ os_type           = "cloud-init"
   scsihw            = "virtio-scsi-pci"
   bootdisk          = "scsi0"
 disk {
-    size            = "400G"
-    type            = "scsi"
-    storage         = "local-lvm"
-  }
+    type    = "scsi"
+    storage = "local-lvm"
+    size    = "140G"
+    format  = "raw"
+    ssd     = 1
+    discard = "on"
+}
+disk {
+    type    = "virtio"
+    storage = "zfs500blue"
+    size    = "360G"
+    format  = "raw"
+    discard = "on"
+}
 network {
     model           = "virtio"
     bridge          = "vmbr0"
