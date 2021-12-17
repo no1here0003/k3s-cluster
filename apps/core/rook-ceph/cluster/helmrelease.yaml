@@ -29,7 +29,6 @@ spec:
         tls:
           - hosts:
               - "rook.${INTERNAL_DOMAIN}"
-          - secretname: rook-tls
     cephClusterSpec:
       mgr:
         count: 1
