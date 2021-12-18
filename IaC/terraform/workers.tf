@@ -10,13 +10,12 @@ os_type           = "cloud-init"
   cpu               = "host"
   memory            = local.memory.workers
   scsihw            = "virtio-scsi-pci"
-  bootdisk          = "scsi0"
+
 disk {
     type    = "scsi"
     storage = "local-lvm"
     size    = "140G"
     format  = "raw"
-    ssd     = 1
     discard = "on"
 }
 disk {
@@ -35,6 +34,7 @@ lifecycle {
       network,
     ]
   }
+  bootdisk          = "scsi0"
 # Cloud Init Settings
   ipconfig0 = "ip=${local.proxaddr}${count.index + local.instance_info.masters}/24,gw=${var.gateway}"
 }

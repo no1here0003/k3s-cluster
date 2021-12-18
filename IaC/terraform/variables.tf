@@ -165,7 +165,7 @@ variable "memory" {
       workers = 16384
     }
     vms4 = {
-      masters = 8192
+      masters = 16384
       workers = 16384
     }
     vms5 = {
