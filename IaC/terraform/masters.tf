@@ -16,7 +16,6 @@ disk {
     storage = "local-lvm"
     size    = "300G"
     format  = "raw"
-    ssd     = 1
     discard = "on"
 }
 disk {
