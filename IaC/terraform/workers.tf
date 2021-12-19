@@ -14,13 +14,6 @@ os_type           = "cloud-init"
 disk {
     type    = "scsi"
     storage = "local-lvm"
-    size    = "140G"
-    format  = "raw"
-    discard = "on"
-}
-disk {
-    type    = "virtio"
-    storage = "local-lvm"
     size    = "400G"
     format  = "raw"
     discard = "on"
