@@ -43,7 +43,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: sabnzbd-config
+        existingClaim: sabnzbd-config-v2
       temp:
         enabled: true
         type: custom
