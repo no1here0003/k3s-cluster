@@ -5,9 +5,6 @@ metadata:
   name: sabnzbd
   namespace: downloads
 spec:
-  dependsOn:
-  - name: longhorn
-    namespace: longhorn-system
   interval: 5m
   chart:
     spec:
