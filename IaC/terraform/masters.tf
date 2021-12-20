@@ -14,7 +14,7 @@ os_type           = "cloud-init"
 disk {
     type    = "scsi"
     storage = "local-lvm"
-    size    = "400G"
+    size    = "160G"
     format  = "raw"
     discard = "on"
 }
