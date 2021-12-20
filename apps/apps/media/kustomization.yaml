@@ -4,8 +4,8 @@ kind: Kustomization
 resources:
 - prowlarr
 - bazarr
-#- tautulli
-#- plex
+- tautulli
+- plex
 - sabnzbd
 - sonarr
 - radarr
