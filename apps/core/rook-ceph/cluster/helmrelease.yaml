@@ -93,9 +93,6 @@ spec:
           - name: "kube-worker12"
             devices:
               - name: "vda"
-          - name: "kube-worker5"
-            devices:
-              - name: "vda"
     cephBlockPools:
       - name: ceph-blockpool
         spec:
