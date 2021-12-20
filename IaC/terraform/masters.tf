@@ -18,6 +18,13 @@ disk {
     format  = "raw"
     discard = "on"
 }
+disk {
+    type    = "virtio"
+    storage = "local-lvm"
+    size    = "400G"
+    format  = "raw"
+    discard = "on"
+}
 network {
     model           = "virtio"
     bridge          = "vmbr0"
