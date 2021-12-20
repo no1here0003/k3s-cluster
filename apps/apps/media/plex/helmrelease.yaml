@@ -34,8 +34,7 @@ spec:
       main:
         enabled: true
         type: LoadBalancer
-        externalIPs: 
-        - "${PLEX_LB}"
+        loadBalancerIP: ${PLEX_LB}
         externalTrafficPolicy: Local
         annotations:
           metallb.universe.tf/allow-shared-ip: plex
