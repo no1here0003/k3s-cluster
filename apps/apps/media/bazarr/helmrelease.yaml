@@ -17,8 +17,8 @@ spec:
       interval: 5m
   values:
     image:
-      repository: lscr.io/linuxserver/bazarr
-      tag: latest
+      repository: ghcr.io/k8s-at-home/bazarr
+      tag: v0.9.9
     env:
       TZ: "America/New_York"
     ingress:
