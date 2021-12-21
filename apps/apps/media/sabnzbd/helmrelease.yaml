@@ -16,9 +16,6 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    image:
-      repository: lscr.io/linuxserver/sabnzbd
-      tag: 3.4.2
     env:
       TZ: "America/New_York"
     ingress:
