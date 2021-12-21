@@ -16,6 +16,9 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    image:
+      repository: lscr.io/linuxserver/sabnzbd
+      tag: 3.4.2
     env:
       TZ: "America/New_York"
     ingress:
@@ -32,7 +35,6 @@ spec:
               - "sabnzbd.${INTERNAL_DOMAIN}"
           - secretName: sabnzbd-tls
     podSecurityContext:
-      fsGroup: 0
       supplementalGroups:
         - 100
     persistence:
