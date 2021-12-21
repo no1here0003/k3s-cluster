@@ -22,12 +22,13 @@ spec:
       annotations:
         kubernetes.io/ingress.class: "nginx"
       hosts:
-        - host: "loki.${INTERNAL_DOMAIN}"
+        - secretName: loki-tls
+        - host: loki.${INTERNAL_DOMAIN}
           paths:
             - /
       tls:
         - hosts:
-            - "loki.${INTERNAL_DOMAIN}"
+            - loki.${INTERNAL_DOMAIN}
     serviceMonitor:
       enabled: true
     config:
@@ -48,24 +49,8 @@ spec:
           kvstore:
             store: inmemory
         enable_api: true
-    alerting_groups:
-      #
-      # *arr applications
-      #
-      - name: arr
-        rules:
-          - alert: ArrDatabaseIsLocked
-            expr: |
-              sum by (app) (count_over_time({app=~".*arr"} |~ "(?i)database is locked"[2m])) > 0
-            for: 10s
-            labels:
-              severity: critical
-              category: logs
-            annotations:
-              # TODO: Figure out how to use hostname in summary
-              summary: "An arr app is experiencing locked database issues"
     persistence:
-      enabled: false
+      enabled: true
       accessModes:
       - ReadWriteOnce
       size: 100Gi
