@@ -32,7 +32,7 @@ spec:
               - "sabnzbd.${INTERNAL_DOMAIN}"
           - secretName: sabnzbd-tls
     podSecurityContext:
-      fsgroup: 0
+      fsGroup: 0
       supplementalGroups:
         - 100
     persistence:
