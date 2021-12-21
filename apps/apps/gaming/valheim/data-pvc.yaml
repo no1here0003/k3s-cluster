@@ -4,12 +4,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: valheim-data
   namespace: gaming
-  labels:
-    longhorn.io/backup-volume: "enabled"
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 500Gi
-  storageClassName: longhorn
+  storageClassName: ceph-block

@@ -72,5 +72,4 @@ spec:
         cpu: 500m
       limits:
         memory: 16384Mi
-    podAnnotations:
-      longhorn.backup.io/backup-volumes: "enabled"
+    

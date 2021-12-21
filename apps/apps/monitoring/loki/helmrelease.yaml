@@ -69,7 +69,7 @@ spec:
       accessModes:
       - ReadWriteOnce
       size: 100Gi
-      storageClassName: "longhorn"
+      storageClassName: "ceph-block"
       annotations: {}
   # TODO: https://github.com/grafana/helm-charts/pull/700
   postRenderers:

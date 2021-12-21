@@ -6,8 +6,8 @@ metadata:
   namespace: gaming
 spec:
   dependsOn:
-  - name: longhorn
-    namespace: longhorn-system
+  - name: 
+    namespace: -system
   interval: 5m
   chart:
     spec:
