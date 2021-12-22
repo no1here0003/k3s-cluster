@@ -47,7 +47,7 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: "${NAS3_ADDR}"
+            server: "${NAS1_ADDR}"
             path: /volume1/Media/UHD/Movies
         mountPath: /media
       temp:
