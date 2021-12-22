@@ -48,7 +48,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${NAS3_ADDR}"
-            path: /volume1/UHD/Movies
+            path: /volume1/Media/UHD/Movies
         mountPath: /media
       temp:
         enabled: true
