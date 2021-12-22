@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: wireguard-config
-  namespace: ntworking
+  namespace: networking
 spec:
   accessModes:
     - ReadWriteOnce
