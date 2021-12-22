@@ -35,6 +35,7 @@ spec:
               - "wireguard.${INTERNAL_DOMAIN}"
           - secretName: wrieguard-tls
     podSecurityContext:
+      fsGroups: 0
       supplementalGroups:
         - 100
     persistence:
