@@ -91,7 +91,7 @@ spec:
         memory: 16G
       limits:
         gpu.intel.com/i915: 1
-        memory: 32G
+        memory: 64G
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
