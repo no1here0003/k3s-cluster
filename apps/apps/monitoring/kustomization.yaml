@@ -6,5 +6,6 @@ resources:
 - unifi-poller
 - grafana
 - loki
+- flux-system
 - promtail
 - cert-manager
