@@ -1,9 +1,7 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-metadata:
-  namespace: flux-system
-  name: flux-cluster-dashboard
+namespace: flux-system
 configMapGenerator:
   - name: flux-cluster-dashboard
     files:
