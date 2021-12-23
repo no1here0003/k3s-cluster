@@ -9,5 +9,5 @@ resources:
 - sabnzbd
 - sonarr
 - radarr
-- radarr-uhd
+#- radarr-uhd
 - overseerr
