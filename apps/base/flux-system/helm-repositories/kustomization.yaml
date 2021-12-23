@@ -9,6 +9,7 @@ resources:
   - k8s-dashboard.yaml
   - longhorn-charts.yaml
   - metallb-charts.yaml
+  - metrics-server-charts.yaml
   - nfs-subdir-external-provisioner-charts.yaml
   - nginx-charts.yaml
   - pihole.yaml
