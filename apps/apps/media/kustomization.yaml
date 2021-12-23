@@ -5,7 +5,7 @@ resources:
 - prowlarr
 - bazarr
 - tautulli
-#- plex
+- plex
 - sabnzbd
 - sonarr
 - radarr
