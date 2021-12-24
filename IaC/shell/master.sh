@@ -16,7 +16,7 @@ export KUBECONFIG=/var/jenkins_home/kube/config
 
 chmod 777 /var/jenkins_home/kube/config
 ls -al /var/jenkins_home/kube
-#echo 'I am here ======> `pwd` <========='
+echo 'I am here ======> `pwd` <========='
 #cp /var/jenkins_home/kube/config config.json
 sleep 5
 kubectl apply -f https://kube-vip.io/manifests/rbac.yaml
