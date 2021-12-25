@@ -55,6 +55,7 @@ spec:
           resync_interval: 5s
           shared_store: s3
       ruler:
+        tls_insecure_skip_verify: true
         storage:
           type: local
           local:
@@ -65,6 +66,8 @@ spec:
           kvstore:
             store: inmemory
         enable_api: true
+      http_config:
+        insecure_skip_verify: true
     alerting_groups:
       #
       # *arr applications
