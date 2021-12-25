@@ -54,7 +54,9 @@ spec:
           cache_location: /data/loki/index_cache
           resync_interval: 5s
           shared_store: s3
-      ruler:
+      ruler: 
+        ruler_client:
+          tls_insecure_skip_verify: true
         storage:
           type: local
           local:
