@@ -66,8 +66,6 @@ spec:
           kvstore:
             store: inmemory
         enable_api: true
-      http_config:
-        insecure_skip_verify: true
     alerting_groups:
       #
       # *arr applications
