@@ -44,7 +44,7 @@ spec:
       storage_config:
         aws:
           bucketnames: loki
-          endpoint: "s3.${INTERNAL_DOMAIN}"
+          endpoint: "minio.kube-system.svc.cluster.local:9000"
           access_key_id: "${LOKI_MINIO_ACCESS_KEY}"
           secret_access_key: "${LOKI_MINIO_SECRET_KEY}"
           s3forcepathstyle: true
