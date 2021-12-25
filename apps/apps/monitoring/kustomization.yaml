@@ -10,3 +10,4 @@ resources:
 - promtail
 - cert-manager
 - rook-ceph
+- thanos
