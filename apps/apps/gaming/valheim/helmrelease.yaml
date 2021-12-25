@@ -26,6 +26,7 @@ spec:
       SERVER_PASS: ${VALHEIM_PASS}
       SERVER_PUBLIC: true
       SUPERVISOR_HTTP: true
+      SUPERVISOR_HTTP_PASS: ${SUPERVISOR_PASS}
       STATUS_HTTP: true
       TZ: America/New_York
     persistence:
