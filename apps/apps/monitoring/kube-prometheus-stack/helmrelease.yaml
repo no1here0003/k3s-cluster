@@ -36,6 +36,99 @@ spec:
               resources:
                 requests:
                   storage: 1Gi
+    kube-state-metrics:
+      fullnameOverride: kube-state-metrics
+    prometheus-node-exporter:
+      fullnameOverride: node-exporter
+      prometheus:
+        monitor:
+          enabled: true
+          relabelings:
+            - action: replace
+              regex: (.*)
+              replacement: $1
+              sourceLabels:
+                - __meta_kubernetes_pod_node_name
+              targetLabel: kubernetes_node
+    grafana:
+      enabled: false
+      forceDeployDashboards: true
+      sidecar:
+        dashboards:
+          multicluster:
+            etcd:
+              enabled: true
+    kubelet:
+      enabled: true
+      serviceMonitor:
+        metricRelabelings:
+          - action: replace
+            sourceLabels:
+              - node
+            targetLabel: instance
+    kubeApiServer:
+      enabled: true
+    kubeControllerManager:
+      enabled: true
+      endpoints:
+        - 192.168.2.100
+        - 192.168.2.150
+        - 192.168.1.110
+        - 192.168.2.120
+        - 192.168.2.130
+       service:
+        enabled: true
+        port: 10257
+        targetPort: 10257
+      serviceMonitor:
+        enabled: true
+        https: true
+        insecureSkipVerify: true
+    kubeScheduler:
+      enabled: true
+      endpoints:
+        - 192.168.2.100
+        - 192.168.2.150
+        - 192.168.1.110
+        - 192.168.2.120
+        - 192.168.2.130
+      service:
+        enabled: true
+        port: 10259
+        targetPort: 10259
+      serviceMonitor:
+        enabled: true
+        https: true
+        insecureSkipVerify: true
+    kubeProxy:
+      enabled: true
+      endpoints:
+        - 192.168.2.100
+        - 192.168.2.150
+        - 192.168.1.110
+        - 192.168.2.120
+        - 192.168.2.130
+    kubeEtcd:
+      enabled: true
+      endpoints:
+        - 192.168.2.100
+        - 192.168.2.150
+        - 192.168.1.110
+        - 192.168.2.120
+        - 192.168.2.130
+      service:
+        enabled: true
+        port: 2381
+        targetPort: 2381
+    prometheusOperator:
+      prometheusConfigReloader:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 50Mi
+          limits:
+            cpu: 200m
+            memory: 100Mi
     prometheus:
       ingress:
         enabled: true
@@ -46,12 +139,32 @@ spec:
         tls:
           - hosts:
               - "prometheus.${INTERNAL_DOMAIN}"
-    # This will run elsewhere
-    grafana:
-      enabled: false
-      forceDeployDashboards: true
-      sidecar:
-        dashboards:
-          multicluster:
-            etcd:
-              enabled: true
+      
+      thanosService:
+        enabled: true
+      thanosServiceMonitor:
+        enabled: true
+      prometheusSpec:
+        replicas: 1
+        replicaExternalLabelName: "replica"
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        retention: 6h
+        enableAdminAPI: true
+        walCompression: true
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: "ceph-block"
+              resources:
+                requests:
+                  storage: 10Gi
+        thanos:
+          image: quay.io/thanos/thanos:v0.23.1
+          version: v0.22.0
+          objectStorageConfig:
+            name: thanos-objstore
+            key: objstore.yml
+ 
