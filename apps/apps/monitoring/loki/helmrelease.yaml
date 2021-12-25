@@ -29,7 +29,7 @@ spec:
       tls:
         - hosts:
             - "loki.${INTERNAL_DOMAIN}"
-        service:
+    service:
       type: LoadBalancer
       loadBalancerIP: 1.1.1.1
     serviceMonitor:
