@@ -34,9 +34,9 @@ spec:
             paths:
               - /
         tls:
-          - secret_vault-tls
+          - secretName: secret_vault-tls
           hosts:
-            value.${INTERAL_DOMIAN}
+            - value.${INTERAL_DOMIAN}
       dataStorage:
         enabled: true
         storageClass: "ceph-block"
