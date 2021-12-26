@@ -2,8 +2,23 @@
 - hosts: all
   tasks:
   - name: Package installation
-    dnf:
-      name:
-        - promtail
+    apt:
+      name: 
         - nfs-common
+        - apt-transport-https
+        - arptables
+        - ca-certificates
+        - curl
+        - ebtables
+        - iputils-ping
+        - ipvsadm
+        - lvm2
+        - net-tools
+        - nfs-common
+        - open-iscsi
+        - psmisc
+        - smartmontools
+        - software-properties-common
+        - unattended-upgrades
       state: latest
+      update_cache: true
