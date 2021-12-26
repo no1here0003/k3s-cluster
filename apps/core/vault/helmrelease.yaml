@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       # renovate: registryUrl=https://helm.releases.hashicorp.com
-      chart: vault
+      chart: hashicorp-charts
       version: 0.18.0
       sourceRef:
         kind: HelmRepository
