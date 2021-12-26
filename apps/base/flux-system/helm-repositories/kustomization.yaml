@@ -15,7 +15,7 @@ resources:
   - nfs-subdir-external-provisioner-charts.yaml
   - nginx-charts.yaml
   - pihole.yaml
-  - hashicrop-charts.yaml
+  - hashicorp-charts.yaml
   - prometheus-community-charts.yaml
   - rook-ceph-charts.yaml
   - stakater-charts.yaml
