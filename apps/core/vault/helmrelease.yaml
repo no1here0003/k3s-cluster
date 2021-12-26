@@ -33,7 +33,7 @@ spec:
             paths:
               - /
         tls:
-          - secretName: secret_vault-tls
+          - secretName: secret-vault-tls
           - hosts:
               - value.${INTERAL_DOMIAN}
       dataStorage:
