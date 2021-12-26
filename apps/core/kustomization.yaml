@@ -11,3 +11,4 @@ resources:
 - k8s-dashboard
 - system
 - rook-ceph
+- vault

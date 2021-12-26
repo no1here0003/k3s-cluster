@@ -14,3 +14,5 @@ resources:
   - monitoring.yaml
   - gaming.yaml
   - rook-ceph.yaml
+  - data.yaml
+  - vault.yaml
