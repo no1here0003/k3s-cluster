@@ -15,4 +15,4 @@ resources:
   - gaming.yaml
   - rook-ceph.yaml
   - data.yaml
-  - vault.yaml
+  - hashicorp.yaml
