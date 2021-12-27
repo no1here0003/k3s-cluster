@@ -62,16 +62,16 @@ spec:
               address = "[::]:8200"
               cluster_address = "[::]:8201"
             }
-            storage "raft" {
+            storage "file" {
               path = "/vault/data"
             }
-            seal "gcpckms" {
-              project     = "kms-vault"
-              region      = "global"
-              key_ring    = "vault-unseal"
-              crypto_key  = "vault-key"
-            }
-            service_registration "kubernetes" {}
+            #seal "gcpckms" {
+            #  project     = "kms-vault"
+             # region      = "global"
+             # key_ring    = "vault-unseal"
+             # crypto_key  = "vault-key"
+            #}
+            #service_registration "kubernetes" {}
     ui:
       enabled: true
       serviceType: "ClusterIP"
