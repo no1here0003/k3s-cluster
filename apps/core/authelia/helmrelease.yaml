@@ -18,7 +18,7 @@ spec:
       interval: 5m
 
   values:
-    domain: ${SECRET_CLUSTER_DOMAIN}
+    domain: ${SECRET_DOMAIN}
 
     service:
       annotations:
@@ -68,7 +68,7 @@ spec:
       server:
         read_buffer_size: 8192
         write_buffer_size: 8192
-      theme: light
+      theme: dark
       authentication_backend:
         disable_reset_password: true
         ldap:
@@ -81,45 +81,7 @@ spec:
       access_control:
         ## Default policy can either be 'bypass', 'one_factor', 'two_factor' or 'deny'. It is the policy applied to any
         ## resource if there is no policy to be applied to the user.
-        default_policy: deny
-
-        networks:
-          - name: private
-            networks:
-              - 10.0.0.0/8
-              - 172.16.0.0/12
-              - 192.168.0.0/16
-          - name: vpn
-            networks:
-              - 10.10.0.0/16
-
-        rules:
-          # bypass Authelia WAN + LAN
-          - domain:
-              - login.${SECRET_CLUSTER_DOMAIN}
-            policy: bypass
-
-          # Deny admin services to users
-          - domain:
-              - alert-manager.${SECRET_CLUSTER_DOMAIN}
-              - prometheus.${SECRET_CLUSTER_DOMAIN}
-              - thanos.${SECRET_CLUSTER_DOMAIN}
-            subject: ["group:users"]
-            policy: deny
-
-          # One factor auth for LAN
-          - domain:
-              - "*.${SECRET_CLUSTER_DOMAIN}"
-            policy: one_factor
-            subject: ["group:admins", "group:users"]
-            networks:
-              - private
-
-          # Two factors auth for WAN
-          - domain:
-              - "*.${SECRET_CLUSTER_DOMAIN}"
-            subject: ["group:admins", "group:users"]
-            policy: two_factor
+        default_policy: bypass
 
       session:
         redis:
@@ -147,10 +109,6 @@ spec:
         key: STORAGE_PASSWORD
         value: "${SECRET_AUTHELIA_POSTGRES_PASSWORD}"
         filename: STORAGE_PASSWORD
-      jwt:
-        key: JWT_TOKEN
-        value: "${SECRET_AUTHELIA_JWT_SECRET}"
-        filename: JWT_TOKEN
       redis:
         key: REDIS_PASSWORD
         value: "${SECRET_REDIS_PASSWORD}"
@@ -159,11 +117,9 @@ spec:
         key: SMTP_PASSWORD
         value: "${SECRET_AUTHELIA_SMTP_PASSWORD}"
         filename: SMTP_PASSWORD
-      storageEncryptionKey:
-        key: STORAGE_ENCRYPTION_KEY
-        value: "${SECRET_AUTHELIA_STORAGE_ENCRYPTION_KEY}"
-        filename: STORAGE_ENCRYPTION_KEY
-
+    persistence:
+      enabled: true
+      storageClass: "ceph-block"
   postRenderers:
     - kustomize:
         patchesJson6902:
