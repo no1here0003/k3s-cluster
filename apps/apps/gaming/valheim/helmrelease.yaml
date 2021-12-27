@@ -37,8 +37,8 @@ spec:
       POST_SERVER_SHUTDOWN_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$DOWN_MSG\"}" "${VALHEIM_DISCORD}" && sleep 60'
       PRE_BACKUP_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$BACKUP_MSG\"}" "${VALHEIM_DISCORD}"'
       POST_BACKUP_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$POST_BACKUP_MSG\"}" "${VALHEIM_DISCORD}"'
-      PRE_UPDATE_CHECK_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$PRE_UPDATE_MSG\"}" "${VALHEIM_DISCORD}"'
-      POST_UPDATE_CHECK_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$POST_UPDATE_MSG\"}" "${VALHEIM_DISCORD}"'
+      #PRE_UPDATE_CHECK_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$PRE_UPDATE_MSG\"}" "${VALHEIM_DISCORD}"'
+      #POST_UPDATE_CHECK_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$POST_UPDATE_MSG\"}" "${VALHEIM_DISCORD}"'
       PRE_SERVER_SHUTDOWN_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$PRE_SHUTDOWN_MSG\"}" "${VALHEIM_DISCORD}"'
       SERVER_PUBLIC: true
       SUPERVISOR_HTTP: true
