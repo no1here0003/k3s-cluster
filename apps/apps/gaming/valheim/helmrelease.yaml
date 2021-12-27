@@ -24,6 +24,12 @@ spec:
       SERVER_NAME: ${VALHEIM_SERVER}
       WORLD_NAME: ${VALHEIM_WORLD}
       SERVER_PASS: ${VALHEIM_PASS}
+      RESTART_MSG: "Valheim server rebooting, brb!"
+      START_MSG: "Valheim is back!"
+      DOWN_MSG: "Valeim is down!"
+      PRE_RESTART_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$RESTART_MSG\"}" "${VALHEIM_DISCORD}" && sleep 60'
+      POST_START_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$START_MSG\"}" "${VALHEIM_DISCORD}" && sleep 60'
+      POST_SERVER_SHUTDOWN_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$DOWN_MSG\"}" "${VALHEIM_DISCORD}" && sleep 60'
       SERVER_PUBLIC: true
       SUPERVISOR_HTTP: true
       SUPERVISOR_HTTP_PASS: ${SUPERVISOR_PASS}
@@ -44,13 +50,13 @@ spec:
       main:
         type: LoadBalancer
         externalTrafficPolicy: Cluster
-        loadBalancerIP: 192.168.2.97
+        loadBalancerIP: ${VALHEIM_SVC_IP1}
         annotations:
           metallb.universe.tf/allow-shared-ip: valheim
       supervisor:
         enabled: true
         type: LoadBalancer
-        loadBalancerIP: 192.168.2.98
+        loadBalancerIP: ${VALHEIM_SVC_IP2}
         ports:
           supervisor:
             enabled: true
