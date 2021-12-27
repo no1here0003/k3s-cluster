@@ -32,7 +32,7 @@ spec:
                 pathType: Prefix
         tls:
           - hosts:
-              - "sabnzbd.${INTERNAL_DOMAIN}"
+              - "nzbget.${INTERNAL_DOMAIN}"
           - secretName: sabnzbd-tls
     podSecurityContext:
       supplementalGroups:
