@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: authelia
-  namespace: networking
+  namespace: authelia
 spec:
   interval: 5m
   chart:
@@ -33,7 +33,7 @@ spec:
 
       tls:
         enabled: true
-        secret: "${SECRET_CLUSTER_CERTIFICATE_DEFAULT}"
+        secret: authetlia-tls
 
     pod:
       # Must be Deployment, DaemonSet, or StatefulSet.
@@ -98,16 +98,16 @@ spec:
         smtp:
           enabled: true
           enabledSecret: true
-          host: smtp.fastmail.com
+          host: smtp.gmail.com
           port: 587
-          username: ${SECRET_AUTHELIA_SMTP_EMAIL}
-          sender: ${SECRET_AUTHELIA_SMTP_EMAIL}
-          identifier: ${SECRET_CLUSTER_DOMAIN}
+          username: ${SECRET_EMAIL}
+          sender: ${SECRET_EMAIL}
+          identifier: Testing
 
     secret:
       storage:
         key: STORAGE_PASSWORD
-        value: "${SECRET_AUTHELIA_POSTGRES_PASSWORD}"
+        value: "${SECRET_POSTGRESQL_KUBE_POSTGRES_PASSWORD}"
         filename: STORAGE_PASSWORD
       redis:
         key: REDIS_PASSWORD
