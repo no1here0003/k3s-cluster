@@ -5,4 +5,5 @@ resources:
   - helmrelease.yaml
   - default-backend.yaml
   - default-backend-svc.yaml
-  
+  - configmap-example.yaml
+
