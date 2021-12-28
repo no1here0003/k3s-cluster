@@ -1,6 +1,6 @@
 ---
 # Below is the definition of the default backend for requests with unknown routes.
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: default-http-backend
