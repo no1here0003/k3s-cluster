@@ -17,3 +17,4 @@ resources:
   - rook-ceph.yaml
   - data.yaml
   - hashicorp.yaml
+  - security.yaml
