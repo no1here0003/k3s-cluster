@@ -9,13 +9,13 @@ data:
     users:
       Nate:
         displayname: "Nate"
-        password: "${SECRET_PASSWORD}"
+        password: "${SECRET_AUTHELIA_PASS}"
         email: ${SECRET_EMAIL}
         groups:
           - admins
       Sam:
         displayname: "Sam"
-        password: "${SAM_AUTHELIA_PASSWORD}"
-        email: ${SECRET_AUTHELIA_USER_HELENE_EMAIL}
+        password: "${SAM_AUTHELIA_PASS}"
+        email: ${SAM_EMAIL}
         groups:
           - admins
