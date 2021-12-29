@@ -67,7 +67,6 @@ spec:
       enabled: true
       persistence:
         enabled: true
-        existingClaim: authentik-postgresql
 
       postgresqlUsername: authentik
       postgresqlDatabase: authentik
