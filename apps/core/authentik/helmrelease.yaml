@@ -48,7 +48,7 @@ spec:
         password: "${SECRET_AUTHELIA_SMTP_PASSWORD}"
         use_ssl: true
         from: id@${SECRET_DOMAIN}
-      secret_key: ${UTHENTIK_KEY}
+      secret_key: ${AUTHENTIK_KEY}
       log_level: debug
 
       outposts:
