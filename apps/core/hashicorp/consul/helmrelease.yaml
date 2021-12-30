@@ -27,4 +27,4 @@ spec:
       serflan:
         port: 8301
     storage: 10Gi
-    storageClass: ceph-block
+    storageClass: longhorn

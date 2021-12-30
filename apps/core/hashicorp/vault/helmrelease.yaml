@@ -38,7 +38,7 @@ spec:
               - vault.${INTERNAL_DOMAIN}
       dataStorage:
         enabled: true
-        storageClass: "ceph-block"
+        storageClass: "longhorn"
       extraVolumes:
         - type: secret
           name: kms-vault

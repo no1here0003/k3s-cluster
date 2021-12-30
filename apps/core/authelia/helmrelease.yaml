@@ -123,7 +123,7 @@ spec:
         filename: SMTP_PASSWORD
     persistence:
       enabled: true
-      storageClass: "ceph-block"
+      storageClass: "longhorn"
   postRenderers:
     - kustomize:
         patchesJson6902:
