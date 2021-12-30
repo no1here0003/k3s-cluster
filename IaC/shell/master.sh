@@ -9,10 +9,10 @@ k3sup install \
   --cluster \
   --k3s-channel=latest \
   --k3s-extra-args "--no-deploy=traefik --no-deploy=servicelb --flannel-backend=wireguard --node-ip=192.168.2.100  --write-kubeconfig-mode 644" \
-  --local-path /var/jenkins_home/kube/config \
+  --local-path ~/.kube/config \
   --context=k3s
 
-export KUBECONFIG=/var/jenkins_home/kube/config
+export KUBECONFIG=~/.kube/config
 
 chmod 777 /var/jenkins_home/kube/config
 ls -al /var/jenkins_home/kube
