@@ -12,5 +12,5 @@ resources:
 - system
 - rook-ceph
 - data
-- authelia
+#- authelia
 - authentik
