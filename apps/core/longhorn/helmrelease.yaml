@@ -21,5 +21,5 @@ spec:
       enabled: true
       ingressClassName: nginx
       host: longhorn.192.168.2.50.nip.io
-      tls: true
+      tls: false
       tlsSecret: longhorn.local-tls
