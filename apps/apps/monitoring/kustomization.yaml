@@ -8,6 +8,6 @@ resources:
 - flux-system
 - promtail
 - cert-manager
-- rook-ceph
+#- rook-ceph
 - thanos
 - kube-prometheus-stack
