@@ -14,7 +14,7 @@ resources:
   - vpn-gateway.yaml
   - monitoring.yaml
   - gaming.yaml
-  - rook-ceph.yaml
+  #- rook-ceph.yaml
   - data.yaml
   - hashicorp.yaml
   - security.yaml
