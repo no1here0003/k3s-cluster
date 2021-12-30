@@ -13,4 +13,4 @@ resources:
 - rook-ceph
 - data
 #- authelia
-- authentik
+#- authentik
