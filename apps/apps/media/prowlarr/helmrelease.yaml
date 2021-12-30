@@ -34,6 +34,10 @@ spec:
           - hosts:
               - "prowlarr.${INTERNAL_DOMAIN}"
           - secretName: prowlarr-tls
+    podSecurityContext:
+      fsGroup: 0
+      supplementalGroups:
+        - 100
     persistence:
       config:
         enabled: true
