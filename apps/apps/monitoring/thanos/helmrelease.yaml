@@ -43,6 +43,7 @@ spec:
     storegateway:
       enabled: true
       persistence:
+        storageClass: longhorn
         enabled: true
         size: 5Gi
     ruler:
