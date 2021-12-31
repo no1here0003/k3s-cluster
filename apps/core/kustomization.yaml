@@ -11,6 +11,6 @@ resources:
 - k8s-dashboard
 - system
 #- rook-ceph
-- data
+#- data
 #- authelia
-#- authentik
+- authentik
