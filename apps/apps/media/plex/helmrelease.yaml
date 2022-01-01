@@ -21,7 +21,7 @@ spec:
       tag: v1.25.2.5319-c43dc0277
     env:
       TZ: "America/New_York"
-      ADVERTISE_IP: "http://${PLEX_LB}:32410/"
+      ADVERTISE_IP: "http://${PLEX_LB}:32400/"
       ALLOWED_NETWORKS: "10.0.0.0/8,172.16.0.0/16,192.168.0.0/16"
       HOSTNAME: "plex-cluster"
     podSecurityContext:
@@ -29,7 +29,6 @@ spec:
       supplementalGroups:
         - 44
         - 109
-    
     service:
       main:
         enabled: true
@@ -40,7 +39,7 @@ spec:
           metallb.universe.tf/allow-shared-ip: plex
         ports:
           http:
-            port: 32410
+            port: 32400
             targetPort: 32400
             protocol: TCP
     ingress:
