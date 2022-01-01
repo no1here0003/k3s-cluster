@@ -17,8 +17,6 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    serviceAccount:
-      create: false
     args:
       - --kubelet-insecure-tls
       - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
