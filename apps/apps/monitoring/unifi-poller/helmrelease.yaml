@@ -38,3 +38,15 @@ spec:
         scrapeTimeout: 30s
       prometheusRule:
         enabled: true
+    ingress:
+      enabled: true
+      ingressClassName: "nginx"
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+      hosts:
+        - host: "unifi.${INTERNAL_DOMAIN}"
+          paths:
+            - /
+      tls:
+        - hosts:
+            - "unifi.${INTERNAL_DOMAIN}"
