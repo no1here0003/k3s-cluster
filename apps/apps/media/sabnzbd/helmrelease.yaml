@@ -42,7 +42,7 @@ spec:
       config:
         enabled: true
         existingClaim: sabnzbd-config-v3
-    downloads:
+      downloads:
         enabled: true
         existingClaim: sabnzbd-downloads-v1
         mountPath: /downloads
