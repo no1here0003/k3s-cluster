@@ -28,11 +28,15 @@ spec:
       downloads:
         enabled: true
         existingClaim: sabnzbd-downloads-v1
-        mountPath: /sabnzbd2/config/Downloads
+        mountPath: /sabnzbd3/config/Downloads
       downloads2:
         enabled: true
         existingClaim: sabnzbd-config-v2
         mountPath: /sabnzbd2/config
+      downloads3:
+        enabled: true
+        existingClaim: sabnzbd-config-v3
+        mountPath: /sabnzbd3/config
     resources:
       requests:
         memory: 250Mi

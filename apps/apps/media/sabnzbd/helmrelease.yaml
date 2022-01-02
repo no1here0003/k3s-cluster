@@ -41,15 +41,11 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: sabnzbd-config-v2
-      temp:
+        existingClaim: sabnzbd-config-v3
+    downloads:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${NAS1_ADDR}"
-            path: /volume1/temp
-        mountPath: /temp_dir
+        existingClaim: sabnzbd-downloads-v1
+        mountPath: /downloads
     resources:
       requests:
         memory: 250Mi

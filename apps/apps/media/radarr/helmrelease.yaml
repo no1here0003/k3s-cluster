@@ -50,14 +50,10 @@ spec:
             server: "${NAS1_ADDR}"
             path: /volume1/Media
         mountPath: /media
-      temp:
+      downloads:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${NAS1_ADDR}"
-            path: /volume1/temp
-        mountPath: /temp_dir
+        existingClaim: sabnzbd-downloads-v1
+        mountPath: /downloads
     resources:
       requests:
         memory: 250Mi
