@@ -30,7 +30,6 @@ spec:
             tag: v1.0.20210914
         env:
           TZ: "America/New_York"
-          IPTABLES_BACKEND: nft
           KILLSWITCH: "true"
         configFileSecret: vpn-gateway-vpnconfig
         resources:
