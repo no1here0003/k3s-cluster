@@ -8,7 +8,7 @@ resources:
 - ingress-nginx
 - longhorn
 - external-dns
-#- k8s-dashboard
+- k8s-dashboard
 - system
 #- rook-ceph
 #- data
