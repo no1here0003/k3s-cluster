@@ -22,15 +22,14 @@ spec:
     env:
       TZ: "America/New_York"
       UP_UNIFI_DEFAULT_ROLE: "home-controller"
-      UP_UNIFI_DEFAULT_URL: "https://192.168.1.182"
       UP_UNIFI_DEFAULT_VERIFY_SSL: false
-      UP_UNIFI_DEFAULT_USER: "unifipoller"
-      UP_UNIFI_DEFAULT_PASS: "Unifipoller1"
       UP_UNIFI_DEFAULT_SAVE_SITES: true
       UP_UNIFI_DEFAULT_SAVE_DPI: true
       UP_INFLUXDB_DISABLE: true
-      UP_PROMETHEUS_DISABLE: false
       UP_PROMETHEUS_NAMESPACE: "monitoring"
+    envFrom:
+      - secretRef:
+          name: unifi-poller-credentials
     metrics:
       enabled: true
       serviceMonitor:
@@ -38,15 +37,3 @@ spec:
         scrapeTimeout: 30s
       prometheusRule:
         enabled: true
-    ingress:
-      enabled: true
-      ingressClassName: "nginx"
-      annotations:
-        kubernetes.io/ingress.class: "nginx"
-      hosts:
-        - host: "unifi.${INTERNAL_DOMAIN}"
-          paths:
-            - /
-      tls:
-        - hosts:
-            - "unifi.${INTERNAL_DOMAIN}"
