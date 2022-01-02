@@ -19,7 +19,7 @@ spec:
     image:
       repository: ghcr.io/k8s-at-home/loki
     ingress:
-      enabled: true
+      enabled: false
       ingressClassName: "nginx"
       annotations:
         kubernetes.io/ingress.class: "nginx"
@@ -32,7 +32,7 @@ spec:
             - "loki.${INTERNAL_DOMAIN}"
     service:
       type: LoadBalancer
-      loadBalancerIP: 1.1.1.1
+      loadBalancerIP: "${SVC_LOKI_ADDR}"
     serviceMonitor:
       enabled: true
     config:
@@ -68,39 +68,3 @@ spec:
           kvstore:
             store: inmemory
         enable_api: true
-    alerting_groups:
-      #
-      # *arr applications
-      #
-      - name: arr
-        rules:
-          - alert: ArrDatabaseIsLocked
-            expr: |
-              sum by (app) (count_over_time({app=~".*arr"} |~ "(?i)database is locked"[2m])) > 0
-            for: 10s
-            labels:
-              severity: critical
-              category: logs
-            annotations:
-              # TODO: Figure out how to use hostname in summary
-              summary: "An arr app is experiencing locked database issues"
-          - alert: ArrDatabaseIsMalformed
-            expr: |
-              sum by (app) (count_over_time({app=~".*arr"} |~ "(?i)database disk image is malformed"[2m])) > 0
-            for: 10s
-            labels:
-              severity: critical
-              category: logs
-            annotations:
-              # TODO: Figure out how to use hostname in summary
-              summary: "An arr app is experiencing malformed database disk image issues"
-  postRenderers:
-    - kustomize:
-        patchesJson6902:
-          - target:
-              kind: Service
-              name: loki
-            patch:
-              - op: add
-                path: /spec/loadBalancerIP
-                value: "${SVC_LOKI_ADDR}"
