@@ -101,9 +101,7 @@ spec:
               kind: Service
               name: loki
             patch:
-              - op: remove
-                path: /spec/loadBalancerIP
               - op: add
-                path: /spec/externalIPs
+                path: /spec/loadBalancerIP
                 value:
                   - "${SVC_LOKI_ADDR}"
