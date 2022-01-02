@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
 - config-pvc.yaml
 - downloads-pvc.yaml
-- helmrelease.yaml
+#- helmrelease.yaml
