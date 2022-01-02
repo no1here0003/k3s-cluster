@@ -25,6 +25,10 @@ spec:
       supplementalGroups:
         - 100
     persistence:
+      downloads:
+        enabled: true
+        existingClaim: sabnzbd-downloads-v1
+        mountPath: /sabnzbd2/config/Downloads
       downloads2:
         enabled: true
         existingClaim: sabnzbd-config-v2
