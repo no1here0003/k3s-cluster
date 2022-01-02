@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: authentik-outpost
+  namespace: security
+spec:
+  rules:
+  - host: sonarr.${SECRET_DOMAIN}
+    http:
+      paths:
+      - backend:
+          # Or, to use an external Outpost, create an ExternalName service and reference that here.
+          # See https://kubernetes.io/docs/concepts/services-networking/service/#externalname
+          serviceName: ak-outpost-sonarr-outpost
+          servicePort: 9000
+        path: /akprox
+  - secretName: sonarr-tls
