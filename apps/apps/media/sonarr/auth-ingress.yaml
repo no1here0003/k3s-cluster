@@ -5,6 +5,7 @@ metadata:
   namespace: security
 spec:
   rules:
+    ingressClassName: "nginx"
   - host: sonarr.${SECRET_DOMAIN}
     http:
       paths:
