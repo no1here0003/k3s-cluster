@@ -38,13 +38,13 @@ spec:
           kubernetes.io/tls-acme: "true"
           external-dns/is-public: "true"
         hosts:
-          - host: "sonarr.${SECRET_DOMAIN}"
+          - host: "sonarr.${INTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "sonarr.${SECRET_DOMAIN}"
+              - "sonarr.${INTERNAL_DOMAIN}"
           - secretName: sonarr-tls
     podSecurityContext:
       fsGroup: 0
