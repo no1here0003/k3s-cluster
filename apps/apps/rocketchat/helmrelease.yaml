@@ -44,7 +44,7 @@ spec:
       accessMode: ReadWriteOnce
     ingress:
       enabled: true
-      ingressClassName: "nginx"
+      #ingressClassName: "nginx"
       hosts:
         - host: "rocketchat.${INTERNAL_DOMAIN}"
           paths:
