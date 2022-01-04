@@ -18,6 +18,7 @@ resources:
   - pihole.yaml
   - hashicorp-charts.yaml
   - prometheus-community-charts.yaml
+  - rocketchat-charts.yaml
   - rook-ceph-charts.yaml
   - stakater-charts.yaml
   - weaveworks-kured.yaml
