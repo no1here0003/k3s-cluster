@@ -8,7 +8,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: home-assistant
       version: 12.0.0
       sourceRef:
@@ -16,37 +15,14 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
-  dependsOn:
-    - name: mosquitto
-      namespace: home
+
   values:
     image:
       repository: ghcr.io/home-assistant/home-assistant
       tag: 2021.12.7
-    env:
-      TZ: "America/New_York"
-    envFrom:
-      - secretRef:
-          name: home-assistant
-    hostNetwork: true
-    dnsPolicy: ClusterFirstWithHostNet
-    service:
-      main:
-        type: LoadBalancer
-        loadBalancerlIP: "${SVC_HASS_ADDR}"
-        externalTrafficPolicy: Local
-    ingress:
-      main:
-        enabled: true
-        ingressClassName: "nginx"
-        hosts:
-          - host: "hass.${SECRET_PUBLIC_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - "hass.${SECRET_PUBLIC_DOMAIN}"
+
+    nameOverride: "hass"
+
     probes:
       liveness:
         enabled: false
@@ -54,43 +30,119 @@ spec:
         enabled: false
       startup:
         enabled: false
+
+    service:
+      main:
+        type: LoadBalancer
+        loadBalancerIP: "${SVC_HASS_ADDR}"
+        ports:
+          sonos:
+            enabled: true
+            port: 1400
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+
+        hosts:
+          - host: hass.${INTERNAL_DOMAIN}
+            paths:
+              - path: /
+
+        tls:
+          - secretName: hass-tls
+            hosts:
+              - hass.${INTERNAL_DOMAIN}
+
+    env:
+      TZ: "Europe/Amsterdam"
+
+    envFrom:
+      - secretRef:
+          name: home-assistant-secrets
+
     persistence:
       config:
         enabled: true
         existingClaim: home-assistant-config-v1
-    podAnnotations:
-      secret.reloader.stakater.com/reload: "home-assistant"
+
+    resources:
+      requests:
+        cpu: 75m
+        memory: 512Mi
+
+    postgresql:
+      enabled: true
+
+      image:
+        repository: bitnami/postgresql
+        tag: 14.1.0
+        pullPolicy: IfNotPresent
+
+      persistence:
+        enabled: true
+        existingClaim: home-assistant-postgresql
+
+      postgresqlUsername: home-assistant
+      postgresqlDatabase: home-assistant
+      # postgresqlPostgresPassword: set by valuesFrom
+      # postgresqlPassword: set by valuesFrom
+
+      resources:
+        requests:
+          memory: 1024Mi
+
     addons:
       codeserver:
         enabled: true
+
         image:
           repository: ghcr.io/k8s-at-home/code-server
           tag: v3.12.0
+          pullPolicy: Always
+
         git:
-          deployKeySecret: code-server
-        workingDir: "/config"
+          deployKeySecret: hass-deploykey
+
+        ingress:
+          enabled: true
+          ingressClassName: "nginx"
+
+          hosts:
+            - host: code.${INTERNAL_DOMAIN}
+              paths:
+                - path: /
+          tls:
+            - secretName: hass-code-tls
+              hosts:
+                - code.${INTERNAL_DOMAIN}
+
         args:
           - --auth
-          - "none"
+          - none
           - --user-data-dir
           - "/config/.vscode"
           - --extensions-dir
           - "/config/.vscode"
-        ingress:
-          enabled: true
-          ingressClassName: "nginx"
-          hosts:
-            - host: "hass-config.${INTERNAL_DOMAIN}"
-              paths:
-                - path: /
-                  pathType: Prefix
-          tls:
-            - hosts:
-                - "hass-config.${INTERNAL_DOMAIN}"
+
         volumeMounts:
           - name: config
             mountPath: /config
-    resources:
-      requests:
-        cpu: 200m
-        memory: 1G
+
+        resources:
+          requests:
+            cpu: 35m
+            memory: 128Mi
+
+  valuesFrom:
+    - kind: Secret
+      name: home-assistant
+      valuesKey: postgresql_password
+      targetPath: postgresql.postgresqlPassword
+      optional: false
+    - kind: Secret
+      name: home-assistant
+      valuesKey: postgresql_admin_password
+      targetPath: postgresql.postgresqlPostgresPassword
+      optional: false
