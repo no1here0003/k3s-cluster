@@ -44,15 +44,10 @@ spec:
       accessMode: ReadWriteOnce
     ingress:
       enabled: true
-      #ingressClassName: "nginx"
-      hosts:
-        - host: "rocketchat.${INTERNAL_DOMAIN}"
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                port: 9001
-        tls:
-          - hosts:
-              - "rocketchat.${INTERNAL_DOMAIN}"
-          - secretName: rocketchat-tls
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+      path: /
+      tls:
+        - secretName: rocketchat-tls
+          hosts:
+            - "rocketchat.${INTERNAL_DOMAIN}"
