@@ -29,8 +29,10 @@ spec:
     mongodb:
       enabled: true
       auth:
+        rootPassword: ${ROCKET_DB_ROOT}
         username: ${ROCKET_DB_USR}
         password: ${ROCKET_DB_PASS}
+        database: rocketchat
       achitecture: replicaset
       replicaCount: 1
       persistence:
