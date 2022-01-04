@@ -40,7 +40,7 @@ spec:
         size: 10G
     persistence:
       enabled: true
-      storageClass: longhorn
+      storageClassName: longhorn
       accessMode: ReadWriteOnce
       size: 20G
     ingress:
