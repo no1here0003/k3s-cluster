@@ -2,14 +2,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: sonarr
+  name: readarr
   namespace: downloads
 spec:
   interval: 5m
   chart:
     spec:
-      chart: sonarr
-      version: 15.2.0
+      chart: readarr
+      version: 4.2.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -17,32 +17,23 @@ spec:
       interval: 5m
   values:
     image:
-      repository: ghcr.io/k8s-at-home/sonarr
-      tag: v3.0.6.1342
+      repository: ghcr.io/k8s-at-home/readarr
+      tag: v0.1.0.715
     env:
       TZ: "America/New_York"
     ingress:
       main:
         enabled: true
         ingressClassName: "nginx"
-        annotations:
-          nginx.ingress.kubernetes.io/auth-url: |
-            https://sonarr.${SECRET_DOMAIN}/akprox/auth/nginx
-          nginx.ingress.kubernetes.io/auth-signin: |
-            https://sonarr.${SECRET_DOMAIN}/akprox/start?rd=$escaped_request_uri
-          nginx.ingress.kubernetes.io/auth-response-headers: |
-            Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
-          nginx.ingress.kubernetes.io/auth-snippet: |
-            proxy_set_header X-Forwarded-Host $http_host;
         hosts:
-          - host: "sonarr.${INTERNAL_DOMAIN}"
+          - host: "readarr.${INTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "sonarr.${INTERNAL_DOMAIN}"
-          - secretName: sonarr-tls
+              - "readarr.${INTERNAL_DOMAIN}"
+          - secretName: readarr-tls
     podSecurityContext:
       fsGroup: 0
       supplementalGroups:
@@ -50,23 +41,15 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: sonarr-config
+        existingClaim: readarr-config-v1
       media:
         enabled: true
         type: custom
         volumeSpec:
           nfs:
             server: "${NAS1_ADDR}"
-            path: /volume1/Media
+            path: /volume1/Books
         mountPath: /media
-      media2:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${NAS2_ADDR}"
-            path: /volume1/Media2
-        mountPath: /media2
       downloads:
         enabled: true
         existingClaim: sabnzbd-downloads-v1
@@ -81,5 +64,5 @@ spec:
         mountPath: /temp_dir
     resources:
       requests:
-        memory: 250Mi
-        cpu: 500m
+        memory: 100Mi
+        cpu: 100m
