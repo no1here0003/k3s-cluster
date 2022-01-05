@@ -50,10 +50,6 @@ spec:
             server: "${NAS1_ADDR}"
             path: /volume1/Books
         mountPath: /media
-      downloads:
-        enabled: true
-        existingClaim: sabnzbd-downloads-v1
-        mountPath: /downloads
       temp:
         enabled: true
         type: custom
