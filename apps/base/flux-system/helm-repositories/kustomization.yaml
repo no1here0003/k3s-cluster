@@ -17,6 +17,7 @@ resources:
   - nginx-charts.yaml
   - pihole.yaml
   - hashicorp-charts.yaml
+  - jenkins-charts.yaml
   - prometheus-community-charts.yaml
   - rocketchat-charts.yaml
   - rook-ceph-charts.yaml
