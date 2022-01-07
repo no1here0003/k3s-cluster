@@ -43,7 +43,7 @@ spec:
       config:
         enabled: true
         existingClaim: calibre-web-config-v1
-      media:
+      books:
         enabled: true
         type: custom
         volumeSpec:
