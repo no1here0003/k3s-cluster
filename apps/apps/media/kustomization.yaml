@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
 - prowlarr
 - bazarr
+- calibre
 - tautulli
 - plex
 - sabnzbd
