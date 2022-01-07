@@ -43,14 +43,14 @@ spec:
       config:
         enabled: true
         existingClaim: calibre-web-config-v1
-      books:
+      media:
         enabled: true
         type: custom
         volumeSpec:
           nfs:
             server: "${NAS3_ADDR}"
             path: /volume1/Books
-        mountPath: /books
+        mountPath: /media
       temp:
         enabled: true
         type: custom
