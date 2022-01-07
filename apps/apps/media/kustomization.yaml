@@ -5,6 +5,7 @@ resources:
 - prowlarr
 - bazarr
 - calibre
+- calibre-web
 - tautulli
 - plex
 - sabnzbd
