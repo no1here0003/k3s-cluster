@@ -40,7 +40,7 @@ spec:
         tls:
           - hosts:
               - "zigbee2mqtt.${INTERNAL_DOMAIN}"
-
+          - secretName: zigbee2mqtt-tls
     persistence:
       config:
         enabled: true
@@ -55,23 +55,22 @@ spec:
       device_options:
         retain: true
       permit_join: false
+
       mqtt:
         base_topic: zigbee2mqtt
         server: "mqtt://mosquitto"
-        user: "${SECRET_MQTT_USERNAME}"
-        password: "${SECRET_MQTT_PASSWORD}"
       serial:
         port: "tcp://192.168.1.20:6638"
+
       advanced:
         log_output:
           - console
         network_key: GENERATE
         pan_id: GENERATE
+
       frontend:
         port: 8080
 
-
-############################################# Stopped here ######################
   valuesFrom:
     - kind: Secret
       name: zigbee2mqtt

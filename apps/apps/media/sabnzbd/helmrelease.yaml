@@ -44,7 +44,7 @@ spec:
         existingClaim: sabnzbd-config-v3
       downloads:
         enabled: true
-        existingClaim: sabnzbd-downloads-v1
+        existingClaim: sabnzbd-downloads-v2
         mountPath: /downloads
       temp:
         enabled: true
