@@ -15,13 +15,17 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
+
   values:
+
     image:
       repository: linuxserver/calibre-web
       tag: version-0.6.12
       pullPolicy: IfNotPresent
+
     env:
       TZ: "America/New_York"
+
     ingress:
       main:
         enabled: true
@@ -35,14 +39,17 @@ spec:
           - hosts:
               - "calweb.${INTERNAL_DOMAIN}"
           - secretName: calibre-web-tls
+
     podSecurityContext:
       fsGroup: 0
       supplementalGroups:
         - 100
+
     persistence:
       config:
         enabled: true
         existingClaim: calibre-web-config-v1
+
       media:
         enabled: true
         type: custom
@@ -51,6 +58,7 @@ spec:
             server: "${NAS3_ADDR}"
             path: /volume1/Books
         mountPath: /media
+
       temp:
         enabled: true
         type: custom
@@ -59,6 +67,7 @@ spec:
             server: "${NAS1_ADDR}"
             path: /volume1/temp
         mountPath: /temp_dir
+
     resources:
       requests:
         memory: 100Mi
