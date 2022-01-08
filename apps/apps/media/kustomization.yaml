@@ -7,6 +7,7 @@ resources:
 - calibre
 - calibre-web
 - tautulli
+- ombi
 - plex
 - sabnzbd
 - sonarr
