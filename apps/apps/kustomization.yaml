@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
 - dev
 - gaming
+- home
 - media
 - monitoring
 - networking
