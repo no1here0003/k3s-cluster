@@ -16,10 +16,8 @@ spec:
         name: metrics-server-charts
         namespace: flux-system
       interval: 5m
+      
   values:
-    args:
-      - --kubelet-insecure-tls
-      - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
-      - --kubelet-use-node-status-port
-      - --metric-resolution=15s
+      repository: k8s.gcr.io/metrics-server/metrics-server
+      tag: v0.5.2
     
