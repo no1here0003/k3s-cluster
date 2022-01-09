@@ -20,5 +20,6 @@
         - smartmontools
         - software-properties-common
         - unattended-upgrades
+        - wireguard
       state: latest
       update_cache: true
