@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   - helmrelease.yaml
-  - mosquitto.sops.secret.yaml
+  - mqtt.sops.secret.yaml
