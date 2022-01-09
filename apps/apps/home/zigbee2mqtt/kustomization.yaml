@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   - helmrelease.yaml
-  - zigbee.sops.secret.yaml
+  - zigbee.secrets.sops.yaml
