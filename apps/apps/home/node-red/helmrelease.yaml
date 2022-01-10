@@ -29,6 +29,11 @@ spec:
       NODE_RED_ENABLE_PROJECTS: "true"
       NODE_RED_ENABLE_SAFE_MODE: "false"
 
+    podSecurityContext:
+      fsGroup: 0
+      supplementalGroups:
+        - 100
+        
     ingress:
       main:
         enabled: true
