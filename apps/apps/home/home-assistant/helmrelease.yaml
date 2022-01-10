@@ -19,9 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/home-assistant/home-assistant
-      tag: 2021.12.7
-
-    nameOverride: "hass"
+      tag: 2021.12.8
 
     probes:
       liveness:
@@ -41,12 +39,10 @@ spec:
       main:
         enabled: true
         ingressClassName: "nginx"
-
         hosts:
           - host: hass.${INTERNAL_DOMAIN}
             paths:
               - path: /
-
         tls:
           - secretName: hass-tls
             hosts:
