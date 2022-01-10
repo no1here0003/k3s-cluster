@@ -54,8 +54,8 @@ spec:
           matchOn:
           - usbId:
               class: ["02"]
-              vendor: ["0658"]
-              device: ["0200"]
+              vendor: ["10c4"]
+              device: ["ea60"]
     podAnnotations:
       configmap.reloader.stakater.com/reload: "node-feature-discovery"
     master:
