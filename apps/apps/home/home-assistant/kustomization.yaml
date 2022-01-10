@@ -3,7 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - config-pvc.yaml
-  - hass-deploy.sops.secret.yaml
+  - hass-deploykey.secrets.sops.yaml
   - helmrelease.yaml
   - home-assistant.sops.secret.yaml
   - psql-pvc.yaml
