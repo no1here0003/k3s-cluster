@@ -35,10 +35,7 @@ spec:
       main:
         type: LoadBalancer
         loadBalancerIP: "${SVC_HASS_ADDR}"
-        ports:
-          sonos:
-            enabled: true
-            port: 1400
+        externalTrafficPolicy: Local
 
     ingress:
       main:
