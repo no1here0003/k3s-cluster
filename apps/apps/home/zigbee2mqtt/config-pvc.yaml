@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: igbee2mqtt-config-v1
+  name: zigbee2mqtt-config-v1
   namespace: home
   labels:
 spec:
