@@ -6,3 +6,4 @@ resources:
   - hass-deploy.sops.secret.yaml
   - helmrelease.yaml
   - home-assistant.sops.secret.yaml
+  - psql-pvc.yaml
