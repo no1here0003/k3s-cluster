@@ -6,3 +6,4 @@ resources:
 - zigbee2mqtt
 - zwavejs2mqtt
 - home-assistant
+- node-red
