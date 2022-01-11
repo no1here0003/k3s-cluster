@@ -25,8 +25,8 @@ spec:
       numExecutors: 2
       admin:
         existingSecret: "jenkins"
-          userKey: jenkins-admin-user
-          passwordKey: jenkins-admin-password
+        userKey: jenkins-admin-user
+        passwordKey: jenkins-admin-password
     
     initializedOnce: true
 
