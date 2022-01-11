@@ -66,21 +66,23 @@ spec:
         memory: 512Mi
 
     postgresql:
+      enabled: false
+
+    mariadb:
       enabled: true
 
       image:
-        repository: bitnami/postgresql
-        tag: 14.1.0
+        registry: docker.io
+        repository: bitnami/mariadb
+        tag: 10.5.13-debian-10-r58
         pullPolicy: IfNotPresent
+
+      auth:
+        existingSecret: mariadb
 
       persistence:
         enabled: true
-        existingClaim: home-assistant-postgresql
-
-      postgresqlUsername: home-assistant
-      postgresqlDatabase: home-assistant
-      # postgresqlPostgresPassword: set by valuesFrom
-      # postgresqlPassword: set by valuesFrom
+        existingClaim: mariadb-v1
 
       resources:
         requests:
@@ -127,15 +129,3 @@ spec:
           requests:
             cpu: 35m
             memory: 128Mi
-
-  valuesFrom:
-    - kind: Secret
-      name: home-assistant
-      valuesKey: postgresql_password
-      targetPath: postgresql.postgresqlPassword
-      optional: false
-    - kind: Secret
-      name: home-assistant
-      valuesKey: postgresql_admin_password
-      targetPath: postgresql.postgresqlPostgresPassword
-      optional: false
