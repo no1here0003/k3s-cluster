@@ -86,6 +86,8 @@ spec:
         enabled: true
         existingClaim: mariadb-v1
 
+      database: homeassistant
+      
       resources:
         requests:
           memory: 1024Mi
