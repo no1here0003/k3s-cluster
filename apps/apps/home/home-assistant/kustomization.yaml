@@ -7,4 +7,5 @@ resources:
   - helmrelease.yaml
   - home-assistant.sops.secret.yaml
   - home-assistant-secrets.secrets.sops.yaml
-  - psql-pvc.yaml
+  - mariadb-pvc.yaml
+  - mariadb.secrets.sops.yaml
