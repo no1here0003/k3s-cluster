@@ -25,9 +25,15 @@ spec:
         tag: "1.9.0"
         # Overrides the default Image Pull Policy
         pullPolicy: IfNotPresent
+
       readinessProbe:
         enabled: true
         path: "/v1/sys/health?sealedcode=204&uninitcode=204"
+      livenessProbe:
+        enabled: true
+        path: "/v1/sys/health"
+      initalDelaySeconds: 60
+
       ingress:
         enabled: true
         annotation: 
@@ -45,10 +51,6 @@ spec:
         enabled: true
         storageClass: "longhorn"
 
-#      volumes:
-#        - type: secret
-#          name: kms-vault
-#          path: /vault/userconfig
       resources:
         requests:
           memory: 256Mi
@@ -60,6 +62,8 @@ spec:
       ha:
         enabled: true
         replicas: 3
+    csi:
+      enabled: true
+
     ui:
       enabled: true
-      serviceType: "ClusterIP"
