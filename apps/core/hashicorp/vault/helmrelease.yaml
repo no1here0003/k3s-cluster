@@ -25,7 +25,9 @@ spec:
         tag: "1.9.0"
         # Overrides the default Image Pull Policy
         pullPolicy: IfNotPresent
-
+      readinessProbe:
+        enabled: true
+        path: "/v1/sys/health?sealedcode=204&uninitcode=204"
       ingress:
         enabled: true
         annotation: 
