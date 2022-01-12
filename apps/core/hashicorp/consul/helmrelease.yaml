@@ -18,16 +18,21 @@ spec:
   values:
 
     global:
+      enabled: true
+      logLevel: debug
+
       image: "hashicorp/consul:1.11.1"
       imageK8S: "hashicorp/consul-k8s:0.26.0"
       datacenter: dc1
 
       server:
-        replicas: 3
         enabled: "true"
+        replicas: 3
+
       ports:
         serflan:
           port: 8301
+
       storage: 100Gi
       storageClass: longhorn
       ingress:
@@ -42,7 +47,7 @@ spec:
           - secretName: secret-consul-tls
           - hosts:
               - consul.${INTERNAL_DOMAIN}
-
+      hostNetwork: true
 
 
 
