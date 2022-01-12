@@ -43,10 +43,10 @@ spec:
         enabled: true
         storageClass: "longhorn"
 
-      extraVolumes:
-        - type: secret
-          name: kms-vault
-          path: /vault/userconfig
+#      volumes:
+#        - type: secret
+#          name: kms-vault
+#          path: /vault/userconfig
       resources:
         requests:
           memory: 256Mi
