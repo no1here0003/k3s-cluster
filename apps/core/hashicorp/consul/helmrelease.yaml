@@ -28,3 +28,16 @@ spec:
         port: 8301
     storage: 100Gi
     storageClass: longhorn
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    pathType: Prefix
+    hosts:
+      - host: consul.${INTERNAL_DOMAIN}
+          paths:
+            - /
+    tls:
+      - secretName: secret-consul-tls
+      - hosts:
+          - consul.${INTERNAL_DOMAIN}
+
