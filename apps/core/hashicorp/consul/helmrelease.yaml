@@ -22,7 +22,7 @@ spec:
       imageK8S: "hashicorp/consul-k8s-control-plane:0.39.0"
       datacenter: dc1
       server:
-        replicas: 3
+        replicas: 1
         enabled: "true"
       ports:
         serflan:
@@ -35,10 +35,12 @@ spec:
         pathType: Prefix
       hosts:
         - host: consul.${INTERNAL_DOMAIN}
-            paths:
-              - /
+          paths:
+            - /
       tls:
         - secretName: secret-consul-tls
         - hosts:
             - consul.${INTERNAL_DOMAIN}
+
+    controller:
 
