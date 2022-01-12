@@ -15,29 +15,30 @@ spec:
         name: hashicorp-charts
         namespace: flux-system
       interval: 5m
+
   values:
     global:
-      image: "hashicorp/consul:1.10.0"
-      imageK8S: "hashicorp/consul-k8s:0.26.0"
+      image: "hashicorp/consul:1.11.1"
+      imageK8S: "hashicorp/consul-k8s-control-plane:0.39.0"
       datacenter: dc1
-    server:
-      replicas: 3
-      enabled: "true"
-    ports:
-      serflan:
-        port: 8301
-    storage: 100Gi
-    storageClass: longhorn
-  ingress:
-    enabled: true
-    ingressClassName: nginx
-    pathType: Prefix
-    hosts:
-      - host: consul.${INTERNAL_DOMAIN}
-          paths:
-            - /
-    tls:
-      - secretName: secret-consul-tls
-      - hosts:
-          - consul.${INTERNAL_DOMAIN}
+      server:
+        replicas: 3
+        enabled: "true"
+      ports:
+        serflan:
+          port: 8301
+      storage: 100Gi
+      storageClass: longhorn
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        pathType: Prefix
+      hosts:
+        - host: consul.${INTERNAL_DOMAIN}
+            paths:
+              - /
+      tls:
+        - secretName: secret-consul-tls
+        - hosts:
+            - consul.${INTERNAL_DOMAIN}
 
