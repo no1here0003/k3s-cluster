@@ -22,7 +22,7 @@ spec:
       imageK8S: "hashicorp/consul-k8s-control-plane:0.39.0"
       datacenter: dc1
       server:
-        replicas: 1
+        replicas: 3
         enabled: "true"
       ports:
         serflan:
