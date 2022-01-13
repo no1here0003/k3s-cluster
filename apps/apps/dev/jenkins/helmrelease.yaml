@@ -20,7 +20,8 @@ spec:
 
     controller:
       image: "jenkins/jenkins"
-      tagLabel: 2.330-jdk11
+      tag: 2.330-jdk11
+      tagLabel: jdk11
       imagePullPolicy: IfNotPresent
       numExecutors: 2
       admin:
