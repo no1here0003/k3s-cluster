@@ -3,17 +3,7 @@ pipeline {
     stages {
         stage('Run Update') {
             steps {
-                ansiblePlaybook('ansible/update.yml') {
-                    inventoryPath('ansible/hosts')
-                    ansibleName('Maintenance Script')
-                    tags('1, 2')
-                    credentialsId('kube')
-                    become(true)
-                    becomeUser('root')
-                    sudo(true)
-                    sudoUser('root')
-                    forks(forks = 5)
-                    }
+                ansiblePlaybook credentialsId: 'ansible_sshkey', inventory: 'ansible/hosts', playbook: 'ansible/update.yml'
                 }
             }
         }
