@@ -28,7 +28,11 @@ spec:
       server:
         enabled: "true"
         replicas: 3
-
+      service:
+        enabled: true
+        type: loadBalancer
+        additionalSpec: |
+        loadBalancerIP: ${SVC_CONSUL_ADDR}
       ports:
         serflan:
           port: 8301
@@ -48,6 +52,6 @@ spec:
           - hosts:
               - consul.${INTERNAL_DOMAIN}
       hostNetwork: true
-
+    
 
 
