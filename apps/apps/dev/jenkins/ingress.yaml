@@ -19,5 +19,5 @@ spec:
         pathType: Prefix
   tls:
   - hosts:
-    - rocketchat.${INTERNAL_DOMAIN}
+    - jenkins.${INTERNAL_DOMAIN}
   - secretName: jenkins-tls-internal
