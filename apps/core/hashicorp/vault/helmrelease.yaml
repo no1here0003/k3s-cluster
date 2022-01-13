@@ -22,7 +22,7 @@ spec:
       enabled: true
       image:
         repository: "hashicorp/vault"
-        tag: "1.9.0"
+        tag: "1.9.2"
         # Overrides the default Image Pull Policy
         pullPolicy: IfNotPresent
 
@@ -41,6 +41,7 @@ spec:
 
       dataStorage:
         enabled: true
+        size: 100Gi
         storageClass: "longhorn"
 
       resources:
@@ -59,10 +60,7 @@ spec:
       ha:
         enabled: true
         replicas: 3
-        raft:
-          enabled: true
-          setNodeId: true
-          config: |
+        config: |
             ui = true
             listener "tcp" {
               tls_disable = 1
