@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {
         stage('Run Update') {
             steps {
@@ -14,15 +13,8 @@ pipeline {
                     sudo(true)
                     sudoUser('root')
                     forks(forks = 5)
-                    unbufferedOutput(boolean unbufferedOutput = true)
-                    colorizedOutput(boolean colorizedOutput = false)
-                    hostKeyChecking(boolean hostKeyChecking = false)
-                    additionalParameters(String params)
-                    extraVars {
-                        extraVar(String key, String value, boolean hidden)
                     }
                 }
-            
             }
         }
     }
