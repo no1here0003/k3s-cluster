@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Run Update') {
             steps {
-                ansiblePlaybook('../ansible/update.yml') {
-                    inventoryPath('../ansible/hosts')
+                ansiblePlaybook('ansible/update.yml') {
+                    inventoryPath('ansible/hosts')
                     ansibleName('Maintenance Script')
                     tags('1, 2')
                     credentialsId('kube')
