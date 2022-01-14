@@ -3,7 +3,7 @@
 # See https://learn.hashicorp.com/tutorials/consul/docker-compose-datacenter for json locations
 #
   consul-server1:
-    image: consul:1.11.1
+    image: consul:1.11.2
     container_name: consul-server1
     restart: always
     volumes:
@@ -17,7 +17,7 @@
     command: 'agent -bootstrap-expect=3'
 
   consul-server2:
-    image: consul:1.11.1
+    image: consul:1.11.2
     container_name: consul-server2
     restart: always
     volumes:
@@ -27,7 +27,7 @@
     command: 'agent -bootstrap-expect=3'
 
   consul-server3:
-    image: consul:1.11.1
+    image: consul:1.11.2
     container_name: consul-server3
     restart: always
     volumes:
@@ -37,7 +37,7 @@
     command: 'agent -bootstrap-expect=3'
 
   consul-client:
-    image: consul:1.11.1
+    image: consul:1.11.2
     container_name: consul-client
     restart: always
     volumes:
