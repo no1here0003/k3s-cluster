@@ -71,7 +71,7 @@ spec:
           }
           storage "consul" {
             path = "vault"
-            address = "consul-server:8500"
+            address = "consul-consul-server:8500"
           }
           service_registration "kubernetes" {}
           # Example configuration for using auto-unseal, using Google Cloud KMS. The
