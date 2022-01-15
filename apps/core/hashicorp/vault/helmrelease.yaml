@@ -42,7 +42,13 @@ spec:
       dataStorage:
         enabled: true
         size: 100Gi
-        storageClass: "longhorn"
+        storageClass: longhorn
+
+      auditStorage:
+        enabled: true
+        size: 10G
+        mountPath: "/vault/audit"
+        storageClass: longhorn
 
       resources:
         requests:
@@ -51,18 +57,12 @@ spec:
       
       standalone:
         enabled: false
-
-      extraVolumes:
-        - type: secret
-          name: kms-vault
-          path: /vault/userconfig
-
+        
       ha:
         enabled: true
         replicas: 3
         raft:
-          enabled: true
-          setNodeId: false
+          enabled: false
         config: |
           ui = true
           listener "tcp" {
@@ -70,11 +70,20 @@ spec:
             address = "[::]:8200"
             cluster_address = "[::]:8201"
           }
-          storage "raft" {
-            path = "/vault/data"
+          storage "consul" {
+            path = "vault"
+            address = "consul:8500"
           }
           service_registration "kubernetes" {}
-
+          # Example configuration for using auto-unseal, using Google Cloud KMS. The
+          # GKMS keys must already exist, and the cluster must have a service account
+          # that is authorized to access GCP KMS.
+          #seal "gcpckms" {
+          #   project     = "vault-helm-dev-246514"
+          #   region      = "global"
+          #   key_ring    = "vault-helm-unseal-kr"
+          #   crypto_key  = "vault-helm-unseal-key"
+          #}
     csi:
       enabled: false
 
