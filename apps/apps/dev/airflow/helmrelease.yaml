@@ -100,14 +100,14 @@ spec:
 
       gitSync:
         enabled: true
-          image:
-            repository: alpine/git
-            tag: latest
-            ## values: Always or IfNotPresent
-            pullPolicy: Always
-            ## the git sync interval in seconds
-            ##
-          refreshTime: 60
+        image:
+          repository: alpine/git
+          tag: latest
+          ## values: Always or IfNotPresent
+          pullPolicy: Always
+          ## the git sync interval in seconds
+          ##
+        refreshTime: 60
 
     ingress:
       enabled: true
@@ -125,4 +125,23 @@ spec:
           kubernetes.io/ingress.class: nginx
           path: "/"
           host: "flower.192.168.2.50.nip.io"
-          
+
+
+      postgresql:
+        enabled: true
+        postgresqlDatabase: airflow
+        postgresqlUsername: postgres
+        postgresql-password: airflow
+
+        existingSecret: airlow
+        existingSecretKey: "postgresql-password"
+
+        persistence: 
+          enabled: true
+          storgabeClass: longhorn
+          accessModes:
+            - ReadWriteOnce
+          size: 100G
+
+
+
