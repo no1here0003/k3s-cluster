@@ -133,10 +133,6 @@ spec:
         size: 100G
         existingClaim: airflow-logs-v1
 
-  
-    fernetKey: fernetKey
-    fernetKeySecretName: airflow
-
     data:
       metadataSecretName: metadataConnection
       resultBackEndSecretName: metadataConnection
