@@ -8,4 +8,4 @@ resources:
 - airflow-ssh.secrets.sops.yaml
 - airflow.secrets.sops.yaml
 - airflow-git.secrets.sops.yaml
-- airflow-metadata.secrets.sops.yaml
+#- airflow-metadata.secrets.sops.yaml
