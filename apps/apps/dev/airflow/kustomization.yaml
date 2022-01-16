@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
 - dags-pvc.yaml
 - helmrelease.yaml
-- logs-pvc.yaml.yaml
+- logs-pvc.yaml
 - airflow.secrets.sops.yaml
