@@ -5,4 +5,5 @@ resources:
 - dags-pvc.yaml
 - helmrelease.yaml
 - logs-pvc.yaml
+- airflow-ssh.secrets.sops.yaml
 - airflow.secrets.sops.yaml
