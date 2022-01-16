@@ -79,35 +79,35 @@ spec:
         accessMode: ReadWriteMany
         size: 100G
 
-  dags:
-    path: /opt/airflow/dags
+    dags:
+      path: /opt/airflow/dags
 
-    persistence:
-      enabled: true
-      existingClaim: "dags-v1"
-      storageClass: longhorn
-      accessMode: ReadOnlyMany
-      size: 10G
-
-    git:
-      url: "https://github.com/no1here0003.git"
-      ref: master
-      secret: airflow
-      sshKeyscan: true
-      privateKeyName: id_rsa
-      repoHost: "github.com"
-      repoPort: 22
-
-      gitSync:
+      persistence:
         enabled: true
-        image:
-          repository: alpine/git
-          tag: latest
-          ## values: Always or IfNotPresent
-          pullPolicy: Always
-          ## the git sync interval in seconds
-          ##
-        refreshTime: 60
+        existingClaim: "dags-v1"
+        storageClass: longhorn
+        accessMode: ReadOnlyMany
+        size: 10G
+
+      git:
+        url: "https://github.com/no1here0003.git"
+        ref: master
+        secret: airflow-ssh
+        sshKeyscan: true
+        privateKeyName: id_rsa
+        repoHost: "github.com"
+        repoPort: 22
+
+        gitSync:
+          enabled: true
+          image:
+            repository: alpine/git
+            tag: latest
+            ## values: Always or IfNotPresent
+            pullPolicy: Always
+            ## the git sync interval in seconds
+            ##
+        r efreshTime: 60
 
     ingress:
       enabled: true
