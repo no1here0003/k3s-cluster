@@ -1,0 +1,7 @@
+---
+creation_rules:
+
+  - path_regex: dev/.*\.ya?ml
+    encrypted_regex: "^(data|stringData)$"
+    age: >-
+      age1pqmv9umk70z2xyv8vvlma070d9rzr02j3ye8gjyv64ddf0sfwccspwsj8d
