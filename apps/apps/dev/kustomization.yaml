@@ -5,4 +5,4 @@ resources:
 - jenkins
 #- luigi
 #- airflow
-- maria-galera
+- mariadb-galera
