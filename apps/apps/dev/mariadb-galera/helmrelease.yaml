@@ -1,6 +1,6 @@
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: mariadb
+kind: HelmRelease
 metadata:
   name: mariadb-galera
   namespace: dev
