@@ -61,17 +61,17 @@ spec:
     
     galera:
       mariabackup:
-      # @param galera.mariabackup.user MariaBackup username
-      ## ref: https://github.com/bitnami/bitnami-docker-mariadb-galera#setting-up-a-multi-master-cluster
-      ##
-      user: mariabackup
-      ## @param galera.mariabackup.password MariaBackup password. Password is ignored if existingSecret is specified.
-      ##
-      password: ""
-      ## @param galera.mariabackup.forcePassword Option to force users to specify a password. That is required for 'helm upgrade' to work properly.
-      ## If it is not force, a random password will be generated.
-      ##
-      forcePassword: true
+        # @param galera.mariabackup.user MariaBackup username
+        ## ref: https://github.com/bitnami/bitnami-docker-mariadb-galera#setting-up-a-multi-master-cluster
+        ##
+        user: mariabackup
+        ## @param galera.mariabackup.password MariaBackup password. Password is ignored if existingSecret is specified.
+        ##
+        password: ""
+        ## @param galera.mariabackup.forcePassword Option to force users to specify a password. That is required for 'helm upgrade' to work properly.
+        ## If it is not force, a random password will be generated.
+        ##
+        forcePassword: true
     
     persistence:
       enabled: true
