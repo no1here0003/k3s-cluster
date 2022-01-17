@@ -50,7 +50,7 @@ spec:
     service:
       ## @param service.type Kubernetes service type
       ##
-      type: loadBalancer
+      type: LoadBalancer
       loadBalancerIP: "${SVC_MARIADB_ADDR}"
 
     extraEnvVars:
