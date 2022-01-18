@@ -8,8 +8,8 @@ metadata:
     k3s-upgrade: agent
 spec:
   serviceAccountName: system-upgrade
-  concurrency: 2
-  channel: https://update.k3s.io/v1-release/channels/v1.22
+  concurrency: 5
+  channel: https://update.k3s.io/v1-release/channels/v1.23
   nodeSelector:
     matchExpressions:
       - key: node-role.kubernetes.io/master
