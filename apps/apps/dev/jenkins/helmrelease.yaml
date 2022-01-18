@@ -35,6 +35,12 @@ spec:
     ingress:
       enabled: false
 
+    podSecurityContext:
+      fsGroup: 0
+      supplementalGroups:
+        - 44
+        - 109
+        
     agent:
       enabled: true
       image: "jenkins/inbound-agent"
