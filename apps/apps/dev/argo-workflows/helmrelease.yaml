@@ -114,12 +114,10 @@ spec:
     server:
       enabled: true
       image:
-      # -- Registry to use for the server
-      registry: quay.io
-      # -- Repository to use for the server
-      repository: argoproj/argocli
-      # -- Overrides the image tag whose default is the chart appVersion.
-      tag: "v3.2.6"
+        registry: quay.io
+        repository: argoproj/argocli
+        tag: "v3.2.6"
+        
       securityContext:
         readOnlyRootFilesystem: false
         runAsNonRoot: true
