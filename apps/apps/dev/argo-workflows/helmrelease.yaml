@@ -152,5 +152,5 @@ spec:
 
         tls:
           - secretName: argoworkflows-int-tls
-          hosts:
-            - argoworkflows.${INTERNAL_DOMAIN}
+            hosts:
+              - argoworkflows.${INTERNAL_DOMAIN}
