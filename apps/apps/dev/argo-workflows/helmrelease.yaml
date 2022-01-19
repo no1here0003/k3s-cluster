@@ -20,7 +20,7 @@ spec:
 
     images:
       # -- imagePullPolicy to apply to all containers
-      pullPolicy: "IfNotPresent"
+      pullPolicy: IfNotPresent
       # -- Secrets with credentials to pull images from a private registry
       pullSecrets: []
     # -- Create clusterroles that extend existing clusterroles to interact with argo-cd crds
