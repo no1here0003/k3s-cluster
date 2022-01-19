@@ -35,13 +35,11 @@ spec:
     ingress:
       enabled: false
 
-    containerSecurityContext:
+    podSecurityContextOverride:
       runAsUser: 1000
-      runAsGroup: 1000
-      readOnlyRootFilesystem: true
-      allowPrivilegeEscalation: false
-    servicePort: 8080
-    targetPort: 8080
+      runAsNonRoot: false
+      supplementalGroups: [1000]
+      capabilities: {}
 
     agent:
       enabled: true
