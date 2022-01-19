@@ -8,8 +8,8 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: airgo-charts
-      version: 8.5.5
+      chart: argo-charts
+      version: 0.9.4
 
     
       sourceRef:
@@ -19,25 +19,21 @@ spec:
       interval: 5m
 
   values:
+
     images:
     # -- imagePullPolicy to apply to all containers
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
     # -- Secrets with credentials to pull images from a private registry
     pullSecrets: []
-    # - name: argo-pull-secret
-
-    # -- Create clusterroles that extend existing clusterroles to interact with argo-cd crds
-    ## Ref: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles
     createAggregateRoles: true
 
     # -- String to partially override "argo-workflows.fullname" template
     nameOverride:
-
     # -- String to fully override "argo-workflows.fullname" template
     fullnameOverride:
-
     # -- Override the Kubernetes version, which is used to evaluate certain manifests
-    kubeVersionOverride: "v1.22.5+k3s2"
+    kubeVersionOverride: ""
+
 
     # -- Restrict Argo to operate only in a single namespace (the namespace of the
     # Helm release) by apply Roles and RoleBindings instead of the Cluster
@@ -46,31 +42,27 @@ spec:
     singleNamespace: false
 
     workflow:
+      namespace:
       serviceAccount:
         create: true
         annotations: {}
         name: "argo-workflow"
-
       rbac:
         # -- Adds Role and RoleBinding for the above specified service account to be able to run workflows.
         # A Role and Rolebinding pair is also created for each namespace in controller.workflowNamespaces (see below)
         create: true
 
-      controller:
-        image:
-          # -- Registry to use for the controller
-          registry: quay.io
-          # -- Registry to use for the controller
-          repository: argoproj/workflow-controller
-          # -- Overrides the image tag whose default is the chart appVersion.
-          tag: "v3.2.6"
-          # -- parallelism dictates how many workflows can be running at the same time
-        parallelism: 20
-        resourceRateLimit:
-          limit: 10
-          burst: 1
+    controller:
+      image:
+        registry: quay.io
+        repository: argoproj/workflow-controller
+        tag: "v3.2.6"
+      parallelism: 20
+      resourceRateLimit:
+        limit: 10
+        burst: 1
         
-        namespaceParallelism: 10
+      namespaceParallelism: 10
 
       persistence: {}
         connectionPool:
@@ -128,3 +120,45 @@ spec:
         repository: argoproj/argoexec
       # -- Overrides the image tag whose default is the chart appVersion.
         tag: "v3.2.6"
+
+    server:
+      enabled: true
+      image:
+      # -- Registry to use for the server
+      registry: quay.io
+      # -- Repository to use for the server
+      repository: argoproj/argocli
+      # -- Overrides the image tag whose default is the chart appVersion.
+      tag: "v3.2.6"
+      securityContext:
+        readOnlyRootFilesystem: false
+        runAsNonRoot: true
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+      # -- Server name string
+      name: server
+      # -- Service type for server pods
+      serviceType: ClusterIP
+      # -- Service port for server
+      servicePort: 2746
+
+      serviceAccount:
+        create: true
+
+      replicas: 1
+
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        hosts:
+          - argoworkflows.${INTERNAL_DOMAIN}
+        paths:
+          - /
+        pathType: Prefix
+
+        tls:
+          - secretName: argoworkflows-int-tls
+          hosts:
+            - argoworkflows.${INTERNAL_DOMAIN}
