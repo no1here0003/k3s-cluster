@@ -20,7 +20,7 @@ spec:
 
     images:
     # -- imagePullPolicy to apply to all containers
-    pullPolicy: IfNotPresent
+    pullPolicy: "IfNotPresent"
     # -- Secrets with credentials to pull images from a private registry
     pullSecrets: []
     createAggregateRoles: true
@@ -104,11 +104,8 @@ spec:
 
     executor:
       image:
-        # -- Registry to use for the Workflow Executors
         registry: quay.io
-        # -- Repository to use for the Workflow Executors
         repository: argoproj/argoexec
-      # -- Overrides the image tag whose default is the chart appVersion.
         tag: "v3.2.6"
 
     server:
@@ -117,7 +114,7 @@ spec:
         registry: quay.io
         repository: argoproj/argocli
         tag: "v3.2.6"
-        
+
       securityContext:
         readOnlyRootFilesystem: false
         runAsNonRoot: true
