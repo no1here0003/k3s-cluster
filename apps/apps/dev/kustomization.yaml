@@ -6,4 +6,4 @@ resources:
 #- luigi
 #- airflow
 - mariadb-galera
-- onedev
+#- onedev
