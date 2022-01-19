@@ -19,10 +19,12 @@ spec:
   values:
 
     images:
-    # -- imagePullPolicy to apply to all containers
-    pullPolicy: "IfNotPresent"
-    # -- Secrets with credentials to pull images from a private registry
-    pullSecrets: []
+      # -- imagePullPolicy to apply to all containers
+      pullPolicy: "IfNotPresent"
+      # -- Secrets with credentials to pull images from a private registry
+      pullSecrets: []
+    # -- Create clusterroles that extend existing clusterroles to interact with argo-cd crds
+    ## Ref: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles
     createAggregateRoles: true
 
     # -- Restrict Argo to operate only in a single namespace (the namespace of the
