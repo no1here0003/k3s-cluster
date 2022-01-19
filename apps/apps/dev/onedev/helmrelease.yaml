@@ -33,36 +33,36 @@ spec:
       ## Optionally specify dns name to access OneDev via ingress controller
       host: "onedev.${INTERNAL_DOMAIN}"
  
-  ## Whether or not to enable TLS for above host
-  tls: true 
+      ## Whether or not to enable TLS for above host
+      tls: true 
 
-  ## Will be used as ingressClassName of ingress spec to match controller
-  class: nginx 
+      ## Will be used as ingressClassName of ingress spec to match controller
+      class: nginx 
 
-letsencrypt: 
-  ## Specify an email here to enable LetsEncrypt. 
-  ## Check https://code.onedev.io/projects/162/blob/main/pages/deploy-into-k8s-with-helm.md#letsencrypt-setup for details
-  email: "" 
+    letsencrypt: 
+      ## Specify an email here to enable LetsEncrypt. 
+      ## Check https://code.onedev.io/projects/162/blob/main/pages/deploy-into-k8s-with-helm.md#letsencrypt-setup for details
+      email: ${SECRET_EMAIL} 
 
-resources:
-  onedev:
-    memory: 1024Mi
-  mysql:
-    memory: 256Mi
+    resources:
+      onedev:
+        memory: 1024Mi
+      mysql:
+        memory: 256Mi
 
-volumes:
-  onedev:
-    ## Optionally specify storage class of persistent volume to store OneDev data including git repositories and indexes. 
-    ## Leave empty to use default storage class
-    storageClassName: "longhorn" 
-    size: 100Gi
-  mysql:
-    ## Optionally specify storage class of persistent volume to store mysql data. 
-    ## Leave empty to use default storage class
-    storageClassName: "longhorn" 
-    size: 20Gi
+    volumes:
+      onedev:
+        ## Optionally specify storage class of persistent volume to store OneDev data including git repositories and indexes. 
+        ## Leave empty to use default storage class
+        storageClassName: "longhorn" 
+        size: 100Gi
+      mysql:
+        ## Optionally specify storage class of persistent volume to store mysql data. 
+        ## Leave empty to use default storage class
+        storageClassName: "longhorn" 
+        size: 20Gi
 
-secrets:
-  mysql:
-    ## change mysql root password if desired
-    password: ${SECRET_PASSWORD} 
+    secrets:
+      mysql:
+        ## change mysql root password if desired
+        password: ${SECRET_PASSWORD} 
