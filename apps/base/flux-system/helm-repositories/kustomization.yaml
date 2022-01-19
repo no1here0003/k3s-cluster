@@ -26,3 +26,4 @@ resources:
   - tekton-charts.yaml
   - weaveworks-kured.yaml
   - authelia-charts.yaml
+  - onedev-charts.yaml
