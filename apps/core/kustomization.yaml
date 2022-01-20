@@ -10,5 +10,5 @@ resources:
 - external-dns
 - k8s-dashboard
 - system
-- authentik
+#- authentik
 - hashicorp
