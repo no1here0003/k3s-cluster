@@ -10,4 +10,4 @@ spec:
   resources:
     requests:
       storage: 200Gi
-  storageClassName: longhorn
+  storageClassName: longhorn-static
