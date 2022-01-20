@@ -27,12 +27,8 @@ spec:
     persistence:
       downloads:
         enabled: true
-        existingClaim: sabnzbd-downloads-v1
+        existingClaim: sabnzbd-downloads-v2
         mountPath: /sabnzbd3/config/Downloads
-      downloads2:
-        enabled: true
-        existingClaim: sabnzbd-config-v2
-        mountPath: /sabnzbd2/config
       downloads3:
         enabled: true
         existingClaim: sabnzbd-config-v3
