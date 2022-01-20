@@ -23,8 +23,8 @@ k3sup join \
   --server-user kube
 
 k3sup join \
-  --ip 192.168.2.241 \
+  --ip 192.168.1.10 \
   --user kube \
   --k3s-channel latest \
-  --server-ip 192.168.2.100 \
+  --server-ip 192.168.1.10 \
   --server-user kube
