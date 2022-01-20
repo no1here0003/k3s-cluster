@@ -1,0 +1,103 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: mariadb-galera
+  namespace: dev
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: mariadb-galera
+      version: 6.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami-charts
+        namespace: flux-system
+      interval: 5m
+
+  values:
+
+    global:
+    imageregistry:
+    storageClass: "longhorn"
+    postgresql: 
+      postgresqlDatabase:
+      postgresqlUsername: "admin"
+      existingSecret: "postgresql"
+      postgresqlPassword: ""
+      servicePort: "5432"
+      replicationPassword: ""
+
+  
+    image:
+      registry: docker.io
+      repository: bitnami/postgresql
+      tag: 11.14.0-debian-10-r28
+      pullPolicy: IfNotPresent
+
+    volumePermissions:
+      ## @param volumePermissions.enabled Enable init container that changes volume permissions in the data directory (for cases where the default k8s `runAsUser` and `fsUser` values do not work)
+      ##
+      enabled: false
+      ## @param volumePermissions.image.registry Init container volume-permissions image registry
+      ## @param volumePermissions.image.repository Init container volume-permissions image repository
+      ## @param volumePermissions.image.tag Init container volume-permissions image tag (immutable tags are recommended)
+      ## @param volumePermissions.image.pullPolicy Init container volume-permissions image pull policy
+      ## @param volumePermissions.image.pullSecrets Init container volume-permissions image pull secrets
+      ##
+      image:
+        registry: docker.io
+        repository: bitnami/bitnami-shell
+        tag: 10-debian-10-r305
+        ## Specify a imagePullPolicy
+        ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+        ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+        ##
+        pullPolicy: IfNotPresent
+
+    securityContext:
+    runAsUser: 0
+    securityContext:
+    enabled: true
+    fsGroup: 1001
+    containerSecurityContext:
+    enabled: true
+    runAsUser: 1001
+    serviceAccount: 
+      enabled: true
+    
+    rbac:
+      create: true
+
+    replication:
+      enabled: true
+      user: repl_user
+      password: repl_password
+      readReplicas: 2
+
+
+    ## @param postgresqlPostgresPassword PostgreSQL admin password (used when `postgresqlUsername` is not `postgres`, in which case`postgres` is the admin username)
+    ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md#creating-a-database-user-on-first-run (see note!)
+    ##
+    postgresqlPostgresPassword: ""
+    ## @param postgresqlUsername PostgreSQL user (has superuser privileges if username is `postgres`)
+    ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md#setting-the-root-password-on-first-run
+    ##
+    postgresqlUsername: postgres
+    ## @param postgresqlPassword PostgreSQL user password
+    ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md#setting-the-root-password-on-first-run
+    ##
+    postgresqlPassword: ""
+    ## @param existingSecret Name of existing secret to use for PostgreSQL passwords
+    ## The secret has to contain the keys postgresql-password which is the password for postgresqlUsername when it is
+    ## different of postgres, postgresql-postgres-password which will override postgresqlPassword,
+    ## postgresql-replication-password which will override replication.password and postgresql-ldap-password which will be
+    ## used to authenticate on LDAP. The value is evaluated as a template.
+    ## e.g:
+    ## existingSecret: secret
+    ##
+    existingSecret: ""
+    ## @param usePasswordFile Mount PostgreSQL secret as a file instead of passing environment variable
+    ##
+    usePasswordFile: false
