@@ -7,5 +7,5 @@ resources:
 #- airflow
 #- mariadb-galera
 #- onedev
-#- argo-workflows
+- argo-workflows
 - postgresql-ha
