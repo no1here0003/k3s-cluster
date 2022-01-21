@@ -5,7 +5,7 @@ resources:
 - jenkins
 #- luigi
 #- airflow
-- mariadb-galera
+#- mariadb-galera
 #- onedev
 #- argo-workflows
 - postgresql-ha
