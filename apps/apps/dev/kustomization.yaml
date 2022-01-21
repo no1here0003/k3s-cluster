@@ -8,3 +8,4 @@ resources:
 - mariadb-galera
 #- onedev
 #- argo-workflows
+- postgresql-ha
