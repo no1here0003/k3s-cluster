@@ -117,6 +117,9 @@ spec:
         repository: argoproj/argocli
         tag: "v3.2.6"
 
+      extraArgs:
+      - --auth-mode=server
+
       securityContext:
         readOnlyRootFilesystem: false
         runAsNonRoot: true
