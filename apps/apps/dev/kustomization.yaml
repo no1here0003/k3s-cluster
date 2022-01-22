@@ -10,3 +10,4 @@ resources:
 - argo-events
 - argo-workflows
 - postgresql-ha
+- tekton

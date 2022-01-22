@@ -15,4 +15,5 @@ resources:
   - networking.yaml
   - rocketchat.yaml
   - security.yaml
+  - tekton.yaml
   - vpn-gateway.yaml
