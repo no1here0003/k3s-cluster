@@ -7,7 +7,7 @@ resources:
 #- airflow
 #- mariadb-galera
 #- onedev
-- argo-events
-- argo-workflows
-- postgresql-ha
+#- argo-events
+#- argo-workflows
+#- postgresql-ha
 - tekton
