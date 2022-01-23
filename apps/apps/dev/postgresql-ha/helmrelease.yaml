@@ -9,13 +9,15 @@ spec:
   chart:
     spec:
       chart: postgresql-ha
-      version: 8.2.6
+      version: 6.2.0
       sourceRef:
         kind: HelmRepository
         name: bitnami-charts
         namespace: flux-system
       interval: 5m
+
   values:
+
     global:
       storageClass: longhorn
 
@@ -29,7 +31,7 @@ spec:
       pullPolicy: IfNotPresent
    
     postgresql:
-      replicaCount: 3
+      replicaCount: 1
       updateStrategyType: RollingUpdate
       containerPort: 5432
       securityContext:
@@ -46,4 +48,4 @@ spec:
       registry: docker.io
       repository: bitnami/pgpool
       tag: 4.3.0-debian-10-r1
-      pullPolicy: IfNotPresent
+    pullPolicy: IfNotPresent
