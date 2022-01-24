@@ -2,17 +2,17 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: rocketchat
-  namespace: rocketchat
+  name: tekton
+  namespace: dev
 spec:
   ingressClassName: nginx
   rules:
-  - host: rocketchat.${INTERNAL_DOMAIN}
+  - host: tekton.${INTERNAL_DOMAIN}
     http:
       paths:
       - backend:
           service:
-            name: -rocketchat
+            name: -dashboard
             port:
               number: 80
         path: /
@@ -20,4 +20,4 @@ spec:
   tls:
   - hosts:
     - tekton-dashboard.${INTERNAL_DOMAIN}
-  - secretName: rocketchat-tls-internal
+  - secretName: tekton-tls-internal
