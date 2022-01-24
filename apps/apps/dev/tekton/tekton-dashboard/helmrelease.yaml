@@ -20,7 +20,7 @@ spec:
     dashboard:
       image:
         repository: gcr.io/tekton-releases/github.com/tektoncd/dashboard/cmd/dashboard
-        tag: "v0.6.1.3"
+        tag: "v0.23.0"
         pullPolicy: IfNotPresent
 
       # dashboard.readOnly -- Drives running the dashboard in read only mode
