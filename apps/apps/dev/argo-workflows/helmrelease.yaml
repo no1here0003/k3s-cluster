@@ -65,7 +65,7 @@ spec:
           # # enable archiving of old workflows
         archive: false
         postgresql:
-          host: postgresql-postgresql-ha-postgresql
+          host: postgresql
           port: 5432
           database: postgres
           tableName: argo_workflows
