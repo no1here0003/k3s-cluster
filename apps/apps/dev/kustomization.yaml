@@ -9,5 +9,5 @@ resources:
 #- onedev
 #- argo-events
 #- argo-workflows
-#- postgresql-ha
+- postgresql
 - tekton
