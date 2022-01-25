@@ -3,7 +3,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: tekton
-  namespace: dev
+  namespace: tekton-pipelines
 spec:
   ingressClassName: nginx
   rules:
