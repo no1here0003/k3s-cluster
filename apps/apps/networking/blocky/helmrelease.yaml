@@ -40,7 +40,7 @@ spec:
           tcp:
             enabled: true
             port: 53
-            protocol: TCP
+            protocol: UDP
             targetPort: 53
         externalTrafficPolicy: Local
     metrics:
