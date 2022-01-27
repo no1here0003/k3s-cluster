@@ -18,27 +18,39 @@ spec:
 
   values:
 
-    controller:
-      image: "jenkins/jenkins"
-      tagLabel: jdk11
-      imagePullPolicy: IfNotPresent
-      numExecutors: 2
-      admin:
-        existingSecret: "jenkins"
-          userKey: jenkins-admin-user
-          passwordKey: jenkins-admin-password
-    
-    initializedOnce: true
+    global:
+      hosts:
+        domain: chaoticark.net
+        https: false
+      minio:
+        name: minio.chaoticark.net
+        https: true
 
-    # Their ingress is a mess, I'll use my own.
-    ingress:
-      enabled: false
+      ingress:
+        enabled: true
+        apiVersion: "networking.k8s.io/v1"
+        annotations:
+          kubernetes.io/tls-acme: "true"
+          external-dns/is-public: "true"
+        configureCertmanager: true
+        tls:
+          enabled: true
+          secretName: gitlab-tls
+        class: nginx
 
-    agent:
-      enabled: true
-      image: "jenkins/inbound-agent"
-      tag: "4.11-1"
+        initialRootPassword:
+          secret: gitlab-secrets
+          key: password
+      
+        psql:
+          password:
+            useSecret: true
+            secret: gitlab-secrets
+            key: psql-password
 
-    persistence:
-      enabled: true
-      existingClaim: jenkins-pvc-v1
+        redis:
+          password:
+            enabled: true
+            secret: gitlab-secrets
+            key: redis-password
+            
