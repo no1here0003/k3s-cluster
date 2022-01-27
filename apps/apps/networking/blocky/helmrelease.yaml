@@ -8,7 +8,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: blocky
       version: 10.1.0
       sourceRef:
@@ -16,10 +15,12 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
+
   values:
     image:
       repository: ghcr.io/0xerr0r/blocky
       tag: v0.17
+
     controller:
       enabled: true
       type: deployment
@@ -27,6 +28,7 @@ spec:
       replicas: 2
     env:
       TZ: "America/New_York"
+
     service:
       main:
         ports:
@@ -43,6 +45,7 @@ spec:
             protocol: UDP
             targetPort: 53
         externalTrafficPolicy: Local
+
     metrics:
       enabled: true
       serviceMonitor:
@@ -50,6 +53,7 @@ spec:
         scrapeTimeout: 10s
       prometheusRule:
         enabled: true
+
     config: |
       upstream:
         default:
@@ -91,6 +95,7 @@ spec:
       httpPort: 4000
       logFormat: json
       logLevel: info
+
     persistence:
       whitelists:
         enabled: true
@@ -99,6 +104,7 @@ spec:
         volumeSpec:
           configMap:
             name: blocky-whitelist
+
     podAnnotations:
       configmap.reloader.stakater.com/reload: "blocky-config"
     affinity:
