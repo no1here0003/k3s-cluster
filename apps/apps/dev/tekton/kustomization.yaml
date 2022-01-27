@@ -25,6 +25,6 @@ resources:
   # terraform -- https://github.com/tektoncd/catalog/tree/main/task/terraform-cli/0.2
   - https://raw.githubusercontent.com/tektoncd/catalog/main/task/terraform-cli/0.2/terraform-cli.yaml
   # ansible -- https://github.com/tektoncd/catalog/tree/main/task/ansible-runner/0.1
-  - https://raw.githubusercontent.com/tektoncd/catalog/main/task/ansible-runner/0.1/ansible-runner.yaml
+  #- https://raw.githubusercontent.com/tektoncd/catalog/main/task/ansible-runner/0.1/ansible-runner.yaml
   # kubernetes actions -- https://github.com/tektoncd/catalog/tree/main/task/kubernetes-actions/0.2
   - https://raw.githubusercontent.com/tektoncd/catalog/main/task/kubernetes-actions/0.2/kubernetes-actions.yaml
