@@ -36,7 +36,6 @@ spec:
         enabled: true
         type: LoadBalancer
         loadBalancerIP: ${SVC_BLOCKY_IP}
-          - 192.168.2.60
         ports:
           tcp:
             enabled: true
