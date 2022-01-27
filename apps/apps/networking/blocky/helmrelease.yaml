@@ -29,6 +29,8 @@ spec:
     env:
       TZ: "America/New_York"
 
+    # Services below. The first is for internal stuff, the port 53 one is the
+    # DNS lookup service the router/gateway/clients need to use.
     service:
       main:
         ports:
