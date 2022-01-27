@@ -6,3 +6,4 @@ resources:
 #- wireguard
 - wildcard-certificate
 - cloudflare-ddns
+- blocky
