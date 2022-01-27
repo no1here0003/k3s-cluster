@@ -35,7 +35,7 @@ spec:
       dns:
         enabled: true
         type: LoadBalancer
-        loadBalancerIP: ${SVC_BLOCKY_IP}
+        loadBalancerIP: ${SVC_BLOCKY_ADDR}
         ports:
           tcp:
             enabled: true
