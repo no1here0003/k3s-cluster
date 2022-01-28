@@ -15,20 +15,25 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
+
   values:
+
     image:
       repository: ghcr.io/k8s-at-home/plex
       tag: v1.25.3.5409-f11334058
+
     env:
       TZ: "America/New_York"
       ADVERTISE_IP: "http://${PLEX_LB}:32410/"
       ALLOWED_NETWORKS: "10.0.0.0/8,172.16.0.0/16,192.168.0.0/16"
       HOSTNAME: "plex-cluster"
+
     podSecurityContext:
       fsGroup: 0
       supplementalGroups:
         - 44
         - 109
+
     service:
       main:
         enabled: true
@@ -42,6 +47,7 @@ spec:
             port: 32410
             targetPort: 32400
             protocol: TCP
+
     ingress:
       main:
         enabled: true
@@ -57,6 +63,7 @@ spec:
           - hosts:
               - "plex.${INTERNAL_DOMAIN}"
           - secretName: plex-tls-internal
+
     persistence:
       config:
         enabled: true
@@ -83,6 +90,7 @@ spec:
         enabled: true
         type: emptyDir
         medium: Memory
+        
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:

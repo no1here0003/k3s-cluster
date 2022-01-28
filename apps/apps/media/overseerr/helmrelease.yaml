@@ -15,13 +15,17 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
+
   values:
+
     image:
       repository: ghcr.io/sct/overseerr
       tag: 1.28.0
+
     env:
       TZ: "America/New_York"
       LOG_LEVEL: "info"
+
     ingress:
       main:
         enabled: true
@@ -39,11 +43,13 @@ spec:
           - hosts:
               - "request.${SECRET_DOMAIN}"
           - secretName: overseer-tls
+
     persistence:
       config:
         enabled: true
         existingClaim: overseerr-config
         mountPath: /app/config
+        
     resources:
       requests:
         memory: 250Mi

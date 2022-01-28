@@ -15,17 +15,21 @@ spec:
         name: rocketchat-charts
         namespace: flux-system
       interval: 5m
+
   values:
+
     image:
       repository: registry.rocket.chat/rocketchat/rocket.chat
       version: 3.18.3
       pullPolicy: IfNotPresent
+
     smtp:
       enabled: false
       username:
       password:
       host:
       port: 587
+
     mongodb:
       enabled: true
       auth:
@@ -39,6 +43,7 @@ spec:
         storageClassName: longhorn
         accessMode: ReadWriteOnce
         size: 10G
+        
     persistence:
       enabled: true
       storageClassName: longhorn
