@@ -16,7 +16,17 @@ spec:
         name: longhorn-charts
         namespace: flux-system
       interval: 5m
+  
   values:
+
+    defaultSettings:
+      defaultReplicaCount: 3
+      backupTarget: nfs://192.168.1.200:/volume1/Kubernetes
+      createDefaultDiskLabeledNodes: true
+      storageOverProvisioningPercentage: 150
+      storageMinimalAvailablePercentage: 50
+      defaultLonghornStaticStorageClass: longhorn
+
     ingress:
       enabled: true
       ingressClassName: nginx
