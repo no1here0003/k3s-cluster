@@ -100,10 +100,7 @@ spec:
                   operator: In
                   values:
                     - "true"
-                - key: kubernetes.io/hostname
-                  operator: In
-                  values:
-                    - "intelgpu1"
+
     podAnnotations:
       configmap.reloader.stakater.com/reload: "plex-promtail"
     resources:
