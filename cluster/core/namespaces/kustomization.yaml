@@ -17,3 +17,4 @@ resources:
   - security.yaml
   - tekton.yaml
   - vpn-gateway.yaml
+  - home.yaml
