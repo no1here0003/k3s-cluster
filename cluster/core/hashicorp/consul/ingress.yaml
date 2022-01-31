@@ -17,7 +17,7 @@ spec:
                   number: 80
             path: /
             pathType: Prefix
-      tls:
-        - hosts:
-            - consul.${INTERNAL_DOMAIN}
-        - secretName: consul-tls-internal
+  tls:
+    - hosts:
+        - consul.${INTERNAL_DOMAIN}
+    - secretName: consul-tls-internal
