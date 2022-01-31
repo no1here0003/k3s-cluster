@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cluster-crds
+    - name: cluster-core
       interval: 1m0s
       path: ./cluster/apps
       prune: false
