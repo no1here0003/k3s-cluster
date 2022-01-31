@@ -11,10 +11,10 @@ spec:
       http:
         paths:
           - backend:
-            service:
-              name: tekton-dashboard
-              port:
-                name: http
+              service:
+                name: tekton-dashboard
+                port:
+                  name: http
             path: /
             pathType: Prefix
   tls:
