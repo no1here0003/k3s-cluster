@@ -33,6 +33,6 @@ spec:
             apiTokenSecretRef:
               name: cloudflare-api-key
               key: api-token
-          selector:
-            dnsZones:
-              - 'chaoticark.net'
+        selector:
+          dnsZones:
+            - 'chaoticark.net'
