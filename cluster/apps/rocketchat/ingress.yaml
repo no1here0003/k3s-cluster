@@ -11,10 +11,10 @@ spec:
       http:
         paths:
           - backend:
-            service:
-              name: rocketchat-rocketchat
-              port:
-                number: 80
+              service:
+                name: rocketchat-rocketchat
+                port:
+                  number: 80
             path: /
             pathType: Prefix
   tls:
