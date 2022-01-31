@@ -13,4 +13,3 @@ resources:
   - authentik
   - hashicorp
   - kube-system
-  - metrics-server
