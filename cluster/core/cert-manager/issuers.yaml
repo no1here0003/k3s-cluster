@@ -10,11 +10,11 @@ spec:
       name: letsencrypt-staging
     solvers:
       - dns01:
-        cloudflare:
-          email: ${SECRET_EMAIL}
-          apiTokenSecretRef:
-            name: cloudflare-api-key
-            key: api-token
+          cloudflare:
+            email: ${SECRET_EMAIL}
+            apiTokenSecretRef:
+              name: cloudflare-api-key
+              key: api-token
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
