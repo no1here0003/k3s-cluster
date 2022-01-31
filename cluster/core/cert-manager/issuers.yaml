@@ -28,11 +28,11 @@ spec:
       name: letsencrypt-staging
     solvers:
       - dns01:
-        cloudflare:
-          email: ${SECRET_EMAIL}
-          apiTokenSecretRef:
-            name: cloudflare-api-key
-            key: api-token
-        selector:
-          dnsZones:
-            - 'chaoticark.net'
+          cloudflare:
+            email: ${SECRET_EMAIL}
+            apiTokenSecretRef:
+              name: cloudflare-api-key
+              key: api-token
+          selector:
+            dnsZones:
+              - 'chaoticark.net'
