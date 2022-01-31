@@ -1,0 +1,66 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: postgresql
+  namespace: dev
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: postgresql
+      version: 10.16.2
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami-charts
+        namespace: flux-system
+      interval: 5m
+
+  values:
+
+    global:
+      storageClass: longhorn
+
+    rbac:
+      create: true
+
+    image:
+      registry: docker.io
+      repository: bitnami/postgresql
+      tag: 11.7.0-debian-10-r9
+      pullPolicy: IfNotPresent
+
+    volumePermissions:
+      enabled: false
+      image:
+        registry: bitnami/minideb
+        tag: buster
+        pullPolicy: Always
+      securityContext:
+        runAsUser: 0
+
+    securityContext:
+      enabled: true
+      fsGroup: 1001
+      runAsUser: 1001
+
+
+    replication:
+      enabled: true
+
+
+    existingSecret: postgresql
+    postgresqlDatabase: argo_workflows
+
+    postgresqlDataDir: /bitnami/postgresql/data
+
+    service:
+      ## PosgresSQL service type
+      type: ClusterIP
+      # clusterIP: None
+      port: 5432
+
+    persistence:
+      enabled: true
+      existingClaim: postgres-db-v1
+      mountPath: /bitnami/postgresql

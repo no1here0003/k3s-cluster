@@ -1,0 +1,68 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: onedev
+  namespace: dev
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: onedev
+      version: v6.2.2
+      sourceRef:
+        kind: HelmRepository
+        name: onedev-charts
+        namespace: flux-system
+      interval: 5m
+
+  values:
+    ## Set this as true to stop OneDev server to perform various maintenance tasks such as backup, restore.
+    ## Check https://code.onedev.io/projects/162/blob/main/pages/backup-restore.md for details
+    maintenance: false
+
+    nodeSelector:
+      onedev:
+        kubernetes.io/os: linux
+      mysql:
+        kubernetes.io/os: linux
+
+    ## Ingress support, check below for more info.
+    ## Check https://code.onedev.io/projects/162/blob/main/pages/deploy-into-k8s-with-helm.md#ingress-setup for details
+    ingress:
+      ## Optionally specify dns name to access OneDev via ingress controller
+      host: "onedev.${INTERNAL_DOMAIN}"
+
+      ## Whether or not to enable TLS for above host
+      tls: true
+
+      ## Will be used as ingressClassName of ingress spec to match controller
+      class: nginx
+
+    letsencrypt:
+      ## Specify an email here to enable LetsEncrypt.
+      ## Check https://code.onedev.io/projects/162/blob/main/pages/deploy-into-k8s-with-helm.md#letsencrypt-setup for details
+      email: ${SECRET_EMAIL}
+
+    resources:
+      onedev:
+        memory: 1024Mi
+      mysql:
+        memory: 256Mi
+
+    volumes:
+      onedev:
+        ## Optionally specify storage class of persistent volume to store OneDev data including git repositories and indexes.
+        ## Leave empty to use default storage class
+        storageClassName: "longhorn"
+        size: 100Gi
+      mysql:
+        ## Optionally specify storage class of persistent volume to store mysql data.
+        ## Leave empty to use default storage class
+        storageClassName: "longhorn"
+        size: 20Gi
+
+    secrets:
+      mysql:
+        ## change mysql root password if desired
+        password: ${SECRET_PASSWORD}

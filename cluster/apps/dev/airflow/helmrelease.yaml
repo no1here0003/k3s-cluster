@@ -1,0 +1,136 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: airflow
+  namespace: dev
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: airflow
+      version: 1.4.0
+
+
+      sourceRef:
+        kind: HelmRepository
+        name: airflow-charts
+        namespace: flux-system
+      interval: 5m
+
+  values:
+    airflowHome: /opt/airflow
+    # Default airflow repository -- overrides all the specific images below
+    defaultAirflowRepository: apache/airflow
+
+    # Default airflow tag to deploy
+    defaultAirflowTag: "2.2.3"
+
+    # Airflow version (Used to make some decisions based on Airflow Version being deployed)
+    airflowVersion: "2.2.3"
+
+    images:
+      airflow:
+        repository: ~
+        tag: ~
+        ## values: Always or IfNotPresent
+        pullPolicy: IfNotPresent
+        pullSecret: ""
+
+      useDefaultImageForMigration: false
+      migrationsWaitTimeout: 60
+      pod_template:
+        repository: ~
+        tag: ~
+        pullPolicy: IfNotPresent
+      flower:
+        repository: ~
+        tag: ~
+        pullPolicy: IfNotPresent
+      statsd:
+        repository: apache/airflow
+        tag: airflow-statsd-exporter-2021.04.28-v0.17.0
+        pullPolicy: IfNotPresent
+      redis:
+        repository: redis
+        tag: 6-buster
+        pullPolicy: IfNotPresent
+      pgbouncer:
+        repository: apache/airflow
+        tag: airflow-pgbouncer-2021.04.28-1.14.0
+        pullPolicy: IfNotPresent
+      pgbouncerExporter:
+        repository: apache/airflow
+        tag: airflow-pgbouncer-exporter-2021.09.22-0.12.0
+        pullPolicy: IfNotPresent
+      gitSync:
+        repository: k8s.gcr.io/git-sync/git-sync
+        tag: v3.3.0
+        pullPolicy: IfNotPresent
+
+    ingress:
+      enabled: true
+      web:
+        annotations:
+          kubernetes.io/ingress.class: nginx
+        path: "/"
+        pathType: "ImplementationSpecific"
+        host: "airflow.192.168.2.50.nip.io"
+        hosts:
+          - name: "airflow.192.168.2.50.nip.io"
+            tls:
+              enabled: true
+              secretName: "airflow-internal-tls"
+        ingressClassName: nginx
+        tls:
+          enabled: true
+          secretName: "airflow-internal-tls"
+
+      flower:
+        path: /
+        pathType: "ImplementationSpecific"
+        host: "flower.192.168.2.50.nip.io"
+        hosts:
+          - name: "flower.192.168.2.50.nip.io"
+            tls:
+              enabled: true
+              secretName: flower-internal-tls
+        ingressClassName: nginx
+        tls:
+          enabled: true
+          secretName: "flower-internal-tls"
+
+    fernetKey: fernetKey
+    fernetKeySecretName: airflow
+
+    dags:
+      presistence:
+        enabled: true
+        existingClaim: dags-v1
+
+
+    gitSync:
+      enabled: false
+
+      # git repo clone url
+      # ssh examples ssh://git@github.com/apache/airflow.git
+      # git@github.com:apache/airflow.git
+      # https example: https://github.com/apache/airflow.git
+
+      repo: git@github.com/no1here0003/home-cluster.git
+      branch: master
+      rev: HEAD
+      depth: 1
+
+      # the number of consecutive failures allowed before aborting
+      maxFailures: 0
+      # subpath within the repo where dags are located
+      # should be "" if dags are at repo root
+      subPath: "test/dags"
+      credentialsSecret: airflow-git
+
+    logs:
+      persistence:
+        enabled: true
+        size: 100G
+        existingClaim: airflow-logs-v1

@@ -1,0 +1,11 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - config-pvc.yaml
+  - hass-deploykey.secrets.sops.yaml
+  - helmrelease.yaml
+  - home-assistant.sops.secret.yaml
+  - home-assistant-secrets.secrets.sops.yaml
+  - mariadb-pvc.yaml
+  - mariadb.secrets.sops.yaml

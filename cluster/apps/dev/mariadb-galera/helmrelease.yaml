@@ -1,0 +1,102 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: mariadb-galera
+  namespace: dev
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: mariadb-galera
+      version: 6.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami-charts
+        namespace: flux-system
+      interval: 5m
+
+  values:
+    clusterDomain: cluster.local
+    image:
+      registry: docker.io
+      repository: bitnami/mariadb-galera
+      tag: 10.6.5-debian-10-r35
+      ## Specify a imagePullPolicy
+      ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+      ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+      ##
+      pullPolicy: IfNotPresent
+      ## Optionally specify an array of imagePullSecrets (secrets must be manually created in the namespace)
+      ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+      ## Example:
+      ## pullSecrets:
+      ##   - myRegistryKeySecretName
+      ##
+      pullSecrets: []
+      ## Set to true if you would like to see extra information on logs
+      ##
+      debug: false
+    ## @param podManagementPolicy StatefulSet controller supports relax its ordering guarantees while preserving its uniqueness and identity guarantees. There are two valid pod management policies: OrderedReady and Parallel
+    ## ref: https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/#pod-management-policy
+    ##
+    podManagementPolicy: OrderedReady
+    ## @param hostAliases Add deployment host aliases
+    ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
+    ##
+    hostAliases: []
+    ## MariaDB Gallera K8s svc properties
+    ##
+    service:
+      ## @param service.type Kubernetes service type
+      ##
+      type: LoadBalancer
+      loadBalancerIP: "${SVC_MARIADB_ADDR}"
+
+    extraEnvVars:
+      - name: TZ
+        value: America/New_York
+
+    existingSecret: "mariadb"
+
+    galera:
+      mariabackup:
+        # @param galera.mariabackup.user MariaBackup username
+        ## ref: https://github.com/bitnami/bitnami-docker-mariadb-galera#setting-up-a-multi-master-cluster
+        ##
+        user: mariabackup
+        ## @param galera.mariabackup.password MariaBackup password. Password is ignored if existingSecret is specified.
+        ##
+        password: ""
+        ## @param galera.mariabackup.forcePassword Option to force users to specify a password. That is required for 'helm upgrade' to work properly.
+        ## If it is not force, a random password will be generated.
+        ##
+        forcePassword: true
+
+    persistence:
+      enabled: true
+      mountPath: /bitnami/mariadb
+      StorageClasss: longhorn
+      accessModes:
+        - ReadWriteOnce
+      size: 100G
+
+    meterics:
+      enabled: true
+      ## Bitnami MySQL Prometheus exporter image
+      ## ref: https://hub.docker.com/r/bitnami/mysqld-exporter/tags/
+      ## @param metrics.image.registry MariaDB Prometheus exporter image registry
+      ## @param metrics.image.repository MariaDB Prometheus exporter image repository
+      ## @param metrics.image.tag MariaDB Prometheus exporter image tag (immutable tags are recommended)
+      ## @param metrics.image.pullPolicy MariaDB Prometheus exporter image pull policy
+      ## @param metrics.image.pullSecrets MariaDB Prometheus exporter image pull secrets
+      ##
+      image:
+        registry: docker.io
+        repository: bitnami/mysqld-exporter
+        tag: 0.13.0-debian-10-r191
+        pullPolicy: IfNotPresent
+
+      serviceMonitor:
+        enabled: true
+        namespace: "monitoring"

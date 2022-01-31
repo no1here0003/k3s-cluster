@@ -1,0 +1,10 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: tekton-charts
+  namespace: flux-system
+spec:
+  interval: 15m
+  url: https://eddycharly.github.io/tekton-helm
+  timeout: 3m

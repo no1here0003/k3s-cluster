@@ -2,3 +2,4 @@
 *.tfstate.*
 .*.lock.*
 *.tfplan
+tmpl

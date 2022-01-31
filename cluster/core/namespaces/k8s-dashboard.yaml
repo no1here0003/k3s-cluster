@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: k8s-dashboard
+  labels:
+    ns: k8s-dashboard

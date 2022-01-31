@@ -1,0 +1,51 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: rocketchat
+  namespace: rocketchat
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: rocketchat
+      version: 3.3.0
+      sourceRef:
+        kind: HelmRepository
+        name: rocketchat-charts
+        namespace: flux-system
+      interval: 5m
+
+  values:
+
+    image:
+      repository: registry.rocket.chat/rocketchat/rocket.chat
+      version: 3.18.3
+      pullPolicy: IfNotPresent
+
+    smtp:
+      enabled: false
+      username:
+      password:
+      host:
+      port: 587
+
+    mongodb:
+      enabled: true
+      auth:
+        rootPassword: ${ROCKET_DB_ROOT}
+        username: ${ROCKET_DB_USR}
+        password: ${ROCKET_DB_PASS}
+        database: rocketchat
+      replicaCount: 1
+      persistence:
+        enabled: true
+        storageClassName: longhorn
+        accessMode: ReadWriteOnce
+        size: 10G
+
+    persistence:
+      enabled: true
+      storageClassName: longhorn
+      accessMode: ReadWriteOnce
+      size: 20G

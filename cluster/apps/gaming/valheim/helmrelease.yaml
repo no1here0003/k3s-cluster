@@ -1,0 +1,91 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: valheim
+  namespace: gaming
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: valheim
+      version: 4.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: ghcr.io/lloesche/valheim-server
+      tag: latest
+      pullPolicy: Always
+    env:
+      SERVER_NAME: ${VALHEIM_SERVER}
+      WORLD_NAME: ${VALHEIM_WORLD}
+      SERVER_PASS: ${VALHEIM_PASS}
+      RESTART_MSG: "Valheim server rebooting, brb!"
+      START_MSG: "Valheim is back!"
+      UPDATE_RESTART_MSG: "Valeim is restarting to apply an update!"
+      BACKUP_MSG: "Valheim backup to file @BACKUP_FILE@ is starting"
+      POST_BACKUP_MSG: "Valheim backup complete! ----> @BACKUP_FILE@"
+      PRE_UPDATE_MSG: "Valheim is checking for updates."
+      PRE_SHUTDOWN_MSG: "Valheim Server coming down"
+      POST_UPDATE_MSG: "Valheim update checks complete."
+      PRE_RESTART_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$UPDATE_RESTART_MSG\"}" "${VALHEIM_DISCORD}" && sleep 60'
+      POST_START_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$START_MSG\"}" "${VALHEIM_DISCORD}" && sleep 60'
+      POST_SERVER_SHUTDOWN_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$DOWN_MSG\"}" "${VALHEIM_DISCORD}" && sleep 60'
+      #PRE_BACKUP_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$BACKUP_MSG\"}" "${VALHEIM_DISCORD}"'
+      #POST_BACKUP_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$POST_BACKUP_MSG\"}" "${VALHEIM_DISCORD}"'
+      #PRE_UPDATE_CHECK_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$PRE_UPDATE_MSG\"}" "${VALHEIM_DISCORD}"'
+      #POST_UPDATE_CHECK_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$POST_UPDATE_MSG\"}" "${VALHEIM_DISCORD}"'
+      PRE_SERVER_SHUTDOWN_HOOK: 'curl -sfSL -X POST -H "Content-Type: application/json" -d "{\"username\":\"Valheim-bot\",\"content\":\"$PRE_SHUTDOWN_MSG\"}" "${VALHEIM_DISCORD}"'
+      SERVER_PUBLIC: true
+      SUPERVISOR_HTTP: true
+      SUPERVISOR_HTTP_PASS: ${SUPERVISOR_PASS}
+      STATUS_HTTP: true
+      TZ: America/New_York
+    persistence:
+      # Persist config
+      config:
+        enabled: true
+        mountPath: /config
+        existingClaim: valheim-config
+      # Persist World
+      data:
+        enabled: true
+        mountPath: /opt/valheim
+        existingClaim: valheim-data
+    service:
+      main:
+        type: LoadBalancer
+        externalTrafficPolicy: Cluster
+        loadBalancerIP: ${VALHEIM_SVC_IP1}
+        annotations:
+          metallb.universe.tf/allow-shared-ip: valheim
+      supervisor:
+        enabled: true
+        type: LoadBalancer
+        loadBalancerIP: ${VALHEIM_SVC_IP2}
+        ports:
+          supervisor:
+            enabled: true
+            port: 9001
+            protocol: TCP
+            targetPort: 9001
+        annotations:
+          metallb.universe.tf/allow-shared-ip: valheim
+      status:
+        enabled: true
+        ports:
+          status:
+            enabled: true
+            port: 80
+            protocol: TCP
+            targetPort: 80
+    resources:
+      requests:
+        memory: 4096Mi
+        cpu: 500m
+      limits:
+        memory: 16384Mi
