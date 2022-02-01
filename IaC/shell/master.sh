@@ -2,13 +2,13 @@
 pwd
 export INSTALL_K3S_SKIP_DOWNLOAD=true
 k3sup install \
-  --ip=192.168.2.100 \
+  --ip=192.168.2.140 \
   --user=kube \
   --sudo \
   --tls-san=192.168.2.5 \
   --cluster \
   --k3s-channel=latest \
-  --k3s-extra-args "--no-deploy=traefik --no-deploy=servicelb --flannel-backend=wireguard --node-ip=192.168.2.100  --write-kubeconfig-mode 644" \
+  --k3s-extra-args "--no-deploy=traefik --no-deploy=servicelb --flannel-backend=wireguard --node-ip=192.168.2.140  --write-kubeconfig-mode 644 --etcd-expose-metrics" \
   --local-path ~/.kube/config \
   --context=k3s
 
@@ -22,4 +22,3 @@ sleep 5
 kubectl apply -f https://kube-vip.io/manifests/rbac.yaml
 scp -o StrictHostKeyChecking=no IaC/shell/kubevip.sh kube@192.168.2.100:~  && \
 ssh -o StrictHostKeyChecking=no kube@192.168.2.100 "sudo ./kubevip.sh"
-
