@@ -58,8 +58,6 @@ spec:
           tag: v3.0.3
       pullPolicy: IfNotPresent
 
-      # privateRegistry:
-      #   registrySecret: regcred
 
     ingress:
       enabled: true
