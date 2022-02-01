@@ -4,14 +4,14 @@ kind: Kustomization
 resources:
   - prowlarr
   - bazarr
-  - calibre
-  - calibre-web
+ # - calibre
+ # - calibre-web
   - tautulli
-  # - ombi
+ # - ombi
   - plex
-  - sabnzbd
-  - sonarr
-  - radarr
-  # - radarr-uhd
+ # - sabnzbd
+ # - sonarr
+ # - radarr
+ # - radarr-uhd
   - overseerr
-  - readarr
+ # - readarr
