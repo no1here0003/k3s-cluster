@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: quay.io/kubernetes_incubator/node-feature-discovery
-    #  tag: v0.9.0
+      tag: v0.6.0
       pullPolicy: IfNotPresent
     config: |
       core:
