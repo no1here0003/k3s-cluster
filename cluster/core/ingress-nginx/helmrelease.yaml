@@ -21,8 +21,8 @@ spec:
   values:
 
     # This is to increase rate limit
-    imagePullSecrets:
-      - name: regcred
+    # imagePullSecrets:
+    #  - name: regcred
 
     controller:
       dnsPolicy: ClusterFirstWithHostNet
