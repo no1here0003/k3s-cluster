@@ -18,6 +18,10 @@ spec:
 
   values:
 
+    global:
+      imagePullSecrets:
+        - name: regcred
+
     server:
       enabled: true
       image:

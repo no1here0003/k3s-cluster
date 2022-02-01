@@ -17,7 +17,13 @@ spec:
         kind: HelmRepository
         name: nginx-charts
         namespace: flux-system
+
   values:
+
+    # This is to increase rate limit
+    imagePullSecrets:
+      - name: regcred
+
     controller:
       dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
