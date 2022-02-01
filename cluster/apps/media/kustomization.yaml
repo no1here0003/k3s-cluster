@@ -10,8 +10,8 @@ resources:
  # - ombi
   - plex
  # - sabnzbd
- # - sonarr
- # - radarr
+  - sonarr
+  - radarr
  # - radarr-uhd
   - overseerr
  # - readarr
