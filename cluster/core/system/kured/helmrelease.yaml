@@ -16,11 +16,16 @@ spec:
         name: weaveworks-kured
         namespace: flux-system
   values:
+
+    image:
+      repository: weaveworks/kured
+      tag: "1.9.1"
+      pullPolicy: IfNotPresent
     updateStrategy: RollingUpdate
     configuration:
       timeZone: America/New_York
-      startTime: "2:00"
-      endTime: "5:00"
+      startTime: 2am
+      endTime: 5am
     #  notifyUrl: ${KURED_DISCORD_WEBHOOK_URL}
     metrics:
       create: true
