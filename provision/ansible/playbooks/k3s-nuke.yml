@@ -30,3 +30,7 @@
         path: "{{ item.path }}"
         state: absent
       loop: "{{ files_to_delete.files }}"
+    - name: Delete PVCs
+      file:
+        state: absent
+        path: /var/lib/longhorn/
