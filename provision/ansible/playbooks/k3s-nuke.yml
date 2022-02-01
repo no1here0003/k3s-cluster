@@ -31,6 +31,6 @@
         state: absent
       loop: "{{ files_to_delete.files }}"
     - name: Delete PVCs
-      file:
+      ansible.builtin.file:
         state: absent
         path: /var/lib/longhorn/
