@@ -46,6 +46,18 @@ tasks:
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/k3s-nuke.yml"
 
+  playbook:k3s-uninstall:
+    desc: Uninstall Kubernetes on the nodes
+    dir: provision/ansible
+    cmds:
+      - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/k3s-uninstall.yml"
+
+  playbook:scrub:
+    desc: Remove PVCs on node
+    dir: provision/ansible
+    cmds:
+      - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/scrub.yml"
+
   adhoc:ping:
     desc: Ping all the hosts
     dir: provision/ansible
