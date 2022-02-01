@@ -1,0 +1,16 @@
+---
+- hosts:
+    - master
+    - worker
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  pre_tasks:
+    - name: Pausing for 5 seconds...
+      pause:
+        seconds: 5
+  tasks:
+    - name: Delete PVCs
+      ansible.builtin.file:
+        state: absent
+        path: /var/lib/longhorn/

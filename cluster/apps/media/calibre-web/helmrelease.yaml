@@ -19,8 +19,8 @@ spec:
   values:
 
     image:
-      repository: linuxserver/calibre-web
-      tag: version-0.6.12
+      repository: lscr.io/linuxserver/calibre-web
+      tag: 0.6.16
       pullPolicy: IfNotPresent
 
     env:

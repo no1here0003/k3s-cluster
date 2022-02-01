@@ -17,8 +17,8 @@ spec:
       interval: 5m
   values:
     image:
-      repository: linuxserver/calibre
-      tag: version-v5.34.0
+      repository: lscr.io/linuxserver/calibre
+      tag: 5.35.0
     env:
       TZ: "America/New_York"
     ingress:
