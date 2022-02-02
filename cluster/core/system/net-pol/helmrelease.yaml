@@ -18,8 +18,8 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: quay.io/kubernetes_incubator/node-feature-discovery
-      tag: v0.6.0
+      repository: raspbernetes/node-feature-discovery
+      tag: v0.9.0
       pullPolicy: IfNotPresent
     config: |
       core:

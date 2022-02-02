@@ -11,5 +11,5 @@ resources:
   - k8s-dashboard
   - system
   - authentik
-#  - hashicorp
+  - hashicorp
   - kube-system
