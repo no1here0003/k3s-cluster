@@ -17,7 +17,7 @@ spec:
 
   values:
 
-    replicaCount: 1
+    replicaCount: 3
     image:
       repository: "pihole/pihole"
       tag: "2022.01.1"
@@ -39,7 +39,7 @@ spec:
     persistentVolumeClaim:
       enabled: true
       accessModes:
-        - ReadWriteOnce
+        - ReadWriteMany
       size: "10G"
       storageClassName: "longhorn"
 
