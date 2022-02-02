@@ -39,9 +39,9 @@ spec:
       dns:
         enabled: true
         type: LoadBalancer
-        loadBalancerIP: ${SVC_BLOCKY_ADDR}
+        loadBalancerIP: ${SVC_PIHOLE_ADDR}
         ports:
-          tcp:
+          udp:
             enabled: true
             port: 53
             protocol: UDP
@@ -59,7 +59,10 @@ spec:
     config: |
       upstream:
         default:
-          - udp:${GATEWAY_ADDR}
+          - tcp+udp:${GATEWAY_ADDR}
+      conditional:
+        mapping:
+          ${SECRET_DOMAIN}: tcp+udp:${GATEWAY_ADDR}
       blocking:
         blackLists:
           ads:
@@ -86,10 +89,11 @@ spec:
           default:
             - ads
       clientLookup:
-        upstream: udp:${GATEWAY_ADDR}
+        upstream: tcp+udp:${GATEWAY_ADDR}
       prometheus:
         enable: true
         path: /metrics
+      bootstrapDns: tcp:1.1.1.1
       httpPort: 4000
       logFormat: json
       logLevel: info
