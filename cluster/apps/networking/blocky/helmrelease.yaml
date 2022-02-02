@@ -59,10 +59,7 @@ spec:
     config: |
       upstream:
         default:
-          - tcp+udp:${GATEWAY_ADDR}
-      conditional:
-        mapping:
-          ${SECRET_DOMAIN}: tcp+udp:${GATEWAY_ADDR}
+          - udp:${GATEWAY_ADDR}
       blocking:
         blackLists:
           ads:
@@ -89,11 +86,10 @@ spec:
           default:
             - ads
       clientLookup:
-        upstream: tcp+udp:${GATEWAY_ADDR}
+        upstream: udp:${GATEWAY_ADDR}
       prometheus:
         enable: true
         path: /metrics
-      bootstrapDns: tcp:1.1.1.1
       httpPort: 4000
       logFormat: json
       logLevel: info
