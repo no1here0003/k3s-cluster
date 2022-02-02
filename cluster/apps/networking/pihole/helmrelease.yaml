@@ -17,7 +17,7 @@ spec:
 
   values:
 
-    replicaCount: 3
+    replicaCount: 1
     image:
       repository: "pihole/pihole"
       tag: "2022.01.1"
