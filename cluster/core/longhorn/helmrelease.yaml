@@ -58,10 +58,9 @@ spec:
           tag: v3.0.3
       pullPolicy: IfNotPresent
 
-
     ingress:
       enabled: true
       ingressClassName: nginx
-      host: longhorn.192.168.2.50.nip.io
+      host: longhorn.${INTERNAL_DOMAIN}
       tls: false
       tlsSecret: longhorn.local-tls

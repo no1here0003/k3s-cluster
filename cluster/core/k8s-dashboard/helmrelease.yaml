@@ -19,7 +19,7 @@ spec:
     ingress:
       enabled: true
       hosts:
-        - k8s.192.168.2.50.nip.io
+        - k8s.${INTERNAL_DOMAIN}
       annotations:
         kubernetes.io/ingress.class: nginx
     extraArgs:
