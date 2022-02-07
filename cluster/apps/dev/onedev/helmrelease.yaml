@@ -8,6 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://dl.cloudsmith.io/public/onedev/onedev/helm/charts
       chart: onedev
       version: v6.2.2
       sourceRef:

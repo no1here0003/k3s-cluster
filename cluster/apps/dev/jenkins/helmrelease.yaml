@@ -8,6 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://charts.jenkins.io
       chart: jenkins
       version: 3.10.2
       sourceRef:

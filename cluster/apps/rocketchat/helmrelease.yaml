@@ -8,6 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://rocketchat.github.io/helm-charts
       chart: rocketchat
       version: 3.3.0
       sourceRef:
