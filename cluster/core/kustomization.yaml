@@ -2,14 +2,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - namespaces
+  #- namespaces
   - metallb-system
   # - cert-manager
-  - ingress-nginx
+  #- ingress-nginx
   - longhorn
   # - external-dns
-  - k8s-dashboard
+  #- k8s-dashboard
   # - system
   # - authentik
-  - hashicorp
-  - kube-system
+  #- hashicorp
+  #- kube-system
