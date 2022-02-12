@@ -9,7 +9,7 @@ resources:
   - longhorn
   # - external-dns
   - k8s-dashboard
-  - system
-  - authentik
+  # - system
+  # - authentik
   - hashicorp
   - kube-system

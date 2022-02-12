@@ -7,7 +7,7 @@ resources:
   # - home
   - media
   - monitoring
-  - networking
-  - rocketchat
+  # - networking
+  # - rocketchat
   - system
   - system-upgrade
