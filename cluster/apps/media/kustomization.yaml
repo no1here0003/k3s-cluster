@@ -7,11 +7,11 @@ resources:
   - calibre
   - calibre-web
   - tautulli
- # - ombi
+  # - ombi
   - plex
-  - sabnzbd
+  # - sabnzbd
   - sonarr
   - radarr
- # - radarr-uhd
+  # - radarr-uhd
   - overseerr
   - readarr
