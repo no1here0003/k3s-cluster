@@ -9,7 +9,7 @@ resources:
   - tautulli
   # - ombi
   - plex
-  # - sabnzbd
+  - sabnzbd
   - sonarr
   - radarr
   # - radarr-uhd
