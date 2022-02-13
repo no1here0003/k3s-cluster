@@ -3,10 +3,12 @@
   tasks:
   - name: Package installation
     apt:
-      name: 
+      name:
         - nfs-common
         - apt-transport-https
         - arptables
+        - wireguard
+        - containerd
         - ca-certificates
         - curl
         - ebtables

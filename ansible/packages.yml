@@ -19,6 +19,8 @@
       - curl
       - ebtables
       - iputils-ping
+      - wireguard
+      - containerd
       - ipvsadm
       - lvm2
       - net-tools
