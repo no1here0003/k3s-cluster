@@ -4,12 +4,12 @@ kind: Kustomization
 resources:
   - namespaces
   - metallb-system
-  # - cert-manager
+  - cert-manager
   - ingress-nginx
   - longhorn
-  # - external-dns
-  #- k8s-dashboard
-  # - system
+  - external-dns
+  - k8s-dashboard
+  - system
   # - authentik
   #- hashicorp
   #- kube-system
