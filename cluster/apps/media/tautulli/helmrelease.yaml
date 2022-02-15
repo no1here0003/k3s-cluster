@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: lscr.io/linuxserver/tautulli
-      tag: 2.9.3
+      tag: 2.9.4
     env:
       TZ: "America/New_York"
     ingress:
