@@ -8,6 +8,6 @@ resources:
   - media
   - monitoring
   - networking
-  - rocketchat
+  # - rocketchat
   - system
   - system-upgrade
