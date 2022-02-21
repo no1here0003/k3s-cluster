@@ -21,6 +21,9 @@ spec:
 
   values:
 
+    service:
+      annotations:
+        metallb.universe.tf/loadBalancerIPs: "${SVC_INGRESS_ADDR}"
     # This is to increase rate limit
     # imagePullSecrets:
     #  - name: regcred

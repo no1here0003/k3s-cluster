@@ -40,7 +40,8 @@ spec:
       dns:
         enabled: true
         type: LoadBalancer
-        loadBalancerIP: ${SVC_PIHOLE_ADDR}
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: ${SVC_PIHOLE_ADDR}
         ports:
           udp:
             enabled: true
