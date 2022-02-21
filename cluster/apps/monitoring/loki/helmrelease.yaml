@@ -33,7 +33,8 @@ spec:
             - "loki.${INTERNAL_DOMAIN}"
     service:
       type: LoadBalancer
-      loadBalancerIP: "${SVC_LOKI_ADDR}"
+      annotations:
+        metallb.universe.tf/loadBalancerIPs: ${SVC_LOKI_ADDR}
     serviceMonitor:
       enabled: true
     config:

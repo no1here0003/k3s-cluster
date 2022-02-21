@@ -54,7 +54,8 @@ spec:
         containerPort: 1514
         service:
           type: LoadBalancer
-          locadBalancerIP: "${SVC_SYSLOG_ADDR}"
+          annotations:
+            metallb.universe.tf/loadBalancerIPs: ${SVC_SYSLOG_ADDR}
     extraVolumes:
       - name: journal
         hostPath:

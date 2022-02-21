@@ -35,8 +35,8 @@ spec:
       service:
         enabled: true
         type: loadBalancer
-        additionalSpec: |
-        loadBalancerIP: ${SVC_CONSUL_ADDR}
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: ${SVC_CONSUL_ADDR}
       ports:
         serflan:
           port: 8301

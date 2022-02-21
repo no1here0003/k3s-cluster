@@ -33,7 +33,8 @@ spec:
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: "${SVC_HASS_ADDR}"
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: ${SVC_HASS_ADDR}
         externalTrafficPolicy: Local
 
     ingress:

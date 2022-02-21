@@ -21,6 +21,7 @@ spec:
       repository: ghcr.io/lloesche/valheim-server
       tag: latest
       pullPolicy: Always
+
     env:
       SERVER_NAME: ${VALHEIM_SERVER}
       WORLD_NAME: ${VALHEIM_WORLD}
@@ -46,6 +47,7 @@ spec:
       SUPERVISOR_HTTP_PASS: ${SUPERVISOR_PASS}
       STATUS_HTTP: true
       TZ: America/New_York
+
     persistence:
       # Persist config
       config:
@@ -57,25 +59,29 @@ spec:
         enabled: true
         mountPath: /opt/valheim
         existingClaim: valheim-data
+
     service:
+
       main:
         type: LoadBalancer
         externalTrafficPolicy: Cluster
-        loadBalancerIP: ${VALHEIM_SVC_IP1}
         annotations:
+          metallb.universe.tf/loadBalancerIPs: ${SVC_VALHEIM1_ADDR}
           metallb.universe.tf/allow-shared-ip: valheim
+
       supervisor:
         enabled: true
         type: LoadBalancer
-        loadBalancerIP: ${VALHEIM_SVC_IP2}
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: ${SVC_VALHEIM2_ADDR}
+          metallb.universe.tf/allow-shared-ip: valheim
         ports:
           supervisor:
             enabled: true
             port: 9001
             protocol: TCP
             targetPort: 9001
-        annotations:
-          metallb.universe.tf/allow-shared-ip: valheim
+
       status:
         enabled: true
         ports:
