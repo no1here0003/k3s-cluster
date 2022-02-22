@@ -41,7 +41,7 @@ spec:
         enabled: true
         type: LoadBalancer
         annotations:
-          metallb.universe.tf/loadBalancerIPs: ${SVC_PIHOLE_ADDR}
+          metallb.universe.tf/loadBalancerIPs: ${SVC_BLOCKY_ADDR}
         ports:
           udp:
             enabled: true
