@@ -35,14 +35,18 @@ spec:
           - hosts:
               - "sonarr.${INTERNAL_DOMAIN}"
           - secretName: sonarr-tls
+
     podSecurityContext:
       fsGroup: 0
       supplementalGroups:
         - 100
+
     persistence:
+
       config:
         enabled: true
         existingClaim: sonarr-config
+
       media:
         enabled: true
         type: custom
@@ -51,6 +55,7 @@ spec:
             server: "${NAS1_ADDR}"
             path: /volume1/Media
         mountPath: /media
+
       media2:
         enabled: true
         type: custom
@@ -59,6 +64,7 @@ spec:
             server: "${NAS2_ADDR}"
             path: /volume1/Media2
         mountPath: /media2
+
       temp:
         enabled: true
         type: custom
@@ -67,6 +73,7 @@ spec:
             server: "${NAS1_ADDR}"
             path: /volume1/temp
         mountPath: /temp_dir
+
     resources:
       requests:
         memory: 250Mi
