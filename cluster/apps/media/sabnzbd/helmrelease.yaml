@@ -40,10 +40,10 @@ spec:
               - "sabnzbd.${INTERNAL_DOMAIN}"
           - secretName: sabnzbd-tls
 
-#    podSecurityContext:
-#      fsGroup: 0
-#      supplementalGroups:
-#        - 100
+    podSecurityContext:
+      fsGroup: 0
+      supplementalGroups:
+        - 100
 
     persistence:
       config:

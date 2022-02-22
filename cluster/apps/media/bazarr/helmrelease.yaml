@@ -40,10 +40,10 @@ spec:
               - "bazarr.${INTERNAL_DOMAIN}"
           - secretName: bazarr-tls
 
-#    podSecurityContext:
-#      fsGroup: 0
-#      supplementalGroups:
-#        - 100
+    podSecurityContext:
+      fsGroup: 0
+      supplementalGroups:
+        - 100
 
     persistence:
       config:
