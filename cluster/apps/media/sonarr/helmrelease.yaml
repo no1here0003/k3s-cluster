@@ -36,10 +36,10 @@ spec:
               - "sonarr.${INTERNAL_DOMAIN}"
           - secretName: sonarr-tls
 
-    podSecurityContext:
-      fsGroup: 0
-      supplementalGroups:
-        - 100
+#    podSecurityContext:
+#      fsGroup: 0
+#      supplementalGroups:
+#        - 100
 
     persistence:
 
