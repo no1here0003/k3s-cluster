@@ -29,11 +29,11 @@ spec:
       ALLOWED_NETWORKS: "10.0.0.0/8,172.16.0.0/16,192.168.0.0/16"
       HOSTNAME: "plex-cluster"
 
-    podSecurityContext:
-      fsGroup: 0
-      supplementalGroups:
-        - 44
-        - 109
+#    podSecurityContext:
+#      fsGroup: 0
+#      supplementalGroups:
+#        - 44
+#        - 109
 
     service:
       main:
