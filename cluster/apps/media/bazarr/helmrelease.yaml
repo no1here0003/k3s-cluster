@@ -19,11 +19,6 @@ spec:
 
   values:
 
-    podSecurityContext:
-      fsGroup: 0
-      supplementalGroups:
-        - 100
-
     image:
       repository: ghcr.io/k8s-at-home/bazarr
       tag: v1.0.2
