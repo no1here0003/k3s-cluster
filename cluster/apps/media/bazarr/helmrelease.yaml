@@ -41,9 +41,9 @@ spec:
           - secretName: bazarr-tls
 
     podSecurityContext:
-      fsGroup: 0
-      supplementalGroups:
-        - 100
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
 
     persistence:
       config:
