@@ -7,16 +7,14 @@ k3sup install \
   --sudo \
   --tls-san=192.168.3.5 \
   --cluster \
+  --no-extras \
   --k3s-channel=latest \
-  --k3s-extra-args "--no-deploy=traefik --no-deploy=servicelb --flannel-backend=wireguard --node-ip=192.168.3.2  --write-kubeconfig-mode 644 --etcd-expose-metrics" \
+  --k3s-extra-args "--flannel-backend=wireguard --node-ip=192.168.3.2  --write-kubeconfig-mode=644 --etcd-expose-metrics=true feature-gates=MixedProtocolLBService=true" \
   --local-path ~/.kube/config \
   --context=k3s
 
 export KUBECONFIG=~/.kube/config
 
-chmod 777 /var/jenkins_home/kube/config
-ls -al /var/jenkins_home/kube
-echo 'I am here ======> `pwd` <========='
 #cp /var/jenkins_home/kube/config config.json
 sleep 5
 kubectl apply -f https://kube-vip.io/manifests/rbac.yaml
