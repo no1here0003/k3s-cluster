@@ -5,7 +5,7 @@ resources:
   # - dev
   # - gaming
   # - home
-  # - media
+  - media
   - monitoring
   - networking
   # - rocketchat
