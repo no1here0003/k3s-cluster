@@ -6,8 +6,8 @@ resources:
   # - gaming
   # - home
   # - media
-  # - monitoring
-  # - networking
+  - monitoring
+  - networking
   # - rocketchat
-  # - system
-  # - system-upgrade
+  - system
+  - system-upgrade
