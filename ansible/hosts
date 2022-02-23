@@ -11,7 +11,6 @@ ansible_python_interpreter='/usr/bin/env python3'
 ## you can use ip address here too
 ###########################
 [servers]
-192.168.3.31
 192.168.3.30
 192.168.3.29
 192.168.3.28
