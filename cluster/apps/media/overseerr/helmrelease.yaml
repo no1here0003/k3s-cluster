@@ -21,7 +21,7 @@ spec:
 
     image:
       repository: ghcr.io/sct/overseerr
-      tag: 54b32ebfd6b2eb6aeeea98c25939166eda8cc17f
+      tag: aa062d921c425d4b64bfdb28a5f102b0c92f7d87
 
     env:
       TZ: "America/New_York"
