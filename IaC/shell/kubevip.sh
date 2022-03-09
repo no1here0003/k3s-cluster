@@ -8,7 +8,7 @@ alias kube-vip="docker run --network host --rm plndr/kube-vip:v0.4.2"
 kube-vip manifest daemonset \
     --arp \
     --interface eth0 \
-    --address 192.168.2.5 \
+    --address 192.168.3.5 \
     --controlplane \
     --leaderElection \
     --taint \
