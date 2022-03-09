@@ -5,9 +5,9 @@ resources:
   # - dev
   # - gaming
   # - home
-  - media
+  # - media
   - monitoring
-  - networking
+  # - networking
   # - rocketchat
-  - system
-  - system-upgrade
+  # - system
+  # - system-upgrade
