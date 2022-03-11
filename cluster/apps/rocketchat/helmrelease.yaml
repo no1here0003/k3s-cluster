@@ -41,14 +41,14 @@ spec:
       replicaCount: 1
       persistence:
         enabled: true
-        existingClaim: datadir-rocketchat-mongodb-0
+        #existingClaim: datadir-rocketchat-mongodb-0
         storageClassName: longhorn
         accessMode: ReadWriteOnce
         size: 10G
 
     persistence:
       enabled: true
-      existingClaim: rocketchat-rocketchat
+      #existingClaim: rocketchat-rocketchat
       storageClassName: longhorn
       accessMode: ReadWriteOnce
       size: 20G
