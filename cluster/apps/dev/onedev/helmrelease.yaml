@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://dl.cloudsmith.io/public/onedev/onedev/helm/charts
       chart: onedev
-      version: 6.3.18
+      version: 6.3.19
       sourceRef:
         kind: HelmRepository
         name: onedev-charts
