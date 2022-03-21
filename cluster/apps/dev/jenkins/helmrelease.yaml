@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.jenkins.io
       chart: jenkins
-      version: 3.11.7
+      version: 3.11.8
       sourceRef:
         kind: HelmRepository
         name: jenkins-charts
