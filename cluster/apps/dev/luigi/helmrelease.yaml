@@ -24,7 +24,7 @@ spec:
   replicaCount: 1
   image:
     repository: axiom/docker-luigi
-    tag: 2.7.2-alpine
+    tag: 2.8.13-alpine
     pullPolicy: IfNotPresent
 
   service:
