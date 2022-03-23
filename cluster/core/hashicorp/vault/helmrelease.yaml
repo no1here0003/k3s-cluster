@@ -27,7 +27,7 @@ spec:
       enabled: true
       image:
         repository: "hashicorp/vault"
-        tag: "1.9.2"
+        tag: "1.9.4"
         # Overrides the default Image Pull Policy
         pullPolicy: IfNotPresent
 
