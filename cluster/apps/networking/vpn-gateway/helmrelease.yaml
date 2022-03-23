@@ -36,7 +36,7 @@ spec:
         env:
           TZ: "America/New_York"
           IPTABLES_BACKEND: nft
-          KILLSWITCH: "false"
+          KILLSWITCH: "true"
 
         configFileSecret: vpn-gateway-vpnconfig
         resources:
