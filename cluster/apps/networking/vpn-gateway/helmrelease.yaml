@@ -22,7 +22,7 @@ spec:
       repository: ghcr.io/k8s-at-home/pod-gateway
       tag: v1.4.0
 
-    DNS: 172.16.2.1
+    DNS: 172.16.1.1
 
     addons:
       vpn:
@@ -72,7 +72,7 @@ spec:
 
     settings:
       VXLAN_ID: 43
-      VXLAN_IP_NETWORK: 172.16.2
+      VXLAN_IP_NETWORK: 172.16.1
       VPN_INTERFACE: wg0
       VPN_BLOCK_OTHER_TRAFFIC: true
       VPN_TRAFFIC_PORT: "${VPN_GATEWAY_VPN_PORT}"
