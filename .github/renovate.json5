@@ -48,14 +48,6 @@
       "separateMinorPatch": true,
       "ignoreDeprecated": true
     },
-    // tautulli packages are weird
-    {
-      "matchDatasources": ["docker"]
-      "matchCurrentVersion": "/.\./",
-      "matchPackageNames": [
-        "lscr.io/linuxserver/tautulli"
-      ]
-    },
     // global docker datasource settings
     {
       "matchDatasources": ["docker"],
