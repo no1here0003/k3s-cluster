@@ -1,0 +1,156 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: elasticsearch
+  namespace: elk
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://rocketchat.github.io/helm-charts
+      chart: elasticsearch
+      version: 8.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: elastic-charts
+        namespace: flux-system
+      interval: 5m
+
+  values:
+
+    clusterName: "elasticsearch"
+    nodeGroup: "master"
+
+    replicas: 3
+    minimumMasterNodes: 2
+
+    # Allows you to add any config files in /usr/share/elasticsearch/config/
+    # such as elasticsearch.yml and log4j2.properties
+    esConfig: {}
+    #  elasticsearch.yml: |
+    #    key:
+    #      nestedkey: value
+    #  log4j2.properties: |
+    #    key = value
+
+    createCert: true
+
+    # Disable it to use your own elastic-credential Secret.
+    secret:
+      enabled: true
+      password: "${SECRET_PASSWORD}" # generated randomly if not defined
+
+    # A list of secrets and their paths to mount inside the pod
+    # This is useful for mounting certificates for security and for mounting
+    # the X-Pack license
+    secretMounts: []
+    #  - name: elastic-certificates
+    #    secretName: elastic-certificates
+    #    path: /usr/share/elasticsearch/config/certs
+    #    defaultMode: 0755
+
+    image: "docker.elastic.co/elasticsearch/elasticsearch"
+    imageTag: "8.1.0"
+    imagePullPolicy: "IfNotPresent"
+
+    # additionals labels
+    labels: {}
+
+    esJavaOpts: "" # example: "-Xmx1g -Xms1g"
+
+    resources:
+      requests:
+        cpu: "1000m"
+        memory: "2Gi"
+      limits:
+        cpu: "2000m"
+        memory: "4Gi"
+
+    networkHost: "0.0.0.0"
+
+    volumeClaimTemplate:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 100Gi
+
+    persistence:
+      enabled: true
+      labels:
+        # Add default labels for the volumeClaimTemplate of the StatefulSet
+        enabled: false
+      annotations: {}
+
+    # This is the PriorityClass settings as defined in
+    # https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/#priorityclass
+    priorityClassName: ""
+
+    # By default this will make sure two pods don't end up on the same node
+    # Changing this to a region would allow you to spread pods across regions
+    antiAffinityTopologyKey: "kubernetes.io/hostname"
+
+    # Hard means that by default pods will only be scheduled if there are enough nodes for them
+    # and that they will never end up on the same node. Setting this to soft will do this "best effort"
+    antiAffinity: "hard"
+
+    # This is the node affinity settings as defined in
+    # https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity-beta-feature
+    nodeAffinity: {}
+
+    # The default is to deploy all pods serially. By setting this to parallel all pods are started at
+    # the same time when bootstrapping the cluster
+    podManagementPolicy: "Parallel"
+
+    # The environment variables injected by service links are not used, but can lead to slow Elasticsearch boot times when
+    # there are many services in the current namespace.
+    # If you experience slow pod startups you probably want to set this to `false`.
+    enableServiceLinks: true
+
+    protocol: https
+    httpPort: 9200
+    transportPort: 9300
+
+    service:
+      enabled: true
+      labels: {}
+      labelsHeadless: {}
+      type: ClusterIP
+      # Consider that all endpoints are considered "ready" even if the Pods themselves are not
+      # https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec
+      publishNotReadyAddresses: false
+      nodePort: ""
+      annotations: {}
+      httpPortName: http
+      transportPortName: transport
+      loadBalancerIP: ""
+      loadBalancerSourceRanges: []
+      externalTrafficPolicy: ""
+
+    updateStrategy: RollingUpdate
+
+    # This is the max unavailable setting for the pod disruption budget
+    # The default value of 1 will make sure that kubernetes won't allow more than 1
+    # of your pods to be unavailable during maintenance
+    maxUnavailable: 1
+
+    # How long to wait for elasticsearch to stop gracefully
+    terminationGracePeriod: 120
+
+    # Enabling this will publicly expose your Elasticsearch instance.
+    # Only enable this if you have security enabled on your cluster
+    ingress:
+      enabled: true
+      annotations: {}
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+      className: "nginx"
+      pathtype: ImplementationSpecific
+      hosts:
+        - host: elastic.${INTERNAL_DOMAIN}
+          paths:
+            - path: /
+      tls:
+        - secretName: elastic-tls
+          hosts:
+            - elastic.${INTERNAL_DOMAIN}

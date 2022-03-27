@@ -1,0 +1,132 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: elasticsearch
+  namespace: elk
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://rocketchat.github.io/helm-charts
+      chart: logstash
+      version: 8.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: elastic-charts
+        namespace: flux-system
+      interval: 5m
+
+  values:
+
+    replicas: 1
+
+    # Allows you to add any config files in /usr/share/logstash/config/
+    # such as logstash.yml and log4j2.properties
+    #
+    # Note that when overriding logstash.yml, `http.host: 0.0.0.0` should always be included
+    # to make default probes work.
+    logstashConfig: {}
+    #  logstash.yml: |
+    #    key:
+    #      nestedkey: value
+    #  log4j2.properties: |
+    #    key = value
+
+    # Allows you to add any pipeline files in /usr/share/logstash/pipeline/
+    ### ***warn*** there is a hardcoded logstash.conf in the image, override it first
+    logstashPipeline: {}
+    #  logstash.conf: |
+    #    input {
+    #      exec {
+    #        command => "uptime"
+    #        interval => 30
+    #      }
+    #    }
+    #    output { stdout { } }
+
+    # Allows you to add any pattern files in your custom pattern dir
+    logstashPatternDir: "/usr/share/logstash/patterns/"
+    logstashPattern: {}
+    #    pattern.conf: |
+    #      DPKG_VERSION [-+~<>\.0-9a-zA-Z]+
+
+
+    # Add sensitive data to k8s secrets
+    secrets:
+      - name: "env"
+        value:
+          ELASTICSEARCH_PASSWORD: "${SECRET_PASSWORD}"
+    #      api_key: ui2CsdUadTiBasRJRkl9tvNnw
+    #  - name: "tls"
+    #    value:
+    #      ca.crt: |
+    #        LS0tLS1CRUdJT0K
+    #        LS0tLS1CRUdJT0K
+    #        LS0tLS1CRUdJT0K
+    #        LS0tLS1CRUdJT0K
+    #      cert.crt: "LS0tLS1CRUdJTiBlRJRklDQVRFLS0tLS0K"
+    #      cert.key.filepath: "secrets.crt" # The path to file should be relative to the `values.yaml` file.
+
+    image: "docker.elastic.co/logstash/logstash"
+    imageTag: "8.1.0"
+    imagePullPolicy: "IfNotPresent"
+    imagePullSecrets: []
+
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "1536Mi"
+      limits:
+        cpu: "1000m"
+        memory: "1536Mi"
+
+    volumeClaimTemplate:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 1Gi
+
+    persistence:
+      enabled: false
+      annotations: {}
+
+    # By default this will make sure two pods don't end up on the same node
+    # Changing this to a region would allow you to spread pods across regions
+    antiAffinityTopologyKey: "kubernetes.io/hostname"
+
+    # Hard means that by default pods will only be scheduled if there are enough nodes for them
+    # and that they will never end up on the same node. Setting this to soft will do this "best effort"
+    antiAffinity: "hard"
+
+    httpPort: 9600
+
+    updateStrategy: RollingUpdate
+
+    # This is the max unavailable setting for the pod disruption budget
+    # The default value of 1 will make sure that kubernetes won't allow more than 1
+    # of your pods to be unavailable during maintenance
+    maxUnavailable: 1
+
+    service:
+      annotations:
+        metallb.universe.tf/loadBalancerIPs: ${SVC_LOGSTASH_ADDR}
+      type: loadBalancer
+
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/tls-acme: "true"
+      className: "nginx"
+      pathtype: ImplementationSpecific
+      hosts:
+        - host: logstash.${INTERNAL_DOMAIN}
+          paths:
+            - path: /beats
+              servicePort: 5044
+            - path: /http
+              servicePort: 8080
+      tls:
+        - secretName: logstash-tls
+          hosts:
+            - logstash.${INTERNAL_DOMAIN}
