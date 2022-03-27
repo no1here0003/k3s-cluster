@@ -92,7 +92,7 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: "${NAS2ADDR}"
+            server: "${NAS2_ADDR}"
             path: /volume1/Kubernetes/plex
         mountPath: /backups
         readOnly: false
