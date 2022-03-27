@@ -74,6 +74,15 @@ spec:
             path: /volume1/temp
         mountPath: /temp_dir
 
+      backups:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NAS2_ADDR}"
+            path: /volume1/Kubernetes/sonarr
+        mountpath: /config/Backups
+
     resources:
       requests:
         memory: 250Mi

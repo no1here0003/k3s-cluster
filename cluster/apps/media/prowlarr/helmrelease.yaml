@@ -50,6 +50,15 @@ spec:
         enabled: true
         existingClaim: prowlarr-config
 
+      backups:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NAS2_ADDR}"
+            path: /volume1/Kubernetes/prowlarr
+        mountpath: /config/Backups
+
     resources:
       requests:
         memory: 100Mi

@@ -53,6 +53,14 @@ spec:
             server: "${NAS1_ADDR}"
             path: /volume1/Media
         mountPath: /media
+      backups:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NAS2_ADDR}"
+            path: /volume1/Kubernetes/radarr
+        mountpath: /config/Backups
       temp:
         enabled: true
         type: custom
@@ -66,3 +74,19 @@ spec:
       requests:
         memory: 250Mi
         cpu: 500m
+
+    metrics:
+      enabled: true
+      serviceMonitor:
+        interval: 3m
+        scrapeTimeout: 1m
+      prometheusRule:
+        enabled: true
+      exporter:
+        image:
+          repository: ghcr.io/onedr0p/exportarr
+          tag: v1.0.0
+        env:
+          port: 9794
+          additionalMetrics: true
+          unknownQueueItems: true
