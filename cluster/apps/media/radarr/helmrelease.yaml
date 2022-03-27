@@ -60,7 +60,7 @@ spec:
           nfs:
             server: "${NAS2_ADDR}"
             path: /volume1/Kubernetes/radarr
-        mountpath: /config/Backups
+        mountPath: /config/Backups
       temp:
         enabled: true
         type: custom

@@ -81,7 +81,7 @@ spec:
           nfs:
             server: "${NAS2_ADDR}"
             path: /volume1/Kubernetes/sonarr
-        mountpath: /config/Backups
+        mountPath: /config/Backups
 
     resources:
       requests:
