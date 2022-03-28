@@ -8,7 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://rocketchat.github.io/helm-charts
+      # renovate: registryUrl=https://helm.elastic.co
       chart: elasticsearch
       version: 8.1.0
       sourceRef:
