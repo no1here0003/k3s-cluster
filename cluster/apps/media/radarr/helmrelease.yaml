@@ -53,14 +53,14 @@ spec:
             server: "${NAS1_ADDR}"
             path: /volume1/Media
         mountPath: /media
-      backups:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${NAS2_ADDR}"
-            path: /volume1/Kubernetes/radarr
-        mountPath: /config/Backups
+#      backups:
+#        enabled: true
+#        type: custom
+#        volumeSpec:
+#          nfs:
+#            server: "${NAS2_ADDR}"
+#            path: /volume1/Kubernetes/radarr
+#        mountPath: /config/Backups
       temp:
         enabled: true
         type: custom
