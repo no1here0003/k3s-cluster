@@ -78,24 +78,24 @@ spec:
             path: /volume1/Media
         mountPath: /media
         readOnly: true
-#      media2:
-#        enabled: true
-#        type: custom
-#        volumeSpec:
-#          nfs:
-#            server: "${NAS2_ADDR}"
-#            path: /volume1/Media2
-#        mountPath: /media2
-#        readOnly: true
-#      backups:
-#        enabled: true
-#        type: custom
-#        volumeSpec:
-#          nfs:
-#            server: "${NAS2_ADDR}"
-#            path: /volume1/Kubernetes/plex
-#        mountPath: /backups
-#        readOnly: false
+      media2:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NAS2_ADDR}"
+            path: /volume1/Media2
+        mountPath: /media2
+        readOnly: true
+      backups:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NAS2_ADDR}"
+            path: /volume1/Kubernetes/plex
+        mountPath: /backups
+        readOnly: false
       transcode:
         enabled: true
         type: emptyDir
