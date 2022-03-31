@@ -43,6 +43,7 @@ spec:
           requests:
             cpu: 100m
             memory: 128Mi
+
         livenessProbe:
           exec:
             command:
@@ -52,6 +53,7 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 60
           failureThreshold: 1
+          timeoutSeconds: 30
 
         networkPolicy:
           enabled: true
@@ -78,6 +80,7 @@ spec:
       VPN_TRAFFIC_PORT: "${VPN_GATEWAY_VPN_PORT}"
       NOT_ROUTED_TO_GATEWAY_CIDRS: "172.16.0.0/16 ${NETWORK_K8S_CLUSTER_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVER_CIDR}"
       VPN_LOCAL_CIDRS: "172.16.0.0/16 ${NETWORK_K8S_CLUSTER_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVER_CIDR}"
+
     webhook:
       image:
         repository: ghcr.io/k8s-at-home/gateway-admision-controller
