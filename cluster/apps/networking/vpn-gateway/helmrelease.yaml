@@ -61,13 +61,15 @@ spec:
           egress:
             - to:
                 - ipBlock:
-                    cidr: 0.0.0.0/0
+                  cidr: 0.0.0.0/0
               ports:
-                # VPN traffic
+              # VPN traffic port - change if your provider uses a different port
                 - port: ${VPN_GATEWAY_VPN_PORT}
                   protocol: UDP
             - to:
-                - namespaceSelector: {}
+                # Allow traffic within K8S - change if your K8S cluster uses a different CIDR
+                - ipBlock:
+                  cidr: 10.0.0.0/8
 
     routed_namespaces:
       - downloads
