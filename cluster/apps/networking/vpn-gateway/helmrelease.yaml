@@ -43,7 +43,6 @@ spec:
           requests:
             cpu: 100m
             memory: 128Mi
-
         livenessProbe:
           exec:
             command:
@@ -53,7 +52,6 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 60
           failureThreshold: 1
-          timeoutSeconds: 30
 
         networkPolicy:
           enabled: true
@@ -61,15 +59,13 @@ spec:
           egress:
             - to:
                 - ipBlock:
-                  cidr: 0.0.0.0/0
+                    cidr: 0.0.0.0/0
               ports:
-              # VPN traffic port - change if your provider uses a different port
+                # VPN traffic
                 - port: ${VPN_GATEWAY_VPN_PORT}
                   protocol: UDP
             - to:
-                # Allow traffic within K8S - change if your K8S cluster uses a different CIDR
-                - ipBlock:
-                  cidr: 10.0.0.0/8
+                - namespaceSelector: {}
 
     routed_namespaces:
       - downloads
