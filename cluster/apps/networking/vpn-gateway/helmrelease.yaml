@@ -32,7 +32,12 @@ spec:
           image:
             repository: ghcr.io/k8s-at-home/wireguard
             tag: v1.0.20210914
-
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          capabilities:
+            drop:
+              - "SYS_MODULE"
         env:
           TZ: "America/New_York"
           IPTABLES_BACKEND: nft
@@ -62,7 +67,7 @@ spec:
                     cidr: 0.0.0.0/0
               ports:
                 # VPN traffic
-                - port: ${VPN_GATEWAY_VPN_PORT}
+                - port: 51820
                   protocol: UDP
             - to:
                 - namespaceSelector: {}
@@ -75,7 +80,7 @@ spec:
       VXLAN_IP_NETWORK: 172.16.1
       VPN_INTERFACE: wg0
       VPN_BLOCK_OTHER_TRAFFIC: true
-      VPN_TRAFFIC_PORT: "${VPN_GATEWAY_VPN_PORT}"
+      VPN_TRAFFIC_PORT: 51820
       NOT_ROUTED_TO_GATEWAY_CIDRS: "172.16.0.0/16 ${NETWORK_K8S_CLUSTER_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVER_CIDR}"
       VPN_LOCAL_CIDRS: "172.16.0.0/16 ${NETWORK_K8S_CLUSTER_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVER_CIDR}"
 
