@@ -14,4 +14,4 @@ resources:
   - radarr
   # - radarr-uhd
   - overseerr
-  - readarr
+  # - readarr
