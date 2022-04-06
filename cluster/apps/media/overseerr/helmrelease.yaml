@@ -21,7 +21,7 @@ spec:
 
     image:
       repository: ghcr.io/sct/overseerr
-      tag: 1d0cbd2e761072be0b4b3de461397ad9f9f681f3
+      tag: 1.29.0
 
 
     env:
