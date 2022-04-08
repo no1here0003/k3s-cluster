@@ -21,7 +21,7 @@ spec:
     image:
       registry: ghcr.io
       repository: k8s-at-home/promtail
-      tag: 2.4.2
+      tag: v2.5.0
       pullPolicy: IfNotPresent
 
     config:
