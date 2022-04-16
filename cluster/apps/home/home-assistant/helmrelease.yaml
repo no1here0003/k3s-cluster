@@ -76,7 +76,7 @@ spec:
       image:
         registry: docker.io
         repository: bitnami/mariadb
-        tag: 10.6.5-debian-10-r58
+        tag: 10.6.7-debian-10-r58
         pullPolicy: IfNotPresent
 
       auth:
