@@ -33,9 +33,23 @@ spec:
 
     controller:
       enabled: true
+      resources:
+        requests:
+          cpu: 35m
+          memory: 105M
+        limits:
+          cpu: 469m
+          memory: 665M
 
     dashboard:
       enabled: true
+      resources:
+        requests:
+          cpu: 35m
+          memory: 105M
+        limits:
+          cpu: 150m
+          memory: 665M
 
       ingress:
         enabled: true
