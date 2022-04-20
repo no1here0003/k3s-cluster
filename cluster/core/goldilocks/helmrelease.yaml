@@ -2,8 +2,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: authentik
-  namespace: security
+  name: goldilocks
+  namespace: goldilocks
 spec:
   interval: 5m
   chart:
