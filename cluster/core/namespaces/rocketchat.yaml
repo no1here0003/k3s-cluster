@@ -5,3 +5,4 @@ metadata:
   name: rocketchat
   labels:
     ns: rocketchat
+    goldilocks.fairwinds.com/enabled: "true"

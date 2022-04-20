@@ -5,3 +5,4 @@ metadata:
   name: tekton
   labels:
     ns: tekton
+    goldilocks.fairwinds.com/enabled: "true"

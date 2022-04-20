@@ -5,3 +5,4 @@ metadata:
   name: longhorn-system
   labels:
     ns: longhorn-system
+    goldilocks.fairwinds.com/enabled: "true"

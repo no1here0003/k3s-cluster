@@ -5,3 +5,4 @@ metadata:
   name: ingress-nginx
   labels:
     ns: ingress-nginx
+    goldilocks.fairwinds.com/enabled: "true"

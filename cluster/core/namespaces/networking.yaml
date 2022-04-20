@@ -5,3 +5,4 @@ metadata:
   name: networking
   labels:
     ns: networking
+    goldilocks.fairwinds.com/enabled: "true"

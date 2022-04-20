@@ -5,3 +5,4 @@ metadata:
   name: rook-ceph
   labels:
     ns: rook-ceph
+    goldilocks.fairwinds.com/enabled: "true"

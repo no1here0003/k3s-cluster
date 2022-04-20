@@ -5,3 +5,4 @@ metadata:
   name: metallb-system
   labels:
     ns: metallb-system
+    goldilocks.fairwinds.com/enabled: "true"

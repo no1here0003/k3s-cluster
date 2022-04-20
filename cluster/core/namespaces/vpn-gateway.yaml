@@ -5,3 +5,4 @@ metadata:
   name: vpn-gateway
   labels:
     ns: vpn-gateway
+    goldilocks.fairwinds.com/enabled: "true"

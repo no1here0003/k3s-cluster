@@ -5,3 +5,4 @@ metadata:
   name: dev
   labels:
     ns: dev
+    goldilocks.fairwinds.com/enabled: "true"

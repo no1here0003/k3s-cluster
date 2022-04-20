@@ -5,3 +5,4 @@ metadata:
   name: security
   labels:
     ns: security
+    goldilocks.fairwinds.com/enabled: "true"
