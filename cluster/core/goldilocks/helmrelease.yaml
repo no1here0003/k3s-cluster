@@ -1,0 +1,53 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: authentik
+  namespace: security
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.fairwinds.com/stable
+      chart: goldilocks
+      version: 6.1.1
+      sourceRef:
+        kind: HelmRepository
+        name: fairwinds-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+
+    uninstallVPA: false
+
+    vpa:
+      enabled: true
+
+    metrics-server:
+      enabled: false
+
+    image:
+      repository: us-docker.pkg.dev/fairwinds-ops/oss/goldilocks
+      tag: v4.3.1
+      pullPolicy: IfNotPresent
+
+    controller:
+      enabled: true
+
+    dashboard:
+      enabled: true
+
+    ingress:
+      enabled: true
+      ingressClassName: "nginx"
+      annotations:
+        kubernetes.io/tls-acme: "true"
+      hosts:
+        - host: goldilocks.${INTERNAL_DOMAIN}
+          paths:
+            - path: /
+
+      tls:
+        - secretName: tls.goldilocks
+          hosts:
+            - goldilocks.${INTERNAL_DOMAIN}
