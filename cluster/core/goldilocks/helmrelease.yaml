@@ -46,7 +46,7 @@ spec:
           - host: goldilocks.${INTERNAL_DOMAIN}
             paths:
               - path: /
-
+                type: ImplementationSpecific
         tls:
           - secretName: tls.goldilocks
             hosts:
