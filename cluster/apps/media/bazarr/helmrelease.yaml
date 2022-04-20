@@ -54,14 +54,15 @@ spec:
             path: /volume1/Media
         mountPath: /media
 
-#      media2:
-#        enabled: true
-#        type: custom
-#        volumeSpec:
-#          nfs:
-#            server: "${NAS2_ADDR}"
-#            path: /volume1/Media2
-#        mountPath: /media2
+      media2:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${NAS2_ADDR}"
+            path: /volume1/Media2
+        mountPath: /media2
+
       temp:
         enabled: true
         type: custom
@@ -73,5 +74,8 @@ spec:
 
     resources:
       requests:
-        memory: 250Mi
-        cpu: 500m
+        memory: 900M
+        cpu: 1200m
+      limits:
+        memory: 8G
+        cpu: 15000m

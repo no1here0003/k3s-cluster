@@ -92,7 +92,8 @@ spec:
             targetPort: 80
     resources:
       requests:
-        memory: 4096Mi
-        cpu: 500m
+        memory: 5403Mi
+        cpu: 241m
       limits:
-        memory: 16384Mi
+        memory: 32G
+        cpu: 6304m
