@@ -6,6 +6,7 @@ resources:
   - downloads.yaml
   - external-dns.yaml
   - gaming.yaml
+  - goldilocks.yaml
   - hashicorp.yaml
   - ingress-nginx.yaml
   - longhorn.yaml
