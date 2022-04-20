@@ -37,17 +37,17 @@ spec:
     dashboard:
       enabled: true
 
-    ingress:
-      enabled: true
-      ingressClassName: "nginx"
-      annotations:
-        kubernetes.io/tls-acme: "true"
-      hosts:
-        - host: goldilocks.${INTERNAL_DOMAIN}
-          paths:
-            - path: /
+      ingress:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          kubernetes.io/tls-acme: "true"
+        hosts:
+          - host: goldilocks.${INTERNAL_DOMAIN}
+            paths:
+              - path: /
 
-      tls:
-        - secretName: tls.goldilocks
-          hosts:
-            - goldilocks.${INTERNAL_DOMAIN}
+        tls:
+          - secretName: tls.goldilocks
+            hosts:
+              - goldilocks.${INTERNAL_DOMAIN}
