@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       # renovate: registryUrl=https://helm.elastic.co
-      chart: logstash
+      chart: helm-charts/logstash
       version: 8.1.0
       sourceRef:
         kind: HelmRepository

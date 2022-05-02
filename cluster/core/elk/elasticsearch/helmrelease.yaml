@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       # renovate: registryUrl=https://helm.elastic.co
-      chart: elasticsearch
+      chart: helm-charts/elasticsearch
       version: 8.1.0
       sourceRef:
         kind: HelmRepository
