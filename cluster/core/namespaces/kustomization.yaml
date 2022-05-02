@@ -4,6 +4,7 @@ resources:
   - cert-manager.yaml
   - dev.yaml
   - downloads.yaml
+  - elk.yaml
   - external-dns.yaml
   - gaming.yaml
   - goldilocks.yaml
