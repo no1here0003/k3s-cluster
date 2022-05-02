@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: elasticsearch
+  name: logstash
   namespace: elk
 spec:
   interval: 5m
