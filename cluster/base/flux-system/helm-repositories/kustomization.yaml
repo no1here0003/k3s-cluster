@@ -6,6 +6,7 @@ resources:
   - argo-charts.yaml
   - authentik-charts.yaml
   - bitnami-charts.yaml
+  - elastic-charts.yaml
   - external-dns.yaml
   - fairwinds-charts.yaml
   - grafana-charts.yaml
