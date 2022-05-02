@@ -5,6 +5,7 @@ resources:
   - namespaces
   - metallb-system
   - cert-manager
+  - elk
   - ingress-nginx
   - longhorn
   - external-dns
