@@ -16,25 +16,22 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    image: itzg/minecraft-server
+    imageTag: latest
     resources:
       requests:
-        memory: 512Mi
+        memory: 16384M
         cpu: 500m
-      limits:
-        memory: 3Gi
-        cpu: 1000m
     minecraftServer:
       eula: "TRUE"
-      type: "PAPER"
-      pvp: "false"
+      type: "VANILLA"
+      pvp: "true"
       gameMode: survival
       motd: "Ethans Gaming Dungeon Survival Server"
       ops: "EthanDstroyr"
-      memory: 8192M
+      memory: 16384M
       serviceType: LoadBalancer
       loadBalancerIP: "${MC_SURV_ADDR}"
-    podAnnotations:
-      backup.velero.io/backup-volumes: datadir
     persistence:
       dataDir:
         enabled: true
