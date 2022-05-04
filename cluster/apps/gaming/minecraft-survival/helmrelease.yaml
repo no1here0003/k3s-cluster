@@ -32,6 +32,8 @@ spec:
       memory: 16384M
       serviceType: LoadBalancer
       loadBalancerIP: "${MC_SURV_ADDR}"
+    extraEnv:
+      SERVER_NAME: EthanDstroyr
     persistence:
       dataDir:
         enabled: true
