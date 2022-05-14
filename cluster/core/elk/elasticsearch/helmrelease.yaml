@@ -25,21 +25,12 @@ spec:
     replicas: 3
     minimumMasterNodes: 2
 
-  # Elasticsearch roles that will be applied to this nodeGroup
-  # These will be set as environment variables. E.g. node.roles=master
-  # https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-node.html#node-roles
+    # Elasticsearch roles that will be applied to this nodeGroup
+    # These will be set as environment variables. E.g. node.roles=master
+    # https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-node.html#node-roles
     roles:
       - master
       - data
-      - data_content
-      - data_hot
-      - data_warm
-      - data_cold
-      - ingest
-      - ml
-      - remote_cluster_client
-      - transform
-
 
     # Allows you to add any config files in /usr/share/elasticsearch/config/
     # such as elasticsearch.yml and log4j2.properties
