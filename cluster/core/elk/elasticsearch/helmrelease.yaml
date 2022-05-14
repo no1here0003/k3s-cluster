@@ -21,12 +21,12 @@ spec:
 
     clusterName: "elasticsearch"
     nodeGroup: "master"
-  roles:
-    master: "true"
-    data: "true"
-    ingest: "false"
-    remote_cluster_client: "false"
-    ml: "false"
+    roles:
+      master: "true"
+      data: "true"
+      ingest: "false"
+      remote_cluster_client: "false"
+      ml: "false"
 
     replicas: 3
     minimumMasterNodes: 2
