@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://helm.elastic.co
       chart: elasticsearch
-      version: 7.17.3
+      version: 8.1.0
       sourceRef:
         kind: HelmRepository
         name: elastic-charts
@@ -77,10 +77,6 @@ spec:
 
     persistence:
       enabled: true
-      labels:
-        # Add default labels for the volumeClaimTemplate of the StatefulSet
-        enabled: false
-      annotations: {}
 
     # This is the PriorityClass settings as defined in
     # https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/#priorityclass
@@ -98,9 +94,6 @@ spec:
     # https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity-beta-feature
     nodeAffinity: {}
 
-    # The default is to deploy all pods serially. By setting this to parallel all pods are started at
-    # the same time when bootstrapping the cluster
-    podManagementPolicy: "Parallel"
 
     # The environment variables injected by service links are not used, but can lead to slow Elasticsearch boot times when
     # there are many services in the current namespace.
@@ -119,13 +112,9 @@ spec:
       # Consider that all endpoints are considered "ready" even if the Pods themselves are not
       # https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec
       publishNotReadyAddresses: false
-      nodePort: ""
       annotations: {}
       httpPortName: http
       transportPortName: transport
-      loadBalancerIP: ""
-      loadBalancerSourceRanges: []
-      externalTrafficPolicy: ""
 
     updateStrategy: RollingUpdate
 
