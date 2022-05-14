@@ -22,6 +22,10 @@ spec:
     clusterName: "elasticsearch"
     nodeGroup: "master"
 
+    roles:
+      - master
+      - data
+
     replicas: 3
     minimumMasterNodes: 2
 
