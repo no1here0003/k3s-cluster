@@ -24,8 +24,8 @@ spec:
     updateStrategy: RollingUpdate
     configuration:
       timeZone: America/New_York
-      startTime: 2am
-      endTime: 5am
+      startTime: 9am
+      endTime: 11am
     #  notifyUrl: ${KURED_DISCORD_WEBHOOK_URL}
       rebootCommand: "/usr/bin/systemctl reboot"
     metrics:
