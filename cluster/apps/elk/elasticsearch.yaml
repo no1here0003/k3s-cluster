@@ -1,0 +1,42 @@
+---
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: es
+  namespace: elk
+spec:
+  version: 8.2.0
+  volumeClaimDeletePolicy: DeleteOnScaledownAndClusterDeletion
+  nodeSets:
+    - name: masters
+      count: 3
+      config:
+        # On Elasticsearch versions before 7.9.0, replace the node.roles configuration with the following:
+        # node.master: true
+        node.roles: ["master"]
+        xpack.ml.enabled: true
+      volumeClaimTemplates:
+        - metadata:
+            name: elasticsearch-data # Do not change this name unless you set up a volume mount for the data path.
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 100Gi
+            storageClassName: longhorn
+
+    - name: data
+      count: 3
+      config:
+        node.roles: ["data", "ingest", "ml", "transform"]
+      volumeClaimTemplates:
+        - metadata:
+            name: elasticsearch-data # Do not change this name unless you set up a volume mount for the data path.
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 100Gi
+            storageClassName: longhorn

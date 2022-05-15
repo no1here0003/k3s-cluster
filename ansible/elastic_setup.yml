@@ -1,0 +1,9 @@
+---
+- hosts: all
+  tasks:
+  - name: set vm.max_map_count to 262144 in sysctl
+    sysctl: name={{ item.key }} value={{ item.value }}
+    with_items:
+      - { key: "vm.max_map_count", value: "262144" }
+  - name: For a permanent setting, update vm.max_map_count in /etc/sysctl.conf
+    command: sysctl -p /etc/sysctl.conf

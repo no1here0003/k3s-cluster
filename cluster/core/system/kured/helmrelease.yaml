@@ -27,5 +27,6 @@ spec:
       startTime: 2am
       endTime: 5am
     #  notifyUrl: ${KURED_DISCORD_WEBHOOK_URL}
+      rebootCommand: "/usr/bin/systemctl reboot"
     metrics:
       create: true
