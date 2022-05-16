@@ -1,0 +1,23 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kibana
+  namespace: elk
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: kibana.192.168.3.50.nip.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: kibana-kb-http
+                port:
+                  number: 5601
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - kibana.192.168.3.50.nip.io
+    - secretName: kibana-tls-internal
