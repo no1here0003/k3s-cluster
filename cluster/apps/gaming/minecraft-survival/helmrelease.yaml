@@ -16,7 +16,7 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    image: itzg/minecraft-server
+    image: itzg/minecraft-bedrock-server
     imageTag: latest
     resources:
       requests:
@@ -34,7 +34,7 @@ spec:
       servicePort: 30497
       loadBalancerIP: "${MC_SURV_ADDR}"
     extraEnv:
-      SERVER_NAME: EthanDstroyr
+      SERVER_NAME: EthanDstroyrsServer
     persistence:
       dataDir:
         enabled: true
