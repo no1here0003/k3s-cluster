@@ -32,7 +32,7 @@ spec:
       memory: 16384M
       serviceType: LoadBalancer
       servicePort: 30497
-      loadBalancerIP: "${MC_SRV_ADDR}"
+      loadBalancerIP: "${SVC_MC_ADDR}"
     extraEnv:
       SERVER_NAME: EthanDstroyrsServer
     persistence:
