@@ -11,3 +11,4 @@ resources:
   # - argo-workflows
   # - postgresql
   # - tekton
+    - uptime-kuma
