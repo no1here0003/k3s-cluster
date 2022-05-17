@@ -38,5 +38,5 @@ spec:
         enabled: true
         existingClaim: mc-survival-v2
 
-serviceAnnotations:
-  metallb.universe.tf/loadBalancerIPs: ${SVC_MC_ADDR}
+    serviceAnnotations:
+      metallb.universe.tf/loadBalancerIPs: ${SVC_MC_ADDR}
