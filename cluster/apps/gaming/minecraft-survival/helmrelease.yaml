@@ -39,7 +39,7 @@ spec:
     persistence:
       dataDir:
         enabled: true
-        existingClaim: mc-survival-v2
+        existingClaim: mc-survival-v3
 
     serviceAnnotations:
       metallb.universe.tf/loadBalancerIPs: ${SVC_MC_ADDR}
