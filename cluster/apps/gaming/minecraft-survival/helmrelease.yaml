@@ -29,7 +29,7 @@ spec:
       version: "LATEST"
       gameMode: survival
       maxPlayers: 20
-      difficulty: easy
+      difficulty: normal
       serverName: EthanDstroyrsServ
       ops: 2535460828971767
       serviceType: LoadBalancer
