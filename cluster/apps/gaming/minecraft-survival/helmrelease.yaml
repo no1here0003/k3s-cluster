@@ -31,7 +31,7 @@ spec:
       maxPlayers: 20
       difficulty: normal
       serverName: EthanDstroyrsServ
-      ops: 2535460828971767
+      ops: "2535460828971767"
       serviceType: LoadBalancer
       servicePort: 30497
       maxThreads: 16
