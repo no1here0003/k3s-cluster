@@ -30,7 +30,7 @@ spec:
       gameMode: survival
       maxPlayers: 20
       difficulty: easy
-      serverName: EthanDstroyrsServer
+      serverName: EthanDstroyrsServ
       serviceType: LoadBalancer
       servicePort: 30497
       maxThreads: 16
