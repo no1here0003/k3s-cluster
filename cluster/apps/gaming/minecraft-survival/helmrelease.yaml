@@ -16,8 +16,10 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    image: itzg/minecraft-bedrock-server
-    imageTag: latest
+    image:
+      repository: itzg/minecraft-bedrock-server
+      tag: latest
+      pullSecret: false
     resources:
       requests:
         memory: 512Mi
