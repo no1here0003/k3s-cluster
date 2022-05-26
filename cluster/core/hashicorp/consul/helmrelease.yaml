@@ -22,7 +22,7 @@ spec:
       enabled: true
       logLevel: debug
 
-      image: "hashicorp/consul:1.12.0"
+      image: "hashicorp/consul:1.12.1"
       imageK8S: "hashicorp/consul-k8s:0.26.0"
       # Rate limiting be damned
       # imagePullSecrets:
