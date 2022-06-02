@@ -40,10 +40,10 @@ spec:
               - "sabnzbd.${INTERNAL_DOMAIN}"
           - secretName: sabnzbd-tls
 
-  podSecurityContext:
-    runAsUser: 568
-    runAsGroup: 568
-    fsGroup: 568
+#  podSecurityContext:
+#    runAsUser: 568
+#    runAsGroup: 568
+#    fsGroup: 568
 
     persistence:
       config:
