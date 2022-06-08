@@ -19,7 +19,7 @@ spec:
 
     image:
       repository: weaveworks/kured
-      tag: "1.9.2"
+      tag: "1.10.0"
       pullPolicy: IfNotPresent
     updateStrategy: RollingUpdate
     configuration:
