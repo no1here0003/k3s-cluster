@@ -32,11 +32,12 @@ spec:
                 secretKeyRef:
                   name: cloudflare-ddns
                   key: cf_apikey
+            - name:
             - name: CF_RECORDTYPES
               valueFrom:
                 secretKeyRef:
                   name: cloudflare-ddns
-                  key: cf_record_types
+                  key: cf_record_type
             # https://github.com/docker-hotio/docker-cloudflare-ddns#log-levels
             - name: LOG_LEVEL
               value: "2"

@@ -61,10 +61,10 @@ spec:
     config: |
       upstream:
         default:
-          - tcp+udp:${GATEWAY_ADDR}
+          - tcp+udp:192.168.1.1
       conditional:
         mapping:
-          ${SECRET_DOMAIN}: tcp+udp:${GATEWAY_ADDR}
+          ${SECRET_DOMAIN}: tcp+udp:192.168.1.1
       blocking:
         blackLists:
           ads:
@@ -91,7 +91,7 @@ spec:
           default:
             - ads
       clientLookup:
-        upstream: tcp+udp:${GATEWAY_ADDR}
+        upstream: tcp+udp:192.168.1.1
       prometheus:
         enable: true
         path: /metrics
