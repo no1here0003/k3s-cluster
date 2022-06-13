@@ -1,0 +1,51 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  namespace: network-system
+  name: cloudflare-ddns
+  labels:
+    app: cloudflare-ddns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudflare-ddns
+  template:
+    metadata:
+      labels:
+        app: cloudflare-ddns
+      annotations:
+        secret.reloader.stakater.com/reload: cloudflare-ddns
+    spec:
+      # values-ish: https://hotio.dev/containers/cloudflareddns/
+      containers:
+        - name: cloudflare-ddns
+          image: hotio/cloudflareddns:20220604212139
+          env:
+            - name: CF_HOSTS
+              value: 'ipv4.${SECRET_DOMAIN};ipv.${SECRET_DOMAIN2};ipv4.${SECRET_DOMAIN3};${SECRET_DOMAIN};${SECRET_DOMAIN2};${SECRET_DOMAIN3}'
+            - name: CF_ZONES
+              value: '${SECRET_DOMAIN};${SECRET_DOMAIN2};${SECRET_DOMAIN3}'
+            - name: CF_APITOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: cloudflare-ddns
+                  key: cf_apikey
+            - name: CF_RECORDTYPES
+              valueFrom:
+                secretKeyRef:
+                  name: cloudflare-ddns
+                  key: cf_record_types
+            # https://github.com/docker-hotio/docker-cloudflare-ddns#log-levels
+            - name: LOG_LEVEL
+              value: "2"
+            - name: INTERVAL
+              value: "300"
+          resources:
+            requests:
+              cpu: 20m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 128Mi

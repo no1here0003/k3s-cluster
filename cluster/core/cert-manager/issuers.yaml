@@ -35,4 +35,6 @@ spec:
               key: api-token
         selector:
           dnsZones:
-            - 'chaoticark.net'
+            - '${SECRET_DOMAIN}'
+            - '${SECRET_DOMAIN2}'
+            - '${SECRET_DOMAIN3}'
