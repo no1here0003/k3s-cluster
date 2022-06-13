@@ -32,7 +32,6 @@ spec:
                 secretKeyRef:
                   name: cloudflare-ddns
                   key: cf_apikey
-            - name:
             - name: CF_RECORDTYPES
               valueFrom:
                 secretKeyRef:
