@@ -2,7 +2,7 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  namespace: network-system
+  namespace: networking
   name: cloudflare-ddns
   labels:
     app: cloudflare-ddns
