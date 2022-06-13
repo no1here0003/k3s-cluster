@@ -21,7 +21,7 @@ spec:
       # values-ish: https://hotio.dev/containers/cloudflareddns/
       containers:
         - name: cloudflare-ddns
-          image: hotio/cloudflareddns:20220604212139
+          image: hotio/cloudflareddns:latest
           env:
             - name: CF_HOSTS
               value: 'ipv4.${SECRET_DOMAIN};ipv.${SECRET_DOMAIN2};ipv4.${SECRET_DOMAIN3};${SECRET_DOMAIN};${SECRET_DOMAIN2};${SECRET_DOMAIN3}'
