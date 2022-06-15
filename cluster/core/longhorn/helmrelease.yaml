@@ -77,5 +77,5 @@ spec:
       enabled: true
       ingressClassName: nginx
       host: longhorn.${INTERNAL_DOMAIN}
-      tls: false
+      tls: true
       tlsSecret: longhorn.local-tls
