@@ -30,9 +30,20 @@ spec:
         enabled: true
         existingClaim: plex-config
         mountPath: /plex/config
+      backups:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "192.168.1.200"
+            path: /volume1/Kubernetes/plex
+        mountPath: /backups
+        readOnly: false
     resources:
       requests:
         memory: 250Mi
         cpu: 500m
       limits:
         memory: 1500Mi
+
+
