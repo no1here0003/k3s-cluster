@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   # - dev
   # - elk
-  # - gaming
+  - gaming
   # - home
   - media
   - monitoring
