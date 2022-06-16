@@ -6,7 +6,7 @@ resources:
   # - elk
   # - gaming
   # - home
-  # - media
+  - media
   - monitoring
   - networking
   # - rocketchat

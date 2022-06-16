@@ -8,8 +8,8 @@ resources:
   # - calibre-web
   - tautulli
   # - ombi
-  - plex
-  - sabnzbd
+  # - plex
+  # - sabnzbd
   - sonarr
   - radarr
   # - radarr-uhd
