@@ -1,6 +1,9 @@
 ignore: |
   *.sops.*
   gotk-components.yaml
+  ansible
+  provision
+  hack
 extends: default
 rules:
   truthy:
