@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: quay.io/minio/minio
-      tag: RELEASE.2022-06-11T19-55-32Z
+      tag: RELEASE.2022-06-17T02-00-35Z
     nameOverride: minio
     env:
       MINIO_PROMETHEUS_AUTH_TYPE: "public"
