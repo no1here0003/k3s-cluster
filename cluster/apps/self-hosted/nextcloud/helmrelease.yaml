@@ -56,3 +56,5 @@ spec:
         enabled: false
       readinessProbe:
         enabled: false
+    rbac:
+      enabled: true
