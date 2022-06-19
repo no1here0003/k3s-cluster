@@ -11,6 +11,7 @@ resources:
   - hashicorp.yaml
   - ingress-nginx.yaml
   - longhorn.yaml
+  - managed-nfs-storage.yaml
   - media.yaml
   - metallb.yaml
   - monitoring.yaml

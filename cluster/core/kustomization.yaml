@@ -8,6 +8,7 @@ resources:
   # - elk
   - ingress-nginx
   - longhorn
+  - managed-nfs-storage
   - external-dns
   - k8s-dashboard
   - system
