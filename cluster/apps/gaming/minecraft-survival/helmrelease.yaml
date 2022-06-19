@@ -27,9 +27,9 @@ spec:
     minecraftServer:
       eula: "TRUE"
       version: "LATEST"
-      gameMode: creative
+      gameMode: survival
       maxPlayers: 20
-      difficulty: easy
+      difficulty: peaceful
       serverName: EthanDstroyrsServ
       ops: "2535460828971767"
       serviceType: LoadBalancer

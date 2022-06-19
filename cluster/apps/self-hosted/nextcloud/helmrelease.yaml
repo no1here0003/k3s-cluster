@@ -30,15 +30,12 @@ spec:
         external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN2}"
         external-dns/is-public: "true"
         cert-manager.io/cluster-issuer: letsencrypt-prod
-      hosts:
-        - host: "next.${SECRET_DOMAIN}"
-          paths:
-            - path: /
-              pathType: Prefix
+      path: /
+      pathType: Prefix
       tls:
-        - hosts:
-            - "next.${SECRET_DOMAIN2}"
         - secretName: nextcloud-tls
+          hosts:
+            - "next.${SECRET_DOMAIN2}"
 
     nextcloud:
       host: next.${SECRET_DOMAIN2}
