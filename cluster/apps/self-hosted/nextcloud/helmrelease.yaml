@@ -37,7 +37,7 @@ spec:
               pathType: Prefix
       tls:
         - hosts:
-            - "next.${SECRET_DOMAIN3}"
+            - "next.${SECRET_DOMAIN2}"
         - secretName: nextcloud-tls
 
     nextcloud:
