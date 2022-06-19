@@ -34,4 +34,4 @@ spec:
 
       admissionWebhooks:
         enabled: true
-        timeoutSeconds: 45
+        timeoutSeconds: 30
