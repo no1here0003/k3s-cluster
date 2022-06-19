@@ -16,7 +16,6 @@ resources:
   - metallb.yaml
   - monitoring.yaml
   - networking.yaml
-  - rocketchat.yaml
   - security.yaml
   - self-hosted.yaml
   - tekton.yaml
