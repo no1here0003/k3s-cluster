@@ -30,6 +30,7 @@ spec:
         external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN2}"
         external-dns/is-public: "true"
         cert-manager.io/cluster-issuer: letsencrypt-prod
+        nginx.ingress.kubernetes.io/proxy-body-size: 4G
       path: /
       pathType: Prefix
       tls:
