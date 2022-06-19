@@ -20,3 +20,4 @@ resources:
   - tekton.yaml
   - vpn-gateway.yaml
   - home.yaml
+  
