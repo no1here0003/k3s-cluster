@@ -17,7 +17,7 @@ spec:
 
   values:
 
-    replicaCount: 2
+    replicaCount: 1
     image:
       repository: nextcloud
       tag: 23.0.3-apache
