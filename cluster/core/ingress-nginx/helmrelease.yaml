@@ -33,5 +33,5 @@ spec:
           metallb.universe.tf/loadBalancerIPs: "${SVC_INGRESS_ADDR}"
 
       admissionWebhooks:
-        enabled: true
+        enabled: false
         timeoutSeconds: 30
