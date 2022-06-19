@@ -8,7 +8,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://mojo2600.github.io/pihole-kubernetes/
       chart: nextcloud
       version: 2.5.8
       sourceRef:
@@ -41,20 +40,21 @@ spec:
             - "next.${SECRET_DOMAIN3}"
         - secretName: nextcloud-tls
 
-  nextcloud:
-    host: next.${SECRET_DOMAIN2}
-    username: admin
-    password: ${SECRET_NEXTCLOUD}
+    nextcloud:
+      host: next.${SECRET_DOMAIN2}
+      username: admin
+      password: ${SECRET_NEXTCLOUD}
 
-    datadir: /var/www/html/data
+      datadir: /var/www/html/data
   
-  persistence:
-    enabled: true
-    accessMode: ReadWriteOnce
-    size: 100Gi
-  nextcloudData:
-    storageClass: "managed-nfs-storage"
-    livenessProbe:
-      enabled: false
-    readinessProbe:
-      enabled: false
+    persistence:
+      enabled: true
+      accessMode: ReadWriteOnce
+      size: 100Gi
+    nextcloudData:
+      enabled: true
+      storageClass: "managed-nfs-storage"
+      livenessProbe:
+        enabled: false
+      readinessProbe:
+        enabled: false
