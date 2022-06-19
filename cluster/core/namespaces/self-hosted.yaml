@@ -1,0 +1,8 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: self-hosted
+  labels:
+    ns: self-hosted
+    goldilocks.fairwinds.com/enabled: "true"

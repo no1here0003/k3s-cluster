@@ -1,0 +1,8 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: managed-nfs-storage
+  labels:
+    ns: managed-nfs-storage
+    goldilocks.fairwinds.com/enabled: "true"

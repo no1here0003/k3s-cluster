@@ -15,5 +15,3 @@ resources:
   - metallb-system
   - namespaces
   - system
-
-  
