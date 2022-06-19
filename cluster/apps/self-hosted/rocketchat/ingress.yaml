@@ -1,0 +1,23 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rocketchat
+  namespace: rocketchat
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: rocketchat.${INTERNAL_DOMAIN}
+      http:
+        paths:
+          - backend:
+              service:
+                name: rocketchat-rocketchat
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - rocketchat.${INTERNAL_DOMAIN}
+    - secretName: rocketchat-tls-internal

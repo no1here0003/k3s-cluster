@@ -1,0 +1,60 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nextcloud
+  namespace: self-hosted
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://mojo2600.github.io/pihole-kubernetes/
+      chart: nextcloud
+      version: 2.5.8
+      sourceRef:
+        kind: HelmRepository
+        name: nextcloud-charts
+        namespace: flux-system
+
+  values:
+
+    replicaCount: 2
+    image:
+      repository: nextcloud
+      tag: 23.0.3-apache
+      pullPolicy: IfNotPresent
+
+    ingress:
+      enabled: true
+      className: "nginx"
+      annotations:
+        external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN2}"
+        external-dns/is-public: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      hosts:
+        - host: "next.${SECRET_DOMAIN}"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - "next.${SECRET_DOMAIN3}"
+        - secretName: nextcloud-tls
+
+  nextcloud:
+    host: next.${SECRET_DOMAIN2}
+    username: admin
+    password: ${SECRET_NEXTCLOUD}
+
+    datadir: /var/www/html/data
+  
+  persistence:
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 100Gi
+  nextcloudData:
+    storageClass: "managed-nfs-storage"
+    livenessProbe:
+      enabled: false
+    readinessProbe:
+      enabled: false

@@ -1,0 +1,8 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - helmrelease.yaml
+  # For now a seperate ingress is required for kube 1.21+. It looks like it's about to be updated.
+  # See: https://github.com/RocketChat/helm-charts/pull/24
+  - ingress.yaml
