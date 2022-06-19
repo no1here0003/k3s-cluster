@@ -31,3 +31,7 @@ spec:
       service:
         annotations:
           metallb.universe.tf/loadBalancerIPs: "${SVC_INGRESS_ADDR}"
+
+      admissionWebhooks:
+        enabled: true
+        timeoutSeconds: 45
