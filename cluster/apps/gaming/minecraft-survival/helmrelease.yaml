@@ -27,7 +27,7 @@ spec:
     minecraftServer:
       eula: "TRUE"
       version: "LATEST"
-      gameMode: survival
+      gameMode: creative
       maxPlayers: 20
       difficulty: easy
       serverName: EthanDstroyrsServ
