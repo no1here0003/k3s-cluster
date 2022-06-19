@@ -19,7 +19,6 @@ resources:
   - metrics-server-charts.yaml
   - minecraft-server-charts.yaml
   - nextcloud-charts.yaml
-  - nfs-subdir-external-provisioner-charts.yaml
   - nginx-charts.yaml
   - pihole.yaml
   - hashicorp-charts.yaml
