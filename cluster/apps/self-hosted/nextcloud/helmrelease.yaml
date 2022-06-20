@@ -27,7 +27,7 @@ spec:
       enabled: true
       className: "nginx"
       annotations:
-        external-dns.alpha.kubernetes.io/target: "${SECRET_DOMAIN2}"
+        external-dns.alpha.kubernetes.io/target: "next.${SECRET_DOMAIN2}"
         external-dns/is-public: "true"
         cert-manager.io/cluster-issuer: letsencrypt-prod
         nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For, X-Real-IP, X-Frame-Options, X-Content-Type-Options, X-Forwarded-Proto"
