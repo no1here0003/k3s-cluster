@@ -63,8 +63,8 @@ spec:
             array (
               0 => 'HTTP_X_FORWARDED_FOR',
             ),
-            'overwrite.cli.url' => 'https://next.${SECRET_DOMAIN2}',
-            'overwriteprotocol' => 'https',
+            'overwrite.cli.url' => 'http://next.${SECRET_DOMAIN2}',
+            'overwriteprotocol' => 'http',
             'skeletondirectory' => '',
           );
         gitops.config.php: |-
