@@ -38,6 +38,7 @@ spec:
             key: key
     extraArgs:
       - --cloudflare-proxied
+      - --aws-prefer-cname
       - --annotation-filter=external-dns/is-public in (true)
     policy: sync
     sources:
