@@ -55,24 +55,17 @@ spec:
         proxy.config.php: |-
           <?php
           $CONFIG = array (
-            'trusted_proxies' =>
-            array (
-              0 => '${NETWORK_K8S_SERVICE_CIDR}',
-            ),
-            'forwarded_for_headers' =>
-            array (
-              0 => 'HTTP_X_FORWARDED_FOR',
-            ),
-            'overwrite.cli.url' => 'http://next.${SECRET_DOMAIN2}',
-            'overwriteprotocol' => 'http',
-            'skeletondirectory' => '',
+            'trusted_proxies' => array ('${SVC_INGRESS_ADDR}')
           );
-        gitops.config.php: |-
+        protocol.config.php: |-
           <?php
           $CONFIG = array (
-            'appstoreenabled' => true,
-            #'appstoreurl' => 'https://apps.nextcloud.com/api/v0',
-            'mail_domain' => '${SECRET_DOMAIN2}',
+            'overwriteprotocol' => 'https'
+          );
+        phone_region.config.php: |-
+          <?php
+          $CONFIG = array (
+            'default_phone_region' => 'US'
           );
 
     persistence:
