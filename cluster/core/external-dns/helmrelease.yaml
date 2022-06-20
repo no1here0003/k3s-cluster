@@ -39,6 +39,7 @@ spec:
     extraArgs:
       - --cloudflare-proxied
       - --annotation-filter=external-dns/is-public in (true)
+      - --aws-prefer-cname
     policy: sync
     sources:
       - ingress
