@@ -55,7 +55,7 @@ spec:
         proxy.config.php: |-
           <?php
           $CONFIG = array (
-            'trusted_proxies' => array ('${SVC_INGRESS_ADDR}')
+            'trusted_proxies' => array('${SVC_INGRESS_ADDR}')
           );
         protocol.config.php: |-
           <?php
