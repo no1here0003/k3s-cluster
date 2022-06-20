@@ -47,6 +47,10 @@ spec:
           hosts:
             - "next.${SECRET_DOMAIN2}"
 
+    phpClientHttpsFix:
+      enabled: true
+      protocol: https
+
     nextcloud:
       host: next.${SECRET_DOMAIN2}
       username: admin
