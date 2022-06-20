@@ -31,14 +31,13 @@ spec:
           secretKeyRef:
             name: external-dns
             key: email
-      - name: CF_API_KEY
+      - name: CF_API_TOKEN
         valueFrom:
           secretKeyRef:
             name: external-dns
-            key: key
+            key: token
     extraArgs:
       - --cloudflare-proxied
-      - --aws-prefer-cname
       - --annotation-filter=external-dns/is-public in (true)
     policy: sync
     sources:
