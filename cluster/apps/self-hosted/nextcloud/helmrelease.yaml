@@ -91,6 +91,17 @@ spec:
       host: next.${SECRET_DOMAIN2}
       username: admin
       password: ${SECRET_NEXTCLOUD}
+      mail:
+        enabled: true
+        fromAddress: nextcloud
+        domain: kubecloud.org
+        smtp:
+          host: smtp.gmail.com
+          secure: ssl
+          port: 465
+          authtype: LOGIN
+          name: ${SECRET_EMAIL}
+          password: ${EMAIL_PASS}
 
       datadir: /var/www/html/data
       defaultConfigs:
