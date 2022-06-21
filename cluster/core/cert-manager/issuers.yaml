@@ -15,6 +15,11 @@ spec:
             apiTokenSecretRef:
               name: cloudflare-api-key
               key: api-token
+        selector:
+          dnsZones:
+            - '${SECRET_DOMAIN}'
+            - '${SECRET_DOMAIN2}'
+            - '${SECRET_DOMAIN3}'
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -25,7 +30,7 @@ spec:
     server: https://acme-v02.api.letsencrypt.org/directory
     email: ${SECRET_EMAIL}
     privateKeySecretRef:
-      name: letsencrypt-staging
+      name: letsencrypt-prod
     solvers:
       - dns01:
           cloudflare:
