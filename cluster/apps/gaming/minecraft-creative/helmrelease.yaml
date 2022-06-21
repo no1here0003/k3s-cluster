@@ -41,4 +41,4 @@ spec:
         existingClaim: mc-creative-v1
 
     serviceAnnotations:
-      metallb.universe.tf/loadBalancerIPs: ${SVC_MC2_ADDR}
+      metallb.universe.tf/loadBalancerIPs: ${SVC_MC2  _ADDR}
