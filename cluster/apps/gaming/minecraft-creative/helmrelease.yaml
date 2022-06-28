@@ -29,7 +29,7 @@ spec:
       version: "LATEST"
       gameMode: creative
       maxPlayers: 20
-      difficulty: peaceful
+      difficulty: easy
       serverName: EthanCreate
       ops: "2535460828971767"
       serviceType: LoadBalancer
