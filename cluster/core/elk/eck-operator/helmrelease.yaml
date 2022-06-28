@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: docker.elastic.co/eck/eck-operator
-      tag: 2.2.0
+      tag: 2.3.0
       pullPolicy: IfNotPresent
 
     installCRDs: false
