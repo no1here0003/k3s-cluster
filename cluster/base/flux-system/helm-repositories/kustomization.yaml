@@ -21,6 +21,7 @@ resources:
   - nextcloud-charts.yaml
   - nginx-charts.yaml
   - pihole.yaml
+  - project-calico-charts.yaml
   - hashicorp-charts.yaml
   - jenkins-charts.yaml
   - prometheus-community-charts.yaml

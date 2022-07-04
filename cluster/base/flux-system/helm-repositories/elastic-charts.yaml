@@ -5,6 +5,6 @@ metadata:
   name: elastic-charts
   namespace: flux-system
 spec:
-  interval: 15m
+  interval: 1h
   url: https://helm.elastic.co
   timeout: 3m

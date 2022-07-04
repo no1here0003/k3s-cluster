@@ -5,5 +5,5 @@ metadata:
   name: hashicorp-charts
   namespace: flux-system
 spec:
-  interval: 5m0s
+  interval: 1h
   url: https://helm.releases.hashicorp.com

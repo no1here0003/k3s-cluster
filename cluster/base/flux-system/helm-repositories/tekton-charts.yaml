@@ -5,6 +5,6 @@ metadata:
   name: tekton-charts
   namespace: flux-system
 spec:
-  interval: 15m
+  interval: 1h
   url: https://eddycharly.github.io/tekton-helm
   timeout: 3m

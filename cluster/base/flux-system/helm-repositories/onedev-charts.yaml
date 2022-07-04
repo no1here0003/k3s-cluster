@@ -5,6 +5,6 @@ metadata:
   name: onedev-charts
   namespace: flux-system
 spec:
-  interval: 15m
+  interval: 1h
   url: https://dl.cloudsmith.io/public/onedev/onedev/helm/charts
   timeout: 3m

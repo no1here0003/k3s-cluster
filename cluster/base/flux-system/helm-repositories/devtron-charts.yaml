@@ -5,6 +5,6 @@ metadata:
   name: devtron-charts
   namespace: flux-system
 spec:
-  interval: 15m
+  interval: 1h
   url: https://helm.devtron.ai
   timeout: 3m
