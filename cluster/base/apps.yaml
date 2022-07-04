@@ -7,6 +7,8 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-core
+    - name: cluster-crds
+    - name: cluster-charts
   interval: 1m0s
   path: ./cluster/apps
   prune: false
