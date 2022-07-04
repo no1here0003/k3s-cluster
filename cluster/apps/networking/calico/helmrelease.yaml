@@ -30,7 +30,6 @@ spec:
       imagePath: calico
       calicoNetwork:
         bgp: Disabled
-        hostPorts: Disabled
         # Note: The ipPools section cannot be modified post-install.
         ipPools:
           - blockSize: 26
