@@ -5,6 +5,7 @@ kubectl patch installation default --type=merge -p '{"metadata": {"annotations":
 kubectl patch installation default --type=merge -p '{"metadata": {"labels": {"app.kubernetes.io/managed-by": "Helm"}}}'
 kubectl patch installation default --type=merge -p '{"metadata": {"annotations": {"meta.helm.sh/release-name": "tigera-operator"}}}'
 kubectl patch apiserver default --type=merge -p '{"metadata": {"annotations": {"meta.helm.sh/release-namespace": "tigera-operator"}}}'
+kubectl patch apiserver default --type=merge -p '{"metadata": {"annotations": {"app.kubernetes.io/managed-by": "Helm"}}}'
 kubectl patch apiserver default --type=merge -p '{"metadata": {"labels": {"app.kubernetes.io/managed-by": "Helm"}}}'
 kubectl patch apiserver default --type=merge -p '{"metadata": {"annotations": {"meta.helm.sh/release-name": "tigera-operator"}}}'
 kubectl patch podsecuritypolicy tigera-operator --type=merge -p '{"metadata": {"annotations": {"meta.helm.sh/release-namespace": "tigera-operator"}}}'
