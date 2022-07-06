@@ -6,8 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cluster-crds
-    - name: cluster-charts
+    - name: cluster-infra
   interval: 1m0s
   path: ./cluster/core
   prune: false
