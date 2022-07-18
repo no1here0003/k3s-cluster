@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mc-creative-v1
+  name: mc-cr-v1
   namespace: gaming
 spec:
   accessModes:
