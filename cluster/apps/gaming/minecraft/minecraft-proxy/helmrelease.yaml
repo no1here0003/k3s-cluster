@@ -17,8 +17,9 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    image: itzg/bungeecord
-    imageTag: 2022.3.0
+    image: 
+      repository: itzg/bungeecord
+      tag: 2022.3.0
     securityContext:
       # Security context settings - need to use root or else there will be problems due to the underlying image trying to do some things as root already
       runAsUser: 0
@@ -33,8 +34,10 @@ spec:
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: "waterfall-minecraft-proxy-config"
+
     extraEnv:
       SPIGET_PLUGINS: "78915,75"
+      
     minecraftProxy:
       rcon:
         # If you enable this, make SURE to change your password below.
