@@ -1,0 +1,123 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: waterfall
+  namespace: default
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://itzg.github.io/minecraft-server-charts/
+      chart: minecraft-proxy
+      version: 2.6.0
+      sourceRef:
+        kind: HelmRepository
+        name: minecraft-server-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image: itzg/bungeecord
+    imageTag: 2022.3.0
+    securityContext:
+      # Security context settings - need to use root or else there will be problems due to the underlying image trying to do some things as root already
+      runAsUser: 0
+      runAsGroup: 0
+      fsGroup: 0
+    resources:
+      requests:
+        memory: 250Mi
+        cpu: 50m
+      limits:
+        memory: 500Mi
+
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: "waterfall-minecraft-proxy-config"
+    extraEnv:
+      SPIGET_PLUGINS: "78915,75"
+    minecraftProxy:
+      rcon:
+        # If you enable this, make SURE to change your password below.
+        enabled: false
+        port: 25575
+        password: "${SECRET_PASSWORD}"
+        serviceType: LoadBalancer
+      serviceAnnotations:
+        metallb.universe.tf/loadBalancerIPs: ${SVC_MC_PROXY_ADDR}
+      type: WATERFALL
+      # A list of .jar URLs to download into the plugins folder.
+      # plugins: []
+      serviceType: LoadBalancer
+      loadBalancerIP: ${SVC_MC_PROXY_ADDR}
+      externalTrafficPolicy: Local
+      # externalIPs:
+      # This can be set to the contents of your config file (only works with yaml currently)
+      config: |
+        player_limit: -1
+        ip_forward: true
+        permissions:
+          default:
+          - bungeecord.command.server
+          - bungeecord.command.list
+          - alert.trigger
+          - slashserver.creative
+          - slashserver.survival
+          admin:
+          - bungeecord.command.alert
+          - bungeecord.command.end
+          - bungeecord.command.ip
+          - bungeecord.command.reload
+          - alert.receive
+          - alert.receive.firstjoin
+          - alert.command.toggle
+          - alert.command.reload
+          family:
+          - bungeecord.server.survival
+        timeout: 30000
+        log_pings: true
+        log_commands: false
+        online_mode: true
+        servers:
+          lobby:
+            motd: '&1eviljungle lobby'
+            address: mc-lobby-minecraft:25565
+            restricted: false
+          creative:
+            motd: 'creative server'
+            address: mc-creative-minecraft-bedrock:25565
+            restricted: false
+          survival:
+            motd: 'Private Survival SMP'
+            address: mc-survival-minecraft-bedrock:25565
+            restricted: true
+        listeners:
+        - query_port: 25577
+          motd: '&3mine.${SECRET_DOMAIN3} &6&Llobby'
+          priorities:
+          - lobby
+          bind_local_address: true
+          tab_list: GLOBAL_PING
+          query_enabled: true
+          host: 0.0.0.0:25577
+        ping_passthrough: true
+        groups:
+          EthanDstroyr:
+          - admin
+          - family
+      #    forced_hosts:
+      #      pvp.md-5.net: pvp
+      #    max_players: 1
+      #    tab_size: 60
+      #    force_default_server: false
+      #    proxy_protocol: false
+      #  disabled_commands:
+      #  - disabledcommandhere
+      #  network_compression_threshold: 256
+      #  groups:
+      #    md_5:
+      #    - admin
+      #  connection_throttle: 4000
+      #  connection_throttle_limit: 3
+      #  stats: f2876aa6-74d2-468c-90ee-1377111f1c9f
+      #  forge_support: false
+      #  inject_commands: false

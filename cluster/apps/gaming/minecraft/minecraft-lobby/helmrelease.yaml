@@ -1,0 +1,50 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: mc-lobby
+  namespace: default
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://itzg.github.io/minecraft-server-charts/
+      chart: minecraft
+      version: 3.10.0
+      sourceRef:
+        kind: HelmRepository
+        name: minecraft-server-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image: itzg/minecraft-server
+    imageTag: 2022.8.0-java17
+    persistence:
+      storageClass: "longhorn"
+      dataDir:
+        enabled: true
+        existingClaim: mc-lobby-v1
+    resources:
+      requests:
+        memory: 2Gi
+        cpu: 250m
+      limits:
+        memory: 2Gi
+    extraEnv:
+      ENABLE_AUTOPAUSE: FALSE
+      SPIGET_RESOURCES: "8631,28140,6245,14754"
+      MODS: "https://github.com/EssentialsX/Essentials/releases/download/2.19.4/EssentialsX-2.19.4.jar"
+    minecraftServer:
+      eula: "TRUE"
+      version: "LATEST"
+      type: PAPER
+      forceReDownload: true
+      onlineMode: false
+      difficulty: peaceful
+      maxTickTime: -1
+      serviceType: ClusterIP
+      gameMode: adventure
+      motd: "\u00a7fmine.${SECRET_DOMAIN3}\u00a7 - \u00a7a\u00a7llobby\u00a7"
+      icon: https://www.freeiconspng.com/uploads/minecraft-server-icon-13.png
+      rcon:
+        enabled: false
