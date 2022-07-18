@@ -47,7 +47,7 @@ spec:
       failureThreshold: 30
       periodSeconds: 10
     serviceAnnotations:
-      metallb.universe.tf/loadBalancerIPs: ${SVC_MCSV_ADDR}
+      metallb.universe.tf/loadBalancerIPs: ${SVC_MCCR_ADDR}
     extraEnv:
       ENABLE_AUTOPAUSE: FALSE
       MODS: "https://github.com/EssentialsX/Essentials/releases/download/2.19.4/EssentialsX-2.19.4.jar"
@@ -83,8 +83,8 @@ spec:
             annotations:
               nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16"
             hosts:
-              - name: mc-map.${SECRET_DOMAIN3}
+              - name: mccr-map.${SECRET_DOMAIN3}
                 path: /
             tls:
             - hosts:
-              - mc-map.${SECRET_DOMAIN3}
+              - mccr-map.${SECRET_DOMAIN3}

@@ -47,7 +47,7 @@ spec:
       failureThreshold: 30
       periodSeconds: 10
     serviceAnnotations:
-      metallb.universe.tf/loadBalancerIPs: ${SVC_MCCR_ADDR}
+      metallb.universe.tf/loadBalancerIPs: ${SVC_MCSV_ADDR}
     extraEnv:
       ENABLE_AUTOPAUSE: FALSE
       SPIGET_RESOURCES: "74354,8631,28140"
@@ -88,4 +88,4 @@ spec:
                 path: /
             tls:
             - hosts:
-              - mcsv.${SECRET_DOMAIN3}
+              - mcsv-map.${SECRET_DOMAIN3}

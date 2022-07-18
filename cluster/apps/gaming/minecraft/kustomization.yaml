@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - minecraft-proxy
   - minecraft-lobby
-  # - minecraft-creative
-  # - minecraft-survival
+  - minecraft-creative
+  - minecraft-survival
