@@ -76,7 +76,7 @@ spec:
       gameMode: survival
       motd: "mine.${SECRET_DOMAIN3}\n\u00A76\u00A7lsurvival\u00A7r\u00A7l - \u00A7r\u00A7c\u00A7lSMP\u00A7r\n"
       icon: https://www.freeiconspng.com/uploads/minecraft-server-icon-23.png
-      loadBalancerIP: ${SVC_MCSV_ADDR}
+
       rcon:
         enabled: true
         port: 25575
