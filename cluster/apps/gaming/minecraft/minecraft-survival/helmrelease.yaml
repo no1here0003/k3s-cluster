@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: mcsv
-  namespace: default
+  namespace: gaming
 spec:
   interval: 5m
   chart:
@@ -46,10 +46,8 @@ spec:
       enabled: true
       failureThreshold: 30
       periodSeconds: 10
-    podAnnotations:
-      backup.velero.io/backup-volumes: datadir
     serviceAnnotations:
-      mc-router.itzg.me/externalServerName: "mine.${SECRET_DOMAIN3}"
+      metallb.universe.tf/loadBalancerIPs: ${SVC_MCCR_ADDR}
     extraEnv:
       ENABLE_AUTOPAUSE: FALSE
       SPIGET_RESOURCES: "74354,8631,28140"

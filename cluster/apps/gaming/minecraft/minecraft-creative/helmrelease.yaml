@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: mc
-  namespace: default
+  namespace: gaming
 spec:
   interval: 5m
   chart:
