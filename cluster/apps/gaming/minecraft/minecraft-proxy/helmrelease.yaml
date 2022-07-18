@@ -37,7 +37,7 @@ spec:
 
     extraEnv:
       SPIGET_PLUGINS: "78915,75"
-      
+
     minecraftProxy:
       rcon:
         # If you enable this, make SURE to change your password below.
@@ -51,7 +51,6 @@ spec:
       # A list of .jar URLs to download into the plugins folder.
       # plugins: []
       serviceType: LoadBalancer
-      loadBalancerIP: ${SVC_MC_PROXY_ADDR}
       externalTrafficPolicy: Local
       # externalIPs:
       # This can be set to the contents of your config file (only works with yaml currently)
