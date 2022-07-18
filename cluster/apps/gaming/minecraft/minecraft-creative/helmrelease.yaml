@@ -22,6 +22,7 @@ spec:
       repository: itzg/minecraft-server
       tag: 2022.4.1-java17
       pullSecret: ""
+
     strategyType: Recreate
 
     persistence:
@@ -75,7 +76,7 @@ spec:
       gameMode: creative
       motd: "\u00a7fmine.${SECRET_DOMAIN3}\u00a7 - \u00a7a\u00a7lcreative\u00a7"
       icon: https://www.freeiconspng.com/uploads/minecraft-server-icon-13.png
-      loadBalancerIP: 10.0.6.101
+      loadBalancerIP: ${SVC_MCCR_ADDR}
       rcon:
         enabled: false
         port: 25575
