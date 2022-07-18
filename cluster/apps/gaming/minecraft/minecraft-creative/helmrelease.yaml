@@ -18,41 +18,50 @@ spec:
       interval: 5m
   values:
 
-    image: itzg/minecraft-server
-    imageTag: 2022.4.1-java17
+    image: 
+      repository: itzg/minecraft-server
+      tag: 2022.4.1-java17
+      pullSecret: ""
     strategyType: Recreate
-    
+
     persistence:
       dataDir:
         enabled: true
         existingClaim: mc-cr-v1
+
     resources:
       requests:
         memory: 6Gi
         cpu: 250m
       limits:
         memory: 7Gi
+
     livenessProbe:
       initialDelaySeconds: 30
       periodSeconds: 5
       failureThreshold: 10
       successThreshold: 1
       timeoutSeconds: 1
+
     readinessProbe:
       initialDelaySeconds: 30
       periodSeconds: 5
       failureThreshold: 10
       successThreshold: 1
       timeoutSeconds: 1
+
     startupProbe:
       enabled: true
       failureThreshold: 30
       periodSeconds: 10
+
     serviceAnnotations:
       metallb.universe.tf/loadBalancerIPs: ${SVC_MCCR_ADDR}
+
     extraEnv:
       ENABLE_AUTOPAUSE: FALSE
       MODS: "https://github.com/EssentialsX/Essentials/releases/download/2.19.4/EssentialsX-2.19.4.jar"
+
     minecraftServer:
       eula: "TRUE"
       version: "LATEST"
