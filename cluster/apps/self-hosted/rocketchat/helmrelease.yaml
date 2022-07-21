@@ -21,7 +21,7 @@ spec:
 
     image:
       repository: registry.rocket.chat/rocketchat/rocket.chat
-      version: 4.8.1
+      version: 4.8.2
       pullPolicy: IfNotPresent
 
     smtp:
